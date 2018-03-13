@@ -1,0 +1,10 @@
+.contrainer { flex: 1; }
+.welcome { flex: 1; align-items: 'center'; background-color: '#006666'; }
+.menu { justify-content: 'center'; align-items: 'center'; }
+.menu-select { margin: 10; width: 100; height: 100; justify-content: 'center'; align-items: 'center'; border-radius: 50; }
+.bill { background-color: '#e6e6ff'; }
+.money { background-color: '#e6f9ff'; }
+.guarantee { background-color: '#f9f2ec'; }
+.receive { background-color: '#fff0e6'; }
+.calculator { background-color: '#ffe6ff'; }
+.todolist { background-color: '#e6ffe6'; }
