@@ -50,7 +50,7 @@ export default class Routes extends React.Component {
                 ref={(ref) => this._drawer = ref}
                 type="overlay"
                 content={<SlideMenu closeDrawer={this.closeSlideMenu} />}
-                // tabToClose={true}
+                tabToClose={true}
                 openDrawerOffset={0.2}
                 panCloseMask={0.2}
                 closeDraweroffset={-3}

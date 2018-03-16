@@ -7,9 +7,10 @@ import {
     Image,
     ImageBackground 
 } from 'react-native'
-import { Input, Button } from 'react-native-elements'
+import { SideMenu, Input, Button } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
 
+import styles from '../static/css/home-style'
 import BottomNav from './BottomNav'
 
 export default class Home extends React.Component {
@@ -57,85 +58,3 @@ export default class Home extends React.Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    contrainer: {
-        flex: 1,
-    },
-    welcome: {
-        backgroundColor: '#00b3b3', 
-        alignItems: 'center',
-        justifyContent: 'flex-end',         
-        height: '45%',
-    },
-    welcomeImage: {
-        width: '100%',
-        height: '100%',
-        padding: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    menu: {
-        margin: 10,        
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    footer: {
-        flex: 1,        
-        backgroundColor: '#006666',
-    },
-    bill: {
-        margin: 10,                
-        width: 100, 
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center', 
-        backgroundColor: '#e6e6ff',
-        borderRadius: 50,
-    },
-    money: {
-        margin: 10,                
-        width: 100, 
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center', 
-        backgroundColor: '#e6f9ff',
-        borderRadius: 50,
-    },
-    guarantee: {
-        margin: 10,                
-        width: 100, 
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center', 
-        backgroundColor: '#f9f2ec',
-        borderRadius: 50,
-    },
-    receive: {
-        margin: 10,        
-        width: 100, 
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center', 
-        backgroundColor: '#fff0e6',
-        borderRadius: 50,
-    },
-    calculator: {
-        margin: 10,        
-        width: 100, 
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center', 
-        backgroundColor: '#ffe6f9',
-        borderRadius: 50,
-    },
-    todolist: {
-        margin: 10,        
-        width: 100, 
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center', 
-        backgroundColor: '#e6ffe6',
-        borderRadius: 50,
-    }
-});

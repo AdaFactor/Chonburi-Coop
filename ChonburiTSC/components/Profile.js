@@ -8,6 +8,7 @@ import {
   Image,
   ScrollView,
   Alert,
+  TextInput,
 } from 'react-native'
 import { Input, Button, Card, ButtonGroup } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
@@ -26,7 +27,7 @@ export default class Profile extends React.Component {
                             <Text style={{color: '#006666', fontWeight: 'bold', fontSize: 20}}>ชื่อ นามสกุล</Text> 
                         </View>              
                     </Card>
-
+                    <TextInput />
                     <Card style={{height: 80}}>
                         <View style={{flexDirection: 'row'}}>
                             <View style={styles.dataMember}>

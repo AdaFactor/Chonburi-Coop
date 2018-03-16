@@ -19,6 +19,10 @@ export default class SlideMenu extends React.Component {
     closeDrawer: PropTypes.func.isRequired
   };
 
+  onAssociationPress() {
+    Actions.association()
+  }
+
   render() {
     let {closeDrawer} = this.props
     
@@ -45,7 +49,7 @@ export default class SlideMenu extends React.Component {
                   <Text style={ styles.textList }>สมาชิก</Text>
                 </TouchableHighlight>
 
-                <TouchableHighlight style={styles.listMenu} onPress={() => { Actions.association(); }}>
+                <TouchableHighlight style={styles.listMenu} onPress={() => this.onAssociationPress()} >
                   <Text style={ styles.textList }>สมาคมฯ</Text>
                 </TouchableHighlight>
 

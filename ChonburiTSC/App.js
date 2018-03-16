@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import Routes from './components/Routes'
+import { Router } from 'react-native-router-flux';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
