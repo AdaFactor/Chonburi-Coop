@@ -12,6 +12,7 @@ import {
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
 import { Header, Icon } from 'react-native-elements'
 
+import SwiperScreen from './SwiperScreen'
 import styles from '../static/css/home-style'
 import Association from './Association'
 import Bill from './Bill'
@@ -41,11 +42,8 @@ class HomeScreen extends React.Component {
                     statusBarProps={{ translucent: true }}
                     backgroundColor='#33cc33'
                 />
-                <View style={styles.welcome}>
-                    <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
-                        <Text style={{color: '#fff', fontSize: 20}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
-                    </ImageBackground>                                        
-                </View>
+                
+                <SwiperScreen />
                 <View style={{justifyContent: 'center', alignItems: 'center', height: '45%', backgroundColor: '#ffffff'}}>
                     <View style={{flexDirection: 'row', alignItems: 'center',}}>
                         <TouchableOpacity 

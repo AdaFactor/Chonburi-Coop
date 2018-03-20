@@ -34,19 +34,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         padding: 10
     },
-    welcome: {
-        backgroundColor: '#00b3b3', 
-        alignItems: 'center',
-        justifyContent: 'flex-end',         
-        height: '45%',
-    },
-    welcomeImage: {
-        width: '100%',
-        height: '100%',
-        padding: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+    
     menu: {
         margin: 10,        
         justifyContent: 'center',
