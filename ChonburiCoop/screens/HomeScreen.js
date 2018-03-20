@@ -15,6 +15,7 @@ import styles from '../static/css/home-style'
 import Bill from './Bill'
 import Profile from './Profile'
 import Association from './Association'
+import Debt from './Debt';
 
 class HomeScreen extends React.Component {
     render() {
@@ -123,7 +124,8 @@ const DrawerNav = DrawerNavigator(
     {
       หน้าหลัก: { screen: HomeScreen },
       สมาชิก: { screen: Profile },
-      สมาคม: { screen: Association }
+      สมาคม: { screen: Association },
+      หนี้สิน: { screen: Debt }
     },
 )
   
