@@ -101,7 +101,14 @@ class HomeScreen extends React.Component {
                             <Text style={{color: '#cc0099'}}>คำนวณเงินกู้</Text>                        
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.todolist}>
+                        <TouchableOpacity 
+                            style={styles.todolist}
+                            onPress={
+                                () => { 
+                                this.props.navigation.navigate('chargedList')
+                                }
+                            }
+                        >
                             <Image source={require('../static/images/todolist.png')} />                    
                             <Text style={{color: '#003300'}}>เรียกเก็บ</Text>                        
                         </TouchableOpacity>

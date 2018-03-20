@@ -10,6 +10,7 @@ import Calculator from './screens/Calculator'
 import Profile from './screens/Profile'
 import Association from './screens/Association'
 import Dividend from './screens/Dividend'
+import chargedList from './screens/chargedList'
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -30,7 +31,8 @@ const StackNav = StackNavigator(
       Calculator: { screen: Calculator },
       Profile: { screen: Profile }, 
       Association: { screen: Association },
-      Dividend: { screen: Dividend },               
+      Dividend: { screen: Dividend },
+      chargedList: { screen: chargedList },      
   },
   {
       headerMode: 'none'
