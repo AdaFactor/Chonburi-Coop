@@ -5,17 +5,24 @@ import {
     View,
     TouchableOpacity,
     Image,
-    ImageBackground 
+    ImageBackground,
+    ScrollView
 } from 'react-native'
 
-import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation'
+import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
 import { Header, Icon } from 'react-native-elements'
 
 import styles from '../static/css/home-style'
-import Bill from './Bill'
-import Profile from './Profile'
 import Association from './Association'
-import Debt from './Debt';
+import Bill from './Bill'
+import Calculator from './Calculator'
+import chargedList from './chargedList'
+import Debt from './Debt'
+import Dividend from './Dividend'
+import Guarantee from './Guarantee'
+import Profile from './Profile'
+import Saving from './Saving'
+import LoginScreen from './LoginScreen';
 
 class HomeScreen extends React.Component {
     render() {
@@ -120,13 +127,63 @@ class HomeScreen extends React.Component {
     }
 }
 
+const CustomDrawerContentComponent = (props) => (
+    <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
+        <Header></Header>
+        <DrawerItems {...props} />
+    </View>
+);
+
 const DrawerNav = DrawerNavigator(
     {
-      หน้าหลัก: { screen: HomeScreen },
-      สมาชิก: { screen: Profile },
-      สมาคม: { screen: Association },
-      หนี้สิน: { screen: Debt }
+        หน้าหลัก: { screen: HomeScreen },
+        สมาชิก: { screen: Profile },
+        สมาคม: { screen: Association },
+        หนี้สิน: { screen: Debt },
+        ใบเสร็จ: { 
+            screen: Bill,
+            navigationOptions: {
+                drawerLabel: () => null
+            }
+        },
+        เงินฝาก: { 
+            screen: Saving,
+            navigationOptions: {
+                drawerLabel: () => null
+            }
+        },
+        ค้ำประกัน: { 
+            screen: Guarantee,
+            navigationOptions: {
+                drawerLabel: () => null
+            }
+        },
+        ปันผล: { 
+            screen: Dividend,
+            navigationOptions: {
+                drawerLabel: () => null
+            }
+        },
+        คำนวนเงินกู้: { 
+            screen: Calculator,
+            navigationOptions: {
+                drawerLabel: () => null
+            }
+        },
+        รายการเรียกเก็บ: { 
+            screen: chargedList,
+            navigationOptions: {
+                drawerLabel: () => null
+            }
+        },
+        ออกจากระบบ: { screen: LoginScreen }
     },
+    {
+        contentComponent: CustomDrawerContentComponent,
+        drawerOpenRoute: 'DrawerOpen',
+        drawerCloseRoute: 'DrawerClose',
+        drawerToggleRoute: 'DrawerToggle',        
+    }
 )
   
 export default DrawerNav
