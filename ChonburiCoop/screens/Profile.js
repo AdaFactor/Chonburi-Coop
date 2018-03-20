@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
                         color='#fff'
                         />
                     }
-                    centerComponent={{ text: 'Home', style: { color: '#fff' } }}
+                    centerComponent={{ text: 'สมาชิก', style: { color: '#fff' } }}
                     rightComponent={{ icon: 'email', color: '#fff' }}
                     statusBarProps={{ translucent: true }}
                     backgroundColor='#33cc33'

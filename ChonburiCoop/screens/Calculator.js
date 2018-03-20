@@ -37,7 +37,7 @@ export default class Calculator extends React.Component {
               color='#fff'
               />
           }
-          centerComponent={{ text: 'Home', style: { color: '#fff' } }}
+          centerComponent={{ text: 'คำนวนเงินกู้', style: { color: '#fff' } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           statusBarProps={{ translucent: true }}
           backgroundColor='#33cc33'

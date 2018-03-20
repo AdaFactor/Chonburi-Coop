@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
                         color='#fff'
                         />
                     }
-                    centerComponent={{ text: 'Home', style: { color: '#fff' } }}
+                    centerComponent={{ text: 'หน้าหลัก', style: { color: '#fff' } }}
                     rightComponent={{ icon: 'email', color: '#fff' }}
                     statusBarProps={{ translucent: true }}
                     backgroundColor='#33cc33'
