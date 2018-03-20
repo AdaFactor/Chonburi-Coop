@@ -77,7 +77,14 @@ class HomeScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
                     <View style={{flexDirection: 'row'}}>
-                        <TouchableOpacity style={styles.receive}>
+                        <TouchableOpacity 
+                            style={styles.receive}
+                            onPress={
+                                () => { 
+                                this.props.navigation.navigate('Dividend')
+                                }
+                            }
+                        >
                             <Image source={require('../static/images/receive.png')} />                    
                             <Text style={{color: '#ff6600'}}>ปันผล</Text>                        
                         </TouchableOpacity>

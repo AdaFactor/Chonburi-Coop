@@ -9,6 +9,7 @@ import Guarantee from './screens/Guarantee'
 import Calculator from './screens/Calculator'
 import Profile from './screens/Profile'
 import Association from './screens/Association'
+import Dividend from './screens/Dividend'
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -28,7 +29,8 @@ const StackNav = StackNavigator(
       Guarantee: { screen: Guarantee },
       Calculator: { screen: Calculator },
       Profile: { screen: Profile }, 
-      Association: { screen: Association },                 
+      Association: { screen: Association },
+      Dividend: { screen: Dividend },               
   },
   {
       headerMode: 'none'
