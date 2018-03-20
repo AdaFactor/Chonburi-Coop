@@ -11,6 +11,7 @@ import Profile from './screens/Profile'
 import Association from './screens/Association'
 import Dividend from './screens/Dividend'
 import chargedList from './screens/chargedList'
+import NewsScreen from './screens/NewsScreen'
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -32,7 +33,8 @@ const StackNav = StackNavigator(
       Profile: { screen: Profile }, 
       Association: { screen: Association },
       Dividend: { screen: Dividend },
-      chargedList: { screen: chargedList },      
+      chargedList: { screen: chargedList },
+      NewsScreen: { screen: NewsScreen },
   },
   {
       headerMode: 'none'

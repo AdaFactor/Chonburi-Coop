@@ -32,13 +32,19 @@ class HomeScreen extends React.Component {
                 <Header
                     leftComponent={
                         <Icon 
-                        name='menu' 
-                        onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
-                        color='#fff'
+                            name='menu' 
+                            onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
+                            color='#fff'
                         />
                     }
                     centerComponent={{ text: 'หน้าหลัก', style: { color: '#fff' } }}
-                    rightComponent={{ icon: 'email', color: '#fff' }}
+                    rightComponent={
+                        <Icon 
+                            name='email' 
+                            onPress={() => {this.props.navigation.navigate('NewsScreen')}}
+                            color='#fff'
+                        />
+                    }
                     statusBarProps={{ translucent: true }}
                     backgroundColor='#33cc33'
                 />

@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
         backgroundColor: '#e6ffe6',
         borderRadius: 50,
-    }
+    },
 });
 
 export default styles

@@ -54,7 +54,12 @@ const styles = StyleSheet.create({
 export default class SwiperScreen extends Component {
   render(){
     return (
-      <Swiper style={styles.wrapper} showsButtons={true} autoplay={true}>
+      <Swiper 
+        style={styles.wrapper} 
+        autoplay={true}
+        dotColor='#999'
+        activeDotColor='#fff'
+      >
         <View style={styles.welcome}>
             <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
                 <Text style={{color: '#fff', fontSize: 20}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
