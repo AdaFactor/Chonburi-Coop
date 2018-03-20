@@ -129,7 +129,10 @@ class HomeScreen extends React.Component {
 
 const CustomDrawerContentComponent = (props) => (
     <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-        <Header></Header>
+        <Header
+            centerComponent={{ text: 'Username', style: { color: '#fff' } }}
+            backgroundColor='#2a2c32'
+        />
         <DrawerItems {...props} />
     </View>
 );
