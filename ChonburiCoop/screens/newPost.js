@@ -64,17 +64,7 @@ class FlatListItem extends Component {
 
         return (
             <Swipeout {...swipeSetting}>
-                <View 
-                    key={this.props.index}
-                    style={{
-                        marginLeft: 10, 
-                        marginRight: 10, 
-                        padding: 10,
-                        backgroundColor: '#fff',
-                        borderBottomWidth: 1,
-                        borderBottomColor: '#ddd',
-                    }}
-                >
+                <View style={styles.swiper}>
                     <Text>{ this.props.item.head_news }</Text>
                     <Text>{ this.props.item.content_news }</Text>                
                 </View>
@@ -131,8 +121,8 @@ export default class newPost extends Component<Props> {
             <View style={styles.container}>
                 <Header
                     leftComponent={{
-                            icon: 'arrow-back' ,
-                            onPress: () => {this.props.navigation.navigate('HomeScreen')}
+                            icon: 'home' ,
+                            onPress: () => {this.props.navigation.navigate('HomeScreen')},
                     }}
                     centerComponent={{ text: 'ข่าวใหม่', style: { fontSize: 16, color:'#fff' } }}
                     statusBarProps={{ barStyle: 'default' }}
@@ -143,22 +133,9 @@ export default class newPost extends Component<Props> {
                             multiline={true}
                             numberOfLines={4}
                             underlineColorAndroid='transparent'
-                            style={{
-                                borderColor: '#999',
-                                borderWidth: 1,
-                                borderRadius: 5
-                            }}
+                            style={styles.textinput}
                         />
-                        <TouchableOpacity
-                            style={{
-                                marginTop: 10,
-                                marginLeft: '70%',
-                                padding: 5,
-                                alignItems: 'center',
-                                backgroundColor: '#f1ff1d',
-                                borderRadius: 5                                
-                            }}
-                        >
+                        <TouchableOpacity style={styles.btnPost}>
                             <Text>โพสต์</Text>
                         </TouchableOpacity>
                     </View>
@@ -185,5 +162,24 @@ const styles = StyleSheet.create({
     headNews: {
         fontWeight: 'bold',
         fontSize: 20
+    },
+    textinput: {
+        borderColor: '#999',
+        borderWidth: 1,
+        borderRadius: 5
+    },
+    btnPost: {
+        marginTop: 10,
+        marginLeft: '70%',
+        padding: 5,
+        alignItems: 'center',
+        backgroundColor: '#f1ff1d',
+        borderRadius: 5
+    },
+    swiper: {
+        padding: 10,
+        backgroundColor: '#fff',
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
     }
 })
