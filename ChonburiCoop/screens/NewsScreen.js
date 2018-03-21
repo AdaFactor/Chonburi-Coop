@@ -19,30 +19,43 @@ const news = [
 ]
 
 export default class NewsScreen extends Component {
-  render(){
-    return (
-        <View style={styles.container}>
-            <Header
-                leftComponent={{
-                        icon: 'arrow-back' ,
-                        onPress: () => {this.props.navigation.navigate('HomeScreen')}
-                }}
-                centerComponent={{ text: 'สารประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
-                statusBarProps={{ translucent: true }}
-            />
-            <ScrollView>
-                {
-                    news.map(( itemNews, i ) => (
-                        <View key={i} style={styles.contentNews}>
-                            <Text style={styles.headNews}>{ itemNews.head_news }</Text>
-                            <Text>{ itemNews.content_news }</Text>
-                        </View>
-                    ))
-                }
-            </ScrollView>
-        </View>
-    );
-  }
+    state = {
+        data: []
+    }
+
+    componentDidMount = () => {
+        fetch( 'https://jsonplaceholder.typicode.com/posts/', { method: 'GET' })
+            .then(res => res.json())
+            .then((resJson) => { this.setState({ data: resJson}) })
+            .catch((error) => { console.log(error) })
+    }
+
+    render(){
+        const newsData = this.state.data
+        console.log(this.state.data)
+        return (
+            <View style={styles.container}>
+                <Header
+                    leftComponent={{
+                            icon: 'arrow-back' ,
+                            onPress: () => {this.props.navigation.navigate('HomeScreen')}
+                    }}
+                    centerComponent={{ text: 'สารประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
+                    statusBarProps={{ translucent: true }}
+                />
+                <ScrollView>
+                    {
+                        this.state.data.map(( itemNews, i ) => (
+                            <View key={i} style={styles.contentNews}>
+                                <Text style={styles.headNews}>{ itemNews.title }</Text>
+                                <Text>{ itemNews.body }</Text>
+                            </View>
+                        ))
+                    }
+                </ScrollView>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
