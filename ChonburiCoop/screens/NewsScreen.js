@@ -15,7 +15,6 @@ const news = [
     { id: 2, head_news: 'Head News 2', content_news: 'This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html' },
     { id: 3, head_news: 'Head News 3', content_news: 'This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html' },
     { id: 4, head_news: 'Head News 4', content_news: 'This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html' },
-    
 ]
 
 export default class NewsScreen extends Component {

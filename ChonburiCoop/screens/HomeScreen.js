@@ -24,6 +24,7 @@ import Guarantee from './Guarantee'
 import Profile from './Profile'
 import Saving from './Saving'
 import LoginScreen from './LoginScreen';
+import newPost from './newPost';
 
 class HomeScreen extends React.Component {
     render() {
@@ -147,6 +148,7 @@ const DrawerNav = DrawerNavigator(
         สมาชิก: { screen: Profile },
         สมาคม: { screen: Association },
         หนี้สิน: { screen: Debt },
+        ผู้ดูแลระบบ: { screen: newPost },
         ใบเสร็จ: { 
             screen: Bill,
             navigationOptions: {

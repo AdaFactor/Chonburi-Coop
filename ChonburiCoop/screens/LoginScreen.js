@@ -16,6 +16,7 @@ export default class LoginScreen extends Component {
       <View style={styles.container}>
         <TextInput
             placeholder='Username'
+            placeholderTextColor='#fff'
             style={ styles.input }
             returnKeyType='next'
             ref={() => this.username}
@@ -23,7 +24,8 @@ export default class LoginScreen extends Component {
         />
 
         <TextInput
-            placeholder='Password' 
+            placeholder='Password'
+            placeholderTextColor='#fff'            
             secureTextEntry        
             style={ styles.input }
             underlineColorAndroid='transparent'
