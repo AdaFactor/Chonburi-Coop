@@ -91,7 +91,7 @@ export default class Debt extends React.Component {
                         style={{ width: '50%', backgroundColor: '#a69364', borderRadius: 5 }}
                         onPress={() =>
                           {
-                            return <contentDebt key={index} item={itemDebts} />
+                            this.props.navigation.push({ component: contentDebt })
                           }
                         }
                       >
