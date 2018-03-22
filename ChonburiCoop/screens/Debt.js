@@ -11,7 +11,35 @@ import {
 import { Card, Header, Icon } from 'react-native-elements'
 
 const debts = [
-    { number_compact: 'ฉฉ6000167', date_compact: '07/11/60', loan: '30000.00', balance: '15000.00', guarantor: '' },
+    { 
+      number_compact: 'ฉฉ6000167', 
+      date_compact: '07/11/60', 
+      loan: '30000.00', 
+      balance: '15000.00', 
+      guarantor: [
+        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
+        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
+        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },       
+      ],
+      motion: [
+        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},
+        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},
+        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},        
+      ] 
+    },
+    { 
+      number_compact: 'ฉฉ6000167', 
+      date_compact: '07/11/60', 
+      loan: '30000.00', 
+      balance: '15000.00', 
+      guarantor: [
+        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
+        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
+      ],
+      motion: [
+        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},
+      ]
+    },
 ]
 
 export default class Debt extends React.Component {
@@ -26,36 +54,60 @@ export default class Debt extends React.Component {
               color='#fff'
               />
           }
-          centerComponent={{ text: 'หนี้สิน', style: { color: '#fff' } }}
+          centerComponent={{ text: 'หนี้สิน', style: { color: '#fff', fontSize: 16 } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
           backgroundColor='#33cc33'
       />
-        <ScrollView style={{ marginBottom: 10 }} >
+        <ScrollView style={{ marginBottom: 10, padding: 10 }} >
             {
               debts.map(( itemDebts, i ) => (
-                <Card 
+                <View 
                     key={i} 
-                    containerStyle={{ borderColor: '#2f0800' }}
+                    style={styles.listItem}
                 >
-                    <View style={{ flexDirection: 'row' }}>
-                        <View style={{ width: '50%' }}>
-                            <Text style={{ fontWeight: 'bold' }}>เลขที่สัญญา:</Text>
-                            <Text style={{ fontWeight: 'bold' }}>วันที่กู้:</Text>
-                            <Text style={{ fontWeight: 'bold' }}>วงเงินกู้:</Text>
-                            <Text style={{ fontWeight: 'bold' }}>คงเหลือ:</Text>
-                            <Text style={{ fontWeight: 'bold' }}>ผู้ค้ำประกัน:</Text>
-                        </View>
-
-                        <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                            <Text>{ itemDebts.number_compact }</Text>
-                            <Text>{ itemDebts.date_compact }</Text>
-                            <Text>{ itemDebts.loan }</Text>
-                            <Text>{ itemDebts.balance }</Text>
-                            <Text>{ itemDebts.guarantor }</Text>
-                        </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <View style={{ width: '50%' }}>
+                      <Text style={{ fontSize: 25, color: '#5d4d2d', fontWeight: 'bold' }}>
+                        { itemDebts.number_compact }
+                      </Text>
+                    </View>
+                    <View style={{ width: '50%', alignItems: 'flex-end' }}>
+                      <Text style={{ fontWeight: 'bold' }}>Date: { itemDebts.date_compact }</Text>                       
+                    </View>
                   </View>
-                </Card>
+
+                  <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+                    <View style={{ width: '40%' }}>
+                      <Text>วงเงินกู้:</Text>
+                      <Text>คงเหลือ:</Text>
+                    </View>
+                    <View style={{ width: '40%', alignItems: 'flex-end' }}>
+                      <Text style={{ color: '#555' }}>{ itemDebts.loan }</Text>
+                      <Text style={{ color: '#555' }}>{ itemDebts.balance }</Text>
+                    </View>
+                    <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center' }} >
+                      <TouchableOpacity 
+                        style={{ width: '50%', backgroundColor: '#a69364', borderRadius: 5 }}
+                        onPress={() =>
+                          {
+                            return <contentDebt key={index} item={itemDebts} />
+                          }
+                        }
+                      >
+                        <Icon name='remove-red-eye' color='#fff' />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                  
+                  {/* <View>
+                    {
+                      itemDebts.guarantor.map(( itemGuarantor, j ) => {
+                        return <Text key={j}>{ itemGuarantor.name }</Text>
+                      })
+                    }
+                  </View> */}
+                </View>
               ))
             }
         </ScrollView>
@@ -64,9 +116,25 @@ export default class Debt extends React.Component {
   }
 }
 
+class contentDebt extends Component {
+  render() {
+    return (
+      <View>
+        <Text>a</Text>
+      </View>
+    )
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#a08d5c'
+    backgroundColor: '#ededee',
+  },
+  listItem: {
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: '#fff',
+    borderRadius: 5,
   },
 });
