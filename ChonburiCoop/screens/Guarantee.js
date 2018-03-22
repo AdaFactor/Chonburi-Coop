@@ -62,7 +62,7 @@ export default class Guarantee extends React.Component {
           }
           centerComponent={{ text: 'การค้ำประกัน', style: { color: '#fff' } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
-          statusBarProps={{ translucent: true }}
+          // statusBarProps={{ translucent: true }}
           backgroundColor='#33cc33'
         />
         <ScrollView>

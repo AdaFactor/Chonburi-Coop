@@ -8,6 +8,7 @@ import {
   ScrollView 
 } from 'react-native'
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
+import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
 
 const billList = [
   { bill_number: '100001', date: '01/03/2561', amount_of_money: '29953.32'},
@@ -31,7 +32,7 @@ export default class Bill extends React.Component {
           }
           centerComponent={{ text: 'ใบเสร็จ', style: { color: '#fff' } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
-          statusBarProps={{ translucent: true }}
+          // statusBarProps={{ translucent: true }}
           backgroundColor='#33cc33'
         />
         <ScrollView style={{ marginBottom: 10 }}>

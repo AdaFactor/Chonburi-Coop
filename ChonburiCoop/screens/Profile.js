@@ -26,7 +26,7 @@ export default class Profile extends React.Component {
                     }
                     centerComponent={{ text: 'สมาชิก', style: { color: '#fff' } }}
                     rightComponent={{ icon: 'email', color: '#fff' }}
-                    statusBarProps={{ translucent: true }}
+                    // statusBarProps={{ translucent: true }}
                     backgroundColor='#33cc33'
                 />
                 <ScrollView style={{ marginBottom: 10 }}>

@@ -46,7 +46,7 @@ class HomeScreen extends React.Component {
                             color='#fff'
                         />
                     }
-                    statusBarProps={{ translucent: true }}
+                    // statusBarProps={{ translucent: true }}
                     backgroundColor='#33cc33'
                 />
                 

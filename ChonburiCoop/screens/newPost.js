@@ -90,7 +90,7 @@ class FlatListData extends Component {
     componentDidMount = () => {
         fetch( 'https://jsonplaceholder.typicode.com/posts/', { method: 'GET' })
             .then(res => res.json())
-            .then((resJson) => { this.setState({ data: resJson}) })
+            .then((resJson) => { this.setState({ data: resJson }) })
             .catch((error) => { console.log(error) })
     }
 
@@ -114,8 +114,7 @@ class FlatListData extends Component {
     }
 }
 
-type Props = {};
-export default class newPost extends Component<Props> {
+export default class newPost extends Component {
     render(){
         return (
             <View style={styles.container}>

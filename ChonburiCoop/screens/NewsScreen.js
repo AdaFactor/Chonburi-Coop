@@ -40,7 +40,7 @@ export default class NewsScreen extends Component {
                             onPress: () => {this.props.navigation.navigate('HomeScreen')}
                     }}
                     centerComponent={{ text: 'สารประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
-                    statusBarProps={{ translucent: true }}
+                    // statusBarProps={{ translucent: true }}
                 />
                 <ScrollView>
                     {
