@@ -11,6 +11,24 @@ import {
 } from 'react-native'
 
 export default class LoginScreen extends Component {
+
+  componentDidMount = () => {
+    fetch('http://www.chtsc.com/check_loan/result.php', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+      body: "id=008445&mpassword=342243"
+    })
+    .then((res) => res.text())
+    .then((resJson) => {
+      console.log(resJson)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -19,7 +37,6 @@ export default class LoginScreen extends Component {
             placeholderTextColor='#fff'
             style={ styles.input }
             returnKeyType='next'
-            ref={() => this.username}
             underlineColorAndroid='transparent'
         />
 
