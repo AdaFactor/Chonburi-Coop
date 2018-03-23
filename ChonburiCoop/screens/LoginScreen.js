@@ -11,6 +11,14 @@ import {
 } from 'react-native'
 
 export default class LoginScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+      ssid: ''
+    }
+  }
 
   componentDidMount = () => {
     fetch('http://www.chtsc.com/check_loan/result.php', {
@@ -23,36 +31,66 @@ export default class LoginScreen extends Component {
     .then((res) => res.text())
     .then((resJson) => {
       console.log(resJson)
+      // const ssid = resJson.indexOf("ssid=")
+      const sid = resJson.slice(251, 257)
+      console.log(sid)
+      this.setState({ ssid: sid})
     })
     .catch((err) => {
       console.log(err)
     })
   }
 
+  handleUsername = (text) => {
+    this.setState({ username: text })
+  }
+
+  handlePassword = (text) => {
+    this.setState({ password: text })
+  }
+
+  login = ( user , pass ) => {
+    if (user == '' || pass == '') {
+      alert('username or password cannot null')
+    } 
+    else if ( user * 24 + 15 == this.state.ssid ) {
+      this.props.navigation.navigate('HomeScreen')
+    }
+    else {
+      alert('invalid')      
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <TextInput
-            placeholder='Username'
-            placeholderTextColor='#fff'
-            style={ styles.input }
-            returnKeyType='next'
-            underlineColorAndroid='transparent'
+          // ref={(ref) => {this.username = ref}}
+          onChangeText={this.handleUsername}
+          placeholder='Username'
+          placeholderTextColor='#fff'
+          style={ styles.input }
+          returnKeyType='next'
+          underlineColorAndroid='transparent'
+          clearTextOnFocus
         />
 
         <TextInput
-            placeholder='Password'
-            placeholderTextColor='#fff'            
-            secureTextEntry        
-            style={ styles.input }
-            underlineColorAndroid='transparent'
+          // ref={(ref) => {this.password = ref}}
+          onChangeText={this.handlePassword}          
+          placeholder='Password'
+          placeholderTextColor='#fff'            
+          secureTextEntry        
+          style={ styles.input }
+          underlineColorAndroid='transparent'
+          clearTextOnFocus
         />
 
         <TouchableOpacity 
           style={styles.buttonLogin} 
           onPress={
             () => { 
-              this.props.navigation.navigate('HomeScreen')
+              this.login(this.state.username, this.state.password)
             }
           }
         >
