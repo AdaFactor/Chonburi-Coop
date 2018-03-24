@@ -9,10 +9,38 @@ import {
   ScrollView,
   Alert,
   TextInput,
+  WebView,
 } from 'react-native'
 import { Input, Button, Card, ButtonGroup, Header, Icon } from 'react-native-elements'
+import DOMParser from 'react-native-html-parser'
 
-export default class Profile extends React.Component {
+export default class Profile extends Component {
+    state = {
+        data: []
+    }
+
+    componentDidMount = () => {
+        fetch( 'http://www.chtsc.com/check_loan/member_detail.php?ssid=202695&tab=3', { 
+            method: 'GET',
+        })
+        .then(res => res.text())
+        .then((result) => {
+            const lines = result.split('\n')
+            for (let line = 0; line < lines.length; line++) {
+                // console.log(lines[line])
+                const td = lines[line].includes('<td>')
+                if (td == true) {
+                    // console.log(lines[line])
+                    const eachLine = lines[line]
+                    for (let inLine = 0; inLine < eachLine.length; inLine++) {
+                        console.log(eachLine[inLine].slice(eachLine[3], -1))
+                    }
+                }
+            }
+        })
+        .catch((error) => { console.log(error) })
+    }
+
     render() {
         return (
             <View style={styles.container}>

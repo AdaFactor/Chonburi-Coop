@@ -144,9 +144,15 @@ export default class Dividend extends React.Component {
                     <Text style={{ fontSize: 16 }}>{ itemDividend.teacher_thai }</Text>                    
                   </View>
 
-                  <View style={{ flexDirection: 'row' }}>
-                    <View style={{ width: '50%' }}>
-                        <Text style={{ fontWeight: 'bold' }}>คงเหลือ:</Text>
+                  <View 
+                    style={{ 
+                      flexDirection: 'row', 
+                      padding: 10, 
+                      backgroundColor: '#fff', 
+                    }}
+                  >
+                    <View style={{ width: '50%', alignItems: 'center', }}>
+                        <Text style={{ fontWeight: 'bold', color: '#000' }}>คงเหลือ:</Text>
                     </View>
 
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>

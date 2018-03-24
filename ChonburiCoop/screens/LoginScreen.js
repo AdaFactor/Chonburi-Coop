@@ -30,10 +30,9 @@ export default class LoginScreen extends Component {
     })
     .then((res) => res.text())
     .then((resJson) => {
-      console.log(resJson)
+      // console.log(resJson)
       // const ssid = resJson.indexOf("ssid=")
       const sid = resJson.slice(251, 257)
-      console.log(sid)
       this.setState({ ssid: sid})
     })
     .catch((err) => {
@@ -55,6 +54,7 @@ export default class LoginScreen extends Component {
     } 
     else if ( user * 24 + 15 == this.state.ssid ) {
       this.props.navigation.navigate('HomeScreen')
+      // console.log( this.state.ssid )
     }
     else {
       alert('invalid')      
