@@ -13,7 +13,6 @@ import {
 
 } from 'react-native'
 import { Input, Button, Card, ButtonGroup, Header, Icon } from 'react-native-elements'
-import DOMParser from 'react-native-html-parser'
 
 export default class Profile extends Component {
     constructor(props) {

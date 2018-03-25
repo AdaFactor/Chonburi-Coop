@@ -10,7 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-// var formBody = []
+var formBody = []
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -23,26 +23,6 @@ export default class LoginScreen extends Component {
     }
   }
 
-  componentDidMount = () => {
-    fetch('http://www.chtsc.com/check_loan/result.php', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }),
-      body: "id=008445&mpassword=324432"
-    })
-    .then((res) => res.text())
-    .then((resJson) => {
-      // console.log(resJson)
-      // const ssid = resJson.indexOf("ssid=")
-      const sid = resJson.slice(251, 257)
-      this.setState({ ssid: sid})
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
-
   handleUsername = (text) => {
     this.setState({ username: text })
   }
@@ -51,17 +31,37 @@ export default class LoginScreen extends Component {
     this.setState({ password: text })
   }
 
-  login = ( user , pass ) => {
-    if (user == '' || pass == '') {
-      alert('username or password cannot null')
-    } 
-    else if ( user * 24 + 15 == this.state.ssid ) {
-      this.props.navigation.navigate('HomeScreen', { id_user: this.state.ssid })
-      // console.log( this.state.ssid )
-    }
-    else {
-      alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')      
-    }
+  // login = ( user , pass ) => {
+  //   if (user == '' || pass == '') {
+  //     alert('username or password cannot null')
+  //   } 
+  //   else if ( user * 24 + 15 == this.state.ssid ) {
+  //     this.props.navigation.navigate('HomeScreen', { id_user: this.state.ssid })
+  //     // console.log( this.state.ssid )
+  //   }
+  //   else {
+  //     alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')      
+  //   }
+  // }
+
+  componentDidMount = ( user , pass ) => {
+    fetch('http://www.chtsc.com/check_loan/result.php', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      }),
+      body: "id=" + user + "&mpassword=" + pass
+    })
+    .then((res) => res.text())
+    .then((resJson) => {
+      console.log(resJson)
+      // const ssid = resJson.indexOf("ssid=")
+      const sid = resJson.slice(251, 257)
+      this.setState({ ssid: sid})
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   render() {
@@ -93,7 +93,7 @@ export default class LoginScreen extends Component {
           style={styles.buttonLogin} 
           onPress={
             () => { 
-              this.login(this.state.username, this.state.password)
+              this.componentDidMount(this.state.username, this.state.password)
             }
           }
         >

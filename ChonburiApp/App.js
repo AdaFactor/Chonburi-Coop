@@ -22,8 +22,6 @@ export default class App extends Component<Props> {
   }
 }
 
-0898448685
-
 const StackNav = StackNavigator(
   {
       LoginScreen: { screen: LoginScreen },
