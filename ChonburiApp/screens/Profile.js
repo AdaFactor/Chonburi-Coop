@@ -9,41 +9,60 @@ import {
     ScrollView,
     Alert,
     TextInput,
-    b
-
 } from 'react-native'
 import { Input, Button, Card, ButtonGroup, Header, Icon } from 'react-native-elements'
+import utf8 from 'utf8'
+
+var binaryToBase64 = require('binaryToBase64')
 
 export default class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            data: [],
+            id_line: [],
         }
     }
 
     componentDidMount = () => {
         fetch( 'http://www.chtsc.com/check_loan/member_detail.php?ssid='+ this.props.navigation.state.params.id_user +'&tab=3', { 
             method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded;'
+            })
         })
         .then(res => res.text())
         .then((result) => {
+            // var bytes = utf8.encode(result)
+            // var encoded = binaryToBase64(bytes)
             const lines = result.split('\n')
             for (let line = 0; line < lines.length; line++) {
-                // console.log(lines[line])
-                const td = lines[line].includes('<td>')
+                // console.log(line +": "+ lines[line].trim())
+                const newLine = lines[line].trim()
+                const td = newLine.includes('<td')
+                // const tdLine = lines[line].trim()
+                // const tdData = this.state.data.concat(tdLine)
+                // this.setState({ data: tdData })
                 if (td == true) {
-                    const eachLine = lines[line]
-                    console.log(lines[line])
-                    // for (let inLine = 0; inLine < eachLine.length; inLine++) {
-                    //     console.log('line')
-                    // }
+                    // console.log(newLine.length)
+                    // console.log(line + ":" + newLine)
+                    if (line == 46) {
+                        const name = newLine.slice(33, -22)
+                        console.log(name)
+                    }
                 }
+                
+                // console.log(this.state.data)
             }
+            // this.setState({ id_line: JSON.stringify(line), data: JSON.stringify(tdLine) })
+            
         })
         .catch((error) => { console.log(error) })
     }
 
     render() {
+        
+
         return (
             <View style={styles.container}>
                 <Header
@@ -63,7 +82,9 @@ export default class Profile extends Component {
                     <Card>
                         <View style={styles.profileCard}>
                             <Image source={require('../static/images/profile.png')} style={{width: 150, height: 150}} />
-                            <Text style={{color: '#006666', fontWeight: 'bold', fontSize: 20}}>ชื่อ นามสกุล</Text> 
+                            <Text style={{color: '#006666', fontWeight: 'bold', fontSize: 20}}>
+                                {this.props.name}
+                            </Text> 
                         </View>              
                     </Card>
                     
@@ -71,35 +92,41 @@ export default class Profile extends Component {
                         <View style={{flexDirection: 'row'}}>
                             <View style={styles.dataMember}>
                                 <Text style={{color: '#006666', fontWeight: 'bold'}}>เลขทะเบียน</Text>
-                                <Text style={{color: '#006666'}}>xxxxxx</Text>                    
+                                <Text style={{color: '#006666'}}>
+                                    {this.state.data[15]}
+                                </Text>                    
                             </View>
                             <View style={styles.dataMember}>
                                 <Text style={{color: '#006666', fontWeight: 'bold'}}>สังกัด</Text>
-                                <Text style={{color: '#006666'}}>-</Text>                    
+                                <Text style={{color: '#006666'}}>
+                                    {this.state.data[17]}
+                                </Text>                    
                             </View>
                             <View style={styles.dataMember}>
                                 <Text style={{color: '#006666', fontWeight: 'bold'}}>วันที่เป็นสมาชิก</Text>
-                                <Text style={{color: '#006666'}}>-</Text>                    
+                                <Text style={{color: '#006666'}}>
+                                    {this.state.data[27]}
+                                </Text>                    
                             </View>
                         </View>
                     </Card>
 
                     <Card style={{height: 80}}>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>วันเกิด: dd/mm/yyyy</Text>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>โทรศัพท์: 08xxxxxxxx</Text>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>ที่อยู่: 16/3 หมู่บ้านสหกรณ์ออมทรัพย์ ม.1 ต.ในเมือง อ.เมือง จ.ชลบุรี 20140</Text>
+                        <Text style={{color: '#006666', fontWeight: 'bold'}}>วันเกิด: {this.state.data[29]}</Text>
+                        <Text style={{color: '#006666', fontWeight: 'bold'}}>โทรศัพท์: {this.state.data[19]}</Text>
+                        <Text style={{color: '#006666', fontWeight: 'bold'}}>ที่อยู่: {this.state.data[21]}</Text>
                     </Card>
 
                     <View style={{margin: 15, flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={styles.button} 
-                            onPress={() => Alert.alert('มูลค่าหุ้น', 'จำนวน 700,000 บาท')}
+                            onPress={() => Alert.alert('มูลค่าหุ้น', 'จำนวน ' + this.state.data[23])}
                         >
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>มูลค่าหุ้น</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={styles.button}
-                            onPress={() => Alert.alert('หุ้นรายเดือน', 'จำนวน 4,000 บาท')}                            
+                            onPress={() => Alert.alert('หุ้นรายเดือน', 'จำนวน ' + this.state.data[25])}                            
                         >
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>หุ้นรายเดือน</Text>
                         </TouchableOpacity>

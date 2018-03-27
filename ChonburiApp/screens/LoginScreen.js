@@ -31,26 +31,26 @@ export default class LoginScreen extends Component {
     this.setState({ password: text })
   }
 
-  // login = ( user , pass ) => {
-  //   if (user == '' || pass == '') {
-  //     alert('username or password cannot null')
-  //   } 
-  //   else if ( user * 24 + 15 == this.state.ssid ) {
-  //     this.props.navigation.navigate('HomeScreen', { id_user: this.state.ssid })
-  //     // console.log( this.state.ssid )
-  //   }
-  //   else {
-  //     alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')      
-  //   }
-  // }
+  login = ( user , pass ) => {
+    if (user == '' || pass == '') {
+      alert('username or password cannot null')
+    } 
+    else if ( user * 24 + 15 == this.state.ssid ) {
+      this.props.navigation.navigate('HomeScreen', { id_user: this.state.ssid })
+      // console.log( this.state.ssid )
+    }
+    else {
+      alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')      
+    }
+  }
 
-  componentDidMount = ( user , pass ) => {
+  componentDidMount = () => {
     fetch('http://www.chtsc.com/check_loan/result.php', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       }),
-      body: "id=" + user + "&mpassword=" + pass
+      body: "id=008445&mpassword=342243"
     })
     .then((res) => res.text())
     .then((resJson) => {
@@ -93,7 +93,7 @@ export default class LoginScreen extends Component {
           style={styles.buttonLogin} 
           onPress={
             () => { 
-              this.componentDidMount(this.state.username, this.state.password)
+              this.login(this.state.username, this.state.password)
             }
           }
         >
