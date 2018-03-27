@@ -11,16 +11,21 @@ import {
     TextInput,
 } from 'react-native'
 import { Input, Button, Card, ButtonGroup, Header, Icon } from 'react-native-elements'
-import utf8 from 'utf8'
-
-var binaryToBase64 = require('binaryToBase64')
 
 export default class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
             data: [],
-            id_line: [],
+            name: '',
+            id_user: '',
+            affiliation: '',
+            date_to_member: '',
+            birthday: '',
+            tel: '',
+            address: '',
+            share: '',
+            share_mounth: ''
         }
     }
 
@@ -28,41 +33,62 @@ export default class Profile extends Component {
         fetch( 'http://www.chtsc.com/check_loan/member_detail.php?ssid='+ this.props.navigation.state.params.id_user +'&tab=3', { 
             method: 'GET',
             headers: new Headers({
-                'Content-Type': 'application/x-www-form-urlencoded;'
+                'Content-Type': 'text/html;charset=UTF-8'
             })
         })
         .then(res => res.text())
         .then((result) => {
-            // var bytes = utf8.encode(result)
-            // var encoded = binaryToBase64(bytes)
             const lines = result.split('\n')
             for (let line = 0; line < lines.length; line++) {
-                // console.log(line +": "+ lines[line].trim())
                 const newLine = lines[line].trim()
                 const td = newLine.includes('<td')
-                // const tdLine = lines[line].trim()
-                // const tdData = this.state.data.concat(tdLine)
-                // this.setState({ data: tdData })
                 if (td == true) {
                     // console.log(newLine.length)
                     // console.log(line + ":" + newLine)
-                    if (line == 46) {
-                        const name = newLine.slice(33, -22)
-                        console.log(name)
+                    if ( line == 46 ) {
+                        const nameNew = newLine.slice(33, -23)
+                        this.setState({ name: nameNew })
+                    } 
+                    else if ( line == 51 ) {
+                        const idNew = newLine.slice(13, -14)
+                        this.setState({ id_user: idNew })
+                    } 
+                    else if ( line == 56 ) {
+                        const affiliationNew = newLine.slice(13, -14)
+                        this.setState({ affiliation: affiliationNew })
+                    }
+                    else if ( line == 76 ) {
+                        const dateNew = newLine.slice(12, -14)
+                        this.setState({ date_to_member: dateNew })
+                    }
+                    else if ( line == 80 ) {
+                        const birthdayNew = newLine.slice(12, -15)
+                        this.setState({ birthday: birthdayNew })
+                    }
+                    else if ( line == 64 ) {
+                        const telNew = newLine.slice(4, -5)
+                        this.setState({ tel: telNew })
+                    }
+                    else if ( line == 60 ) {
+                        const addressNew = newLine.slice(4, -5)
+                        this.setState({ address: addressNew })
+                    }
+                    else if ( line == 68 ) {
+                        const shareNew = newLine.slice(19, -5)
+                        this.setState({ share: shareNew })
+                    }
+                    else if ( line == 72 ) {
+                        const share_mounthNew = newLine.slice(19, -5)
+                        this.setState({ share_mounth: share_mounthNew })
                     }
                 }
-                
-                // console.log(this.state.data)
             }
-            // this.setState({ id_line: JSON.stringify(line), data: JSON.stringify(tdLine) })
             
         })
         .catch((error) => { console.log(error) })
     }
 
     render() {
-        
-
         return (
             <View style={styles.container}>
                 <Header
@@ -83,7 +109,7 @@ export default class Profile extends Component {
                         <View style={styles.profileCard}>
                             <Image source={require('../static/images/profile.png')} style={{width: 150, height: 150}} />
                             <Text style={{color: '#006666', fontWeight: 'bold', fontSize: 20}}>
-                                {this.props.name}
+                                {this.state.name}
                             </Text> 
                         </View>              
                     </Card>
@@ -93,40 +119,40 @@ export default class Profile extends Component {
                             <View style={styles.dataMember}>
                                 <Text style={{color: '#006666', fontWeight: 'bold'}}>เลขทะเบียน</Text>
                                 <Text style={{color: '#006666'}}>
-                                    {this.state.data[15]}
+                                    {this.state.id_user}
                                 </Text>                    
                             </View>
                             <View style={styles.dataMember}>
                                 <Text style={{color: '#006666', fontWeight: 'bold'}}>สังกัด</Text>
                                 <Text style={{color: '#006666'}}>
-                                    {this.state.data[17]}
+                                    {this.state.affiliation}
                                 </Text>                    
                             </View>
                             <View style={styles.dataMember}>
                                 <Text style={{color: '#006666', fontWeight: 'bold'}}>วันที่เป็นสมาชิก</Text>
                                 <Text style={{color: '#006666'}}>
-                                    {this.state.data[27]}
+                                    {this.state.date_to_member}
                                 </Text>                    
                             </View>
                         </View>
                     </Card>
 
                     <Card style={{height: 80}}>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>วันเกิด: {this.state.data[29]}</Text>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>โทรศัพท์: {this.state.data[19]}</Text>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>ที่อยู่: {this.state.data[21]}</Text>
+                        <Text style={{color: '#006666', fontWeight: 'bold'}}>วันเกิด: {this.state.birthday}</Text>
+                        <Text style={{color: '#006666', fontWeight: 'bold'}}>โทรศัพท์: {this.state.tel}</Text>
+                        <Text style={{color: '#006666', fontWeight: 'bold'}}>ที่อยู่: {this.state.address}</Text>
                     </Card>
 
                     <View style={{margin: 15, flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={styles.button} 
-                            onPress={() => Alert.alert('มูลค่าหุ้น', 'จำนวน ' + this.state.data[23])}
+                            onPress={() => Alert.alert('มูลค่าหุ้น', 'จำนวน ' + this.state.share)}
                         >
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>มูลค่าหุ้น</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={styles.button}
-                            onPress={() => Alert.alert('หุ้นรายเดือน', 'จำนวน ' + this.state.data[25])}                            
+                            onPress={() => Alert.alert('หุ้นรายเดือน', 'จำนวน ' + this.state.share_mounth)}                            
                         >
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>หุ้นรายเดือน</Text>
                         </TouchableOpacity>

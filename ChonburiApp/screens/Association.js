@@ -20,47 +20,90 @@ const assList = [
 ]
 
 export default class Association extends React.Component {
-  render() {    
-    return (
-        <View style={ styles.contrainer }>
-            <Header
-                leftComponent={
-                    <Icon 
-                    name='menu' 
-                    onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
-                    color='#fff'
-                    />
+    constructor(props) {
+        super(props)
+        this.state = {
+            data:[{
+                key: '',
+                value: ''
+            }],
+            name: '',
+            register: '',
+        }
+    }
+
+    componentDidMount = () => {
+        fetch( 'http://www.chtsc.com/check_loan/member_detail.php?ssid='+ this.props.navigation.state.params.id_user +'&tab=5', { 
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'text/html;charset=UTF-8'
+            })
+        })
+        .then(res => res.text())
+        .then((result) => {
+            // console.log(result)
+            const lines = result.split('\n')
+            for (let line = 51; line < lines.length; line++) {
+                const newLine = lines[line].trim()
+                const td = newLine.includes('<td')
+                if (td == true) {
+            //         // console.log(newLine.length)
+                    console.log(line + ":" + newLine)
+                    if ( line%2 == 1 ) {
+                        const registerNew = newLine.slice(4, -5)
+                        this.setState({ register: registerNew })
+                        this.state.data.push({ key: registerNew })                        
+                    } else if ( line%2 == 0 ) {
+                        const nameNew = newLine.slice(4, -5)
+                        this.setState({ name: nameNew })
+                        this.state.data.push({ value: nameNew })                        
+                    }
                 }
-                centerComponent={{ text: 'สมาคม', style: { color: '#fff' } }}
-                rightComponent={{ icon: 'email', color: '#fff' }}
-                // statusBarProps={{ translucent: true }}
-                backgroundColor='#33cc33'
-            />
-            <ScrollView contentContainerStyle={{ marginBottom: 10 }}>
-            {
-                assList.map(( itemAss, i) => (
-                    <Card key={i} containerStyle={ styles.content }>
-                        <View style={{ flexDirection: 'row' }}>
-                            <View style={{ width: '50%' }}>
-                                <Text style={{ fontWeight: 'bold' }}>ทะเบียนสมาคม:</Text>
-                                <Text style={{ fontWeight: 'bold' }}>ชื่อ-นามสกุล:</Text>
-                                <Text style={{ fontWeight: 'bold' }}>ประเภทสมาชิก:</Text>
-                            </View>
-
-                            <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                                <Text>{ itemAss.register }</Text>
-                                <Text>{ itemAss.name }</Text>
-                                <Text>{ itemAss.type_member }</Text>
-                            </View>                            
-                        </View>
-                    </Card>
-                ))
             }
-            </ScrollView>
+        })
+        .catch((error) => { console.log(error) })
+    }
 
-        </View>
-    );
-  }
+    render() {
+        console.log(this.state.data)
+        return (
+            <View style={ styles.contrainer }>
+                <Header
+                    leftComponent={
+                        <Icon 
+                        name='menu' 
+                        onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
+                        color='#fff'
+                        />
+                    }
+                    centerComponent={{ text: 'สมาคม', style: { color: '#fff' } }}
+                    rightComponent={{ icon: 'email', color: '#fff' }}
+                    // statusBarProps={{ translucent: true }}
+                    backgroundColor='#33cc33'
+                />
+                <ScrollView contentContainerStyle={{ marginBottom: 10 }}>
+                {
+                    this.state.data.map(( itemAss, i) => (
+                        <Card key={i} containerStyle={ styles.content }>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ width: '50%' }}>
+                                    <Text style={{ fontWeight: 'bold' }}>ทะเบียนสมาคม:</Text>
+                                    <Text style={{ fontWeight: 'bold' }}>ชื่อ-นามสกุล:</Text>
+                                </View>
+
+                                <View style={{ width: '50%', alignItems: 'flex-end' }}>
+                                    <Text>{ itemAss.key }</Text>
+                                    <Text>{ itemAss.value }</Text>
+                                </View>                            
+                            </View>
+                        </Card>
+                    ))
+                }
+                </ScrollView>
+
+            </View>
+        );
+    }
 }
 
 
