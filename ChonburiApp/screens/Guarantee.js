@@ -49,6 +49,66 @@ const list = [
 ]
 
 export default class Guarantee extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      guarantee_data: [],
+    }
+  }
+
+  componentDidMount = () => {
+    ssid = 'ssid=202695'
+    tab = '&tab=4'
+    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    
+    fetch(
+        url,
+        {
+            method: 'get',
+            headers: new Headers({
+                'Content-Type': 'text/html;charset=windows-874',
+                'Accept-Charset': 'windows-874',
+                'Content-Language': 'en',
+                'Accept-Language': 'th',
+                
+            }),
+        }
+    )
+    .then((res) => res.text())
+    .then((result) => {
+        // console.log(result)
+        const lines = result.split('\n')
+        for (let line = 52; line < lines.length; line++) {
+            const newLine = lines[line].trim()
+            const td =  newLine.includes('<td>')
+            const principles = newLine.includes('<td align')
+            if (td == true) {
+              // const n = 52
+              if (line%2 == 0) { var nameG = newLine.slice(4, -5) }
+              // if (line == n + 1) { var type = newLine.slice(4, -5) }
+              // if (line == n + 2) { var increases = newLine.slice(13, -15) }
+              // if (line == n + 3) { var name = newLine.slice(4, -5) }
+              // if (line == n + 4) { 
+              //   var bal = newLine.slice(20, -5) 
+              //   const json = JSON.parse(JSON.stringify({
+              //     account_name: name,
+              //     number: num,
+              //     type_save: type,
+              //     increase: increases,
+              //     balance: bal,
+              //   }))
+              //   this.setState({ data_save: this.state.data_save.concat(json) })
+              // }
+              
+              // console.log(line + ":" + newLine)
+          }
+          if (principles == true) {
+            console.log(newLine)
+          }
+        }
+    })
+  }
+
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: '#f9f2ec' }}>

@@ -28,11 +28,72 @@ export default class Dividend extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      guarantor_new: ''
+      guarantor_new: '',
+      dividend_data: [],
     }
   }
 
+  componentDidMount = () => {
+    ssid = 'ssid=202695'
+    tab = '&tab=7'
+    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    
+    fetch(
+        url,
+        {
+            method: 'get',
+            headers: new Headers({
+                'Content-Type': 'text/html;charset=windows-874',
+                'Accept-Charset': 'windows-874',
+                'Content-Language': 'en',
+                'Accept-Language': 'th',
+                
+            }),
+        }
+    )
+    .then((res) => res.text())
+    .then((result) => {
+        // console.log(result)
+        const lines = result.split('\n')
+        for (let line = 51; line < lines.length; line++) {
+            const newLine = lines[line].trim()
+            const td_left =  newLine.includes('<td')
+            const td_right = newLine.includes('<td align')
+            if (td_left == true) {
+              
+              if (line == 51) { var dividendP = newLine.slice(30, -5) }
+              if (line == 52) { var dividendN = newLine.slice(20, -5) }
+
+              if (line == 55) { var averageP = newLine.slice(18, -5) }
+              if (line == 56) { var averageN = newLine.slice(20, -5) }
+
+              if (line == 60) { var souvenirD = newLine.slice(20, -5) }
+              if (line == 64) { var feeD = newLine.slice(20, -5) }
+              if (line == 72) { var meetingD = newLine.slice(20, -5) }
+              if (line == 76) { var teacher_thaiD = newLine.slice(20, -5) }
+              if (line == 86) { 
+                var balanceD = newLine.slice(23, -9); console.log(balanceD) 
+                const json = JSON.parse(JSON.stringify({
+                  dividend_percent: dividendP,
+                  dividend_money: dividendN,
+                  average_percent: averageP,
+                  average_money: averageN,
+                  souvenir: souvenirD,
+                  fee: feeD,
+                  meeting: meetingD,
+                  teacher_thai: teacher_thaiD,
+                  balance: balanceD,
+                }))
+                this.setState({ dividend_data: this.state.dividend_data.concat(json) })
+              }
+              // console.log(line + ":" + newLine)
+          }
+        }
+    })
+  }
+
   render() {
+    console.log(this.state.dividend_data)
     return (
       <View style={styles.container}>
         <Header
@@ -50,7 +111,7 @@ export default class Dividend extends React.Component {
       />
         <ScrollView style={{ marginBottom: 10 }} >
             {
-              dividend.map(( itemDividend, i ) => (
+              this.state.dividend_data.map(( itemDividend, i ) => (
                 <View 
                     key={i} 
                     style={{ padding: 10, borderColor: '#ff6600' }}
@@ -59,7 +120,7 @@ export default class Dividend extends React.Component {
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#000' }}>ปันผล ร้อยละ</Text>
                       <ProgressCircle
-                          percent={ itemDividend.dividend_percent }
+                          percent={ itemDividend.dividend_percent*1 }
                           radius={50}
                           borderWidth={8}
                           color="#ff944d"
@@ -72,7 +133,7 @@ export default class Dividend extends React.Component {
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#000' }}>เฉลี่ยคืน ร้อยละ</Text>                      
                       <ProgressCircle
-                        percent={ itemDividend.average_percent }
+                        percent={ itemDividend.average_percent*1 }
                         radius={50}
                         borderWidth={8}
                         color="#ff944d"
