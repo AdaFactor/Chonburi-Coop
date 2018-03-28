@@ -16,8 +16,8 @@ export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: '',
+      username: '008445',
+      password: '123',
       ssid: '',
       name: '',
     }
@@ -70,7 +70,7 @@ export default class LoginScreen extends Component {
         <TextInput
           // ref={(ref) => {this.username = ref}}
           onChangeText={this.handleUsername}
-          placeholder='Username'
+          placeholder= {this.state['username']} //'Username'
           placeholderTextColor='#fff'
           style={ styles.input }
           returnKeyType='next'
