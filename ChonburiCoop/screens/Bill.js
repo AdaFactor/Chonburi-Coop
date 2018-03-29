@@ -78,7 +78,7 @@ export default class Bill extends React.Component {
           centerComponent={{ text: 'ใบเสร็จ', style: { color: '#fff' } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
-          backgroundColor='#33cc33'
+          backgroundColor='#248f24'
         />
         <ScrollView style={{ marginBottom: 10 }}>
             {

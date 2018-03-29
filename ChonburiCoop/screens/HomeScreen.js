@@ -54,7 +54,7 @@ class HomeScreen extends React.Component {
                         />
                     }
                     // statusBarProps={{ translucent: true }}
-                    backgroundColor='#33cc33'
+                    backgroundColor='#248f24'
                 />
                 
                 <SwiperScreen />

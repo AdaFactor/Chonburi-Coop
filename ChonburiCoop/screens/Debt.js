@@ -112,7 +112,7 @@ export default class Debt extends React.Component {
           centerComponent={{ text: 'หนี้สิน', style: { color: '#fff', fontSize: 16 } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
-          backgroundColor='#33cc33'
+          backgroundColor='#248f24'
       />
         <ScrollView style={{ marginBottom: 10, padding: 10 }} >
             {

@@ -95,7 +95,7 @@ export default class Dividend extends React.Component {
           centerComponent={{ text: 'เงินปันผล', style: { color: '#fff' } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
-          backgroundColor='#33cc33'
+          backgroundColor='#248f24'
       />
         <ScrollView style={{ marginBottom: 10 }} >
             {

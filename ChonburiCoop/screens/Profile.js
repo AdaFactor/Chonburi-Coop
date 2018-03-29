@@ -32,16 +32,17 @@ export default class Profile extends Component {
     componentDidMount() {
         fetch('http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=202695&tab=03', {
             headers: new Headers({
-                'Content-Type': 'text/html; charset=utf-8',
+                'Content-Type': 'text/html; charset=iso-8859-1',
                 'Content-Language': 'th',
             })
         })
         .then(response => {
-            console.log(response);
-            response.text();
+            console.log(response._bodyText);
+            response.json();
           })
         .then((responseJson) => {
             console.log(responseJson)
+            
         })
         .catch((error) => { console.log(error) })
     }
@@ -119,7 +120,7 @@ export default class Profile extends Component {
                     centerComponent={{ text: 'สมาชิก', style: { color: '#fff' } }}
                     rightComponent={{ icon: 'email', color: '#fff' }}
                     // statusBarProps={{ translucent: true }}
-                    backgroundColor='#33cc33'
+                    backgroundColor='#248f24'
                 />
                 <ScrollView style={{ marginBottom: 10 }}>
                     <Card>
