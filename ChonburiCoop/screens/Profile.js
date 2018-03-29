@@ -28,7 +28,6 @@ export default class Profile extends Component {
         .then(res => res.json())
         .then((result) => {
             for (let index = 0; index < result.length; index++) {
-                console.log(result[index])
                 this.setState({ 
                     member_id: result[index].member_id,
                     member_name: result[index].member_name,

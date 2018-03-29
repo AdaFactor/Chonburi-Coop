@@ -41,8 +41,21 @@ export default class Calculator extends React.Component {
     )
     .then((res) => res.json())
     .then((result) => {
-        console.log(result)
+        // console.log(result)
+        this.setState({ calculator: result })
         
+        // for (let index = 0; index < result.length; index++) {
+        //   console.log(result[index])
+        //   // this.setState({ calculator: result[index] })
+        //   // this.setState({
+        //   //   member_id: result[index].member_id,
+        //   //   t_loan: result[index].t_loan,
+        //   //   loan_id: result[index].loan_id,
+        //   //   loan_bal: result[index].loan_bal,
+        //   //   loan_amt: result[index].loan_amt,
+        //   //   loan_date: result[index].loan_date,
+        //   // })
+        // }
     })
   }
 
@@ -70,10 +83,10 @@ export default class Calculator extends React.Component {
                 <View style={{ margin: 10, borderColor: '#cc0099', borderWidth: 1 }} key={ i }>
                   <View style={{flexDirection: 'row', backgroundColor: '#cc0099',  padding: 5}} >
                     <View style={{ width: '50%' }}>
-                      <Text style={{ color: '#ffffff' }}>{ itemCal.indenture }</Text>
+                      <Text style={{ color: '#ffffff', fontSize: 18 }}>{ itemCal.loan_id }</Text>
                     </View>
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                      <Text style={{ color: '#ffffff' }}>{ itemCal.date_loan }</Text>
+                      <Text style={{ color: '#ffffff' }}>{ itemCal.loan_date }</Text>
                     </View>
                   </View>
 
@@ -84,8 +97,8 @@ export default class Calculator extends React.Component {
                     </View>
 
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                      <Text>{ itemCal.limit_loan }</Text>
-                      <Text>{ itemCal.balancel }</Text>
+                      <Text>{ itemCal.loan_amt }</Text>
+                      <Text>{ itemCal.loan_bal }</Text>
                     </View>
                   </View>
                 </View>
