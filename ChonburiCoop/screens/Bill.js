@@ -10,14 +10,6 @@ import {
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
 
-// const billList = [
-//   { bill_number: '100001', date: '01/03/2561', amount_of_money: '29953.32'},
-//   { bill_number: '100002', date: '02/03/2561', amount_of_money: '59953.32'},
-//   { bill_number: '100003', date: '03/03/2561', amount_of_money: '49953.32'},
-//   { bill_number: '100004', date: '04/03/2561', amount_of_money: '39953.32'},
-//   { bill_number: '100005', date: '05/03/2561', amount_of_money: '20953.32'},  
-// ]
-
 export default class Bill extends React.Component {
   constructor(props) {
     super(props)

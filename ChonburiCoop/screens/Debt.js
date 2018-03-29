@@ -43,7 +43,62 @@ const debts = [
 ]
 
 export default class Debt extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      debt_data: [],
+    }
+  }
+  
+  componentDidMount = () => {
+    ssid = 'ssid=202695'
+    tab = '&tab=12'
+    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    // url = 'https://it-madmonster.blogspot.com/2009/12/web-content-type.html'
+    
+    fetch(
+        url,
+        {
+            method: 'get',
+            headers: new Headers({
+                'Content-Type': 'text/html;charset=windows-874',
+                'Accept-Charset': 'windows-874',
+                'Content-Language': 'en',
+                'Accept-Language': 'th',
+                
+            }),
+        }
+    )
+    .then((res) => res.text())
+    .then((result) => {
+        // console.log("ada")
+        // console.log(result)
+        const lines = result.split('\n')
+        for (let line = 0; line < lines.length; line++) {
+          console.log(line + ":" + newLine)
+          const newLine = lines[line].trim()
+          const number = newLine.includes('<td valign="top"><a')
+          const dateC = newLine.includes('<td valign="top"><center>')
+          const loan_data = newLine.includes('<td align="right" valign="top">')
+          if (number == true) { var num_data = (newLine.slice(72, -10)).trim() }
+          if (dateC == true) { var dateCom = (newLine.slice(25, -15)).trim() }
+          if (loan_data == true) {
+            var loanData = (newLine.slice(31, -5)).trim()
+            // console.log(line + ":" + newLine)
+            const json = JSON.parse(JSON.stringify({
+              number_compact: num_data,
+              date_compact: dateCom,
+              loan: loanData
+            }))
+            this.setState({ debt_data: this.state.debt_data.concat(json) })
+          } 
+        }
+    })
+  }
+
   render() {
+    // console.log(this.state.debt_data)
     return (
       <View style={styles.container}>
         <Header
@@ -61,7 +116,7 @@ export default class Debt extends React.Component {
       />
         <ScrollView style={{ marginBottom: 10, padding: 10 }} >
             {
-              debts.map(( itemDebts, i ) => (
+              this.state.debt_data.map(( itemDebts, i ) => (
                 <View 
                     key={i} 
                     style={styles.listItem}

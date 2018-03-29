@@ -29,64 +29,81 @@ export default class Profile extends Component {
         }
     }
 
-    componentDidMount = () => {
-        fetch( 'http://www.chtsc.com/check_loan/member_detail.php?ssid='+ this.props.navigation.state.params.id_user +'&tab=3', { 
-            method: 'GET',
+    componentDidMount() {
+        fetch('http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=202695&tab=03', {
             headers: new Headers({
-                'Content-Type': 'text/html;charset=UTF-8'
+                'Content-Type': 'text/html; charset=utf-8',
+                'Content-Language': 'th',
             })
         })
-        .then(res => res.text())
-        .then((result) => {
-            const lines = result.split('\n')
-            for (let line = 0; line < lines.length; line++) {
-                const newLine = lines[line].trim()
-                const td = newLine.includes('<td')
-                if (td == true) {
-                    // console.log(newLine.length)
-                    // console.log(line + ":" + newLine)
-                    if ( line == 46 ) {
-                        const nameNew = newLine.slice(33, -23)
-                        this.setState({ name: nameNew })
-                    } 
-                    else if ( line == 51 ) {
-                        const idNew = newLine.slice(13, -14)
-                        this.setState({ id_user: idNew })
-                    } 
-                    else if ( line == 56 ) {
-                        const affiliationNew = newLine.slice(13, -14)
-                        this.setState({ affiliation: affiliationNew })
-                    }
-                    else if ( line == 76 ) {
-                        const dateNew = newLine.slice(12, -14)
-                        this.setState({ date_to_member: dateNew })
-                    }
-                    else if ( line == 80 ) {
-                        const birthdayNew = newLine.slice(12, -15)
-                        this.setState({ birthday: birthdayNew })
-                    }
-                    else if ( line == 64 ) {
-                        const telNew = newLine.slice(4, -5)
-                        this.setState({ tel: telNew })
-                    }
-                    else if ( line == 60 ) {
-                        const addressNew = newLine.slice(4, -5)
-                        this.setState({ address: addressNew })
-                    }
-                    else if ( line == 68 ) {
-                        const shareNew = newLine.slice(19, -5)
-                        this.setState({ share: shareNew })
-                    }
-                    else if ( line == 72 ) {
-                        const share_mounthNew = newLine.slice(19, -5)
-                        this.setState({ share_mounth: share_mounthNew })
-                    }
-                }
-            }
-            
+        .then(response => {
+            console.log(response);
+            response.text();
+          })
+        .then((responseJson) => {
+            console.log(responseJson)
         })
         .catch((error) => { console.log(error) })
     }
+
+    // componentDidMount = () => {
+    //     fetch( 'http://www.chtsc.com/check_loan/member_detail.php?ssid='+ this.props.navigation.state.params.id_user +'&tab=3', { 
+    //         method: 'GET',
+    //         headers: new Headers({
+    //             'Content-Type': 'text/html;charset=UTF-8'
+    //         })
+    //     })
+    //     .then(res => res.text())
+    //     .then((result) => {
+    //         const lines = result.split('\n')
+    //         for (let line = 0; line < lines.length; line++) {
+    //             const newLine = lines[line].trim()
+    //             const td = newLine.includes('<td')
+    //             if (td == true) {
+    //                 // console.log(newLine.length)
+    //                 // console.log(line + ":" + newLine)
+    //                 if ( line == 46 ) {
+    //                     const nameNew = newLine.slice(33, -23)
+    //                     this.setState({ name: nameNew })
+    //                 } 
+    //                 else if ( line == 51 ) {
+    //                     const idNew = newLine.slice(13, -14)
+    //                     this.setState({ id_user: idNew })
+    //                 } 
+    //                 else if ( line == 56 ) {
+    //                     const affiliationNew = newLine.slice(13, -14)
+    //                     this.setState({ affiliation: affiliationNew })
+    //                 }
+    //                 else if ( line == 76 ) {
+    //                     const dateNew = newLine.slice(12, -14)
+    //                     this.setState({ date_to_member: dateNew })
+    //                 }
+    //                 else if ( line == 80 ) {
+    //                     const birthdayNew = newLine.slice(12, -15)
+    //                     this.setState({ birthday: birthdayNew })
+    //                 }
+    //                 else if ( line == 64 ) {
+    //                     const telNew = newLine.slice(4, -5)
+    //                     this.setState({ tel: telNew })
+    //                 }
+    //                 else if ( line == 60 ) {
+    //                     const addressNew = newLine.slice(4, -5)
+    //                     this.setState({ address: addressNew })
+    //                 }
+    //                 else if ( line == 68 ) {
+    //                     const shareNew = newLine.slice(19, -5)
+    //                     this.setState({ share: shareNew })
+    //                 }
+    //                 else if ( line == 72 ) {
+    //                     const share_mounthNew = newLine.slice(19, -5)
+    //                     this.setState({ share_mounth: share_mounthNew })
+    //                 }
+    //             }
+    //         }
+            
+    //     })
+    //     .catch((error) => { console.log(error) })
+    // }
 
     render() {
         return (
