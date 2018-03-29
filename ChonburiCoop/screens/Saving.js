@@ -86,7 +86,7 @@ export default class Saving extends React.Component {
               color='#fff'
               />
           }
-          centerComponent={{ text: 'เงินฝาก', style: { color: '#fff' } }}
+          centerComponent={{ text: 'เงินฝาก', style: { color: '#fff', fontSize: 16 } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'

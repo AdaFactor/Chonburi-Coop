@@ -81,7 +81,7 @@ export default class chargedList extends React.Component {
               color='#fff'
               />
           }
-          centerComponent={{ text: 'เงินปันผล', style: { color: '#fff' } }}
+          centerComponent={{ text: 'เงินปันผล', style: { color: '#fff', fontSize: 16 } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'
@@ -89,28 +89,6 @@ export default class chargedList extends React.Component {
         <ScrollView style={{ marginBottom: 10, padding: 10 }} >
             {
               charged.map(( itemCharged, i ) => (
-                // <Card 
-                //     key={i}
-                //     title={itemCharged.list_name}
-                //     titleStyle={{ color: '#003300'}}
-                //     containerStyle={{ borderColor: '#003300' }}
-                // >
-                //     <View style={{ flexDirection: 'row' }}>
-                //         <View style={{ width: '50%' }}>
-                //             <Text style={{ fontWeight: 'bold' }}>งวดที่:</Text>
-                //             <Text style={{ fontWeight: 'bold' }}>เงินต้น:</Text>
-                //             <Text style={{ fontWeight: 'bold' }}>ดอกเบี้ย:</Text>
-                //             <Text style={{ fontWeight: 'bold' }}>รวม:</Text>
-                //         </View>
-
-                //         <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                //             <Text>{ itemCharged.period }</Text>
-                //             <Text>{ itemCharged.money }</Text>
-                //             <Text>{ itemCharged.interest }</Text>
-                //             <Text>{ itemCharged.sum }</Text>
-                //         </View>
-                //   </View>
-                // </Card>
                 <View 
                     key={i} 
                     style={styles.listItem}

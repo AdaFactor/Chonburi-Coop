@@ -55,7 +55,6 @@ export default class Debt extends React.Component {
     ssid = 'ssid=202695'
     tab = '&tab=12'
     url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
-    // url = 'https://it-madmonster.blogspot.com/2009/12/web-content-type.html'
     
     fetch(
         url,
@@ -72,7 +71,6 @@ export default class Debt extends React.Component {
     )
     .then((res) => res.text())
     .then((result) => {
-        // console.log("ada")
         // console.log(result)
         const lines = result.split('\n')
         for (let line = 0; line < lines.length; line++) {
@@ -98,7 +96,6 @@ export default class Debt extends React.Component {
   }
 
   render() {
-    // console.log(this.state.debt_data)
     return (
       <View style={styles.container}>
         <Header
@@ -145,9 +142,7 @@ export default class Debt extends React.Component {
                       <TouchableOpacity 
                         style={{ width: '50%', backgroundColor: '#a69364', borderRadius: 5 }}
                         onPress={() =>
-                          {
-                            this.props.navigation.push({ component: contentDebt })
-                          }
+                          {}
                         }
                       >
                         <Icon name='remove-red-eye' color='#fff' />
@@ -168,16 +163,6 @@ export default class Debt extends React.Component {
         </ScrollView>
       </View>
     );
-  }
-}
-
-class contentDebt extends Component {
-  render() {
-    return (
-      <View>
-        <Text>a</Text>
-      </View>
-    )
   }
 }
 
