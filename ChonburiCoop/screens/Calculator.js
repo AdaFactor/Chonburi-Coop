@@ -41,21 +41,7 @@ export default class Calculator extends React.Component {
     )
     .then((res) => res.json())
     .then((result) => {
-        // console.log(result)
         this.setState({ calculator: result })
-        
-        // for (let index = 0; index < result.length; index++) {
-        //   console.log(result[index])
-        //   // this.setState({ calculator: result[index] })
-        //   // this.setState({
-        //   //   member_id: result[index].member_id,
-        //   //   t_loan: result[index].t_loan,
-        //   //   loan_id: result[index].loan_id,
-        //   //   loan_bal: result[index].loan_bal,
-        //   //   loan_amt: result[index].loan_amt,
-        //   //   loan_date: result[index].loan_date,
-        //   // })
-        // }
     })
   }
 

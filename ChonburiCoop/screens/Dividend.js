@@ -24,59 +24,17 @@ export default class Dividend extends React.Component {
   componentDidMount = () => {
     ssid = 'ssid=202695'
     tab = '&tab=7'
-    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
     
     fetch(
         url,
         {
             method: 'get',
-            headers: new Headers({
-                'Content-Type': 'text/html;charset=windows-874',
-                'Accept-Charset': 'windows-874',
-                'Content-Language': 'en',
-                'Accept-Language': 'th',
-                
-            }),
         }
     )
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((result) => {
-        // console.log(result)
-        const lines = result.split('\n')
-        for (let line = 51; line < lines.length; line++) {
-            const newLine = lines[line].trim()
-            const td_left =  newLine.includes('<td')
-            const td_right = newLine.includes('<td align')
-            if (td_left == true) {
-              
-              if (line == 51) { var dividendP = newLine.slice(30, -5) }
-              if (line == 52) { var dividendN = newLine.slice(20, -5) }
-
-              if (line == 55) { var averageP = newLine.slice(18, -5) }
-              if (line == 56) { var averageN = newLine.slice(20, -5) }
-
-              if (line == 60) { var souvenirD = newLine.slice(20, -5) }
-              if (line == 64) { var feeD = newLine.slice(20, -5) }
-              if (line == 72) { var meetingD = newLine.slice(20, -5) }
-              if (line == 76) { var teacher_thaiD = newLine.slice(20, -5) }
-              if (line == 86) { 
-                var balanceD = newLine.slice(23, -9); console.log(balanceD) 
-                const json = JSON.parse(JSON.stringify({
-                  dividend_percent: dividendP,
-                  dividend_money: dividendN,
-                  average_percent: averageP,
-                  average_money: averageN,
-                  souvenir: souvenirD,
-                  fee: feeD,
-                  meeting: meetingD,
-                  teacher_thai: teacher_thaiD,
-                  balance: balanceD,
-                }))
-                this.setState({ dividend_data: this.state.dividend_data.concat(json) })
-              }
-              // console.log(line + ":" + newLine)
-          }
-        }
+      this.setState({ dividend_data: result })
     })
   }
 
@@ -108,27 +66,27 @@ export default class Dividend extends React.Component {
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#000' }}>ปันผล ร้อยละ</Text>
                       <ProgressCircle
-                          percent={ itemDividend.dividend_percent*1 }
+                          percent={5.47}
                           radius={50}
                           borderWidth={8}
                           color="#ff944d"
                           shadowColor="#eee"
                           bgColor="#fff"
                       >
-                          <Text style={{ fontSize: 18 }}>{ itemDividend.dividend_percent }</Text>
+                          <Text style={{ fontSize: 18 }}>5.47</Text>
                       </ProgressCircle>
                     </View>
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 18, color: '#000' }}>เฉลี่ยคืน ร้อยละ</Text>                      
                       <ProgressCircle
-                        percent={ itemDividend.average_percent*1 }
+                        percent={12.0}
                         radius={50}
                         borderWidth={8}
                         color="#ff944d"
                         shadowColor="#eee"
                         bgColor="#fff"
                       >
-                        <Text style={{ fontSize: 18 }}>{ itemDividend.average_percent }</Text>
+                        <Text style={{ fontSize: 18 }}>12.0</Text>
                       </ProgressCircle>                    
                     </View>                    
                   </View>
@@ -136,11 +94,11 @@ export default class Dividend extends React.Component {
                   <View style={{ flexDirection: 'row', marginTop: 10, padding: 10, backgroundColor: '#fff', borderRadius: 5 }}>
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>ปันผล จำนวนเงิน</Text>
-                      <Text style={{ fontSize: 16  }}>{ itemDividend.dividend_money }</Text>
+                      <Text style={{ fontSize: 16  }}>{ itemDividend.share }</Text>
                     </View>
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000'  }}>เฉลี่ยคืน จำนวนเงิน</Text>
-                      <Text style={{ fontSize: 16  }}>{ itemDividend.average_money }</Text>                      
+                      <Text style={{ fontSize: 16  }}>{ itemDividend.avegr }</Text>                      
                     </View>                    
                   </View>
 
@@ -154,7 +112,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>ค่าของที่ระลึก</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.souvenir }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ itemDividend.gif }</Text>                    
                   </View>
                   
                   <View 
@@ -166,7 +124,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold',  fontSize: 16, color: '#000' }}>ค่าธรรมเนียมโอน</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.fee }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ itemDividend.free }</Text>                    
                   </View>
 
                   <View 
@@ -178,7 +136,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>หักชุมนุม</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.meeting }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ itemDividend.kt }</Text>                    
                   </View>
 
                   <View 
@@ -190,7 +148,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold',  fontSize: 16, color: '#000' }}>หักครูไทย</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.teacher_thai }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ itemDividend.cm }</Text>                    
                   </View>
 
                   <View 
@@ -205,7 +163,7 @@ export default class Dividend extends React.Component {
                     </View>
 
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                        <Text>{ itemDividend.balance }</Text>
+                        <Text>{ itemDividend.bal }</Text>
                     </View>
                   </View>
                 </View>

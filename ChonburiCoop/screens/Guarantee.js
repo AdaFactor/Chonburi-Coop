@@ -21,49 +21,18 @@ export default class Guarantee extends React.Component {
   componentDidMount = () => {
     ssid = 'ssid=202695'
     tab = '&tab=4'
-    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
     
     fetch(
         url,
         {
             method: 'get',
-            headers: new Headers({
-                'Content-Type': 'text/html;charset=windows-874',
-                'Accept-Charset': 'windows-874',
-                'Content-Language': 'en',
-                'Accept-Language': 'th',
-                
-            }),
         }
     )
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((result) => {
-        // console.log(result)
-        const lines = result.split('\n')
-        for (let line = 51; line < lines.length; line++) {
-            const newLine = lines[line].trim()
-            const td =  newLine.includes('<td>')
-            const principles = newLine.includes('<td align')
-            if (td == true) {
-              const n = line%2
-              if (n == 0) { 
-                var nameG = (newLine.slice(4, -5)).trim()
-                const json = JSON.parse(JSON.stringify({
-                  name: nameG,
-                }))
-                this.setState({ guarantee_data: this.state.guarantee_data.concat(json) })
-              }
-              //   var bal = newLine.slice(20, -5) 
-              
-              // }
-              
-              // console.log(line + ":" + newLine)
-          }
-          if (principles == true) {
-            var principle_data = newLine.slice(14, -30)
-            console.log(principle_data)
-          }
-        }
+      console.log(result)
+      this.setState({ guarantee_data: result })
     })
   }
 
@@ -92,9 +61,10 @@ export default class Guarantee extends React.Component {
                     <Text 
                       style={{ 
                         color: (i%2 == 0) ? '#ffffff' : '#996633', 
-                        fontWeight: 'bold' 
+                        fontWeight: 'bold',
+                        fontSize: 18
                       }}
-                    >{ item.name }</Text>                      
+                    >{ item.member_name }</Text>                      
                   </View>
 
                   <View style={{ flexDirection: 'row' }}>
@@ -105,9 +75,9 @@ export default class Guarantee extends React.Component {
                     </View>
 
                     <View style={{ width: '50%', marginTop: 5, alignItems: 'flex-end' }}>
-                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.indenture }</Text>
+                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.loan_id }</Text>
                       <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.date_loan }</Text>
-                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.principle }</Text>
+                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.guarantee_amt }</Text>
                     </View>
                     
                   </View>
