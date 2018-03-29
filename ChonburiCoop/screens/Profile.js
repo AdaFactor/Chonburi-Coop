@@ -21,24 +21,27 @@ export default class Profile extends Component {
     }
 
     componentDidMount = () => {
-        fetch( 'http://www.chtsc.com/check_loan/get_data/php2json.php?ssid='+ this.props.navigation.state.params.id_user +'&tab=3', { 
+        fetch( 'http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=' + this.props.navigation.state.params.id_user +'&tab=3', { 
             method: 'GET',
             
         })
         .then(res => res.json())
         .then((result) => {
-            this.setState({ 
-                member_id: result.member_id,
-                member_name: result.member_name,
-                share_v: result.share_v,
-                identity_card: result.identity_card,
-                address: result.address,
-                mobile: result.mobile,
-                member_date: result.member_date,
-                birth_date: result.birth_date,
-                rkeep: result.rkeep,
-                apply_date: result.apply_date
-            })
+            for (let index = 0; index < result.length; index++) {
+                console.log(result[index])
+                this.setState({ 
+                    member_id: result[index].member_id,
+                    member_name: result[index].member_name,
+                    share_v: result[index].share_v,
+                    identity_card: result[index].identity_card,
+                    address: result[index].address,
+                    mobile: result[index].mobile,
+                    member_date: result[index].member_date,
+                    birth_date: result[index].birth_date,
+                    rkeep: result[index].rkeep,
+                    apply_date: result[index].apply_date
+                })                
+            }
         })
         .catch((error) => { console.log(error) })
     }
@@ -88,11 +91,46 @@ export default class Profile extends Component {
                         </View>
                     </Card>
 
-                    <Card style={{height: 80}}>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>วันเกิด: {this.state.birth_date}</Text>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>โทรศัพท์: {this.state.mobile}</Text>
-                        <Text style={{color: '#006666', fontWeight: 'bold'}}>ที่อยู่: {this.state.address}</Text>
-                    </Card>
+                    
+                    <View style={{ marginLeft: 15, marginRight: 15 }}>
+                        <View 
+                            style={{
+                                marginTop: 10,
+                                padding: 10, 
+                                backgroundColor: '#fff', 
+                                borderLeftColor: '#003333',
+                                borderLeftWidth: 4,
+                            }}
+                        >
+                            <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>วันเกิด</Text>
+                            <Text style={{ fontSize: 16 }}>{ this.state.birth_date }</Text>                    
+                        </View>
+
+                        <View 
+                            style={{ 
+                            padding: 10, 
+                            backgroundColor: '#fff', 
+                            borderLeftColor: '#00cccc',
+                            borderLeftWidth: 4,
+                            }}
+                        >
+                            <Text style={{ fontWeight: 'bold',  fontSize: 16, color: '#000' }}>โทรศัพท์</Text>
+                            <Text style={{ fontSize: 16 }}>{ this.state.mobile }</Text>                    
+                        </View>
+
+                        <View 
+                            style={{ 
+                                padding: 10, 
+                                backgroundColor: '#fff', 
+                                borderLeftColor: '#003333',
+                                borderLeftWidth: 4,
+                            }}
+                        >
+                            <Text style={{ fontWeight: 'bold',  fontSize: 16, color: '#000' }}>ที่อยู่</Text>
+                            <Text style={{ fontSize: 16 }}>{ this.state.address }</Text>                    
+                        </View>
+                    </View>
+                    
 
                     <View style={{margin: 15, flexDirection: 'row'}}>
                         <TouchableOpacity 

@@ -31,57 +31,18 @@ export default class Calculator extends React.Component {
   componentDidMount = () => {
     ssid = 'ssid=202695'
     tab = '&tab=2'
-    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=202695&tab=2'
     
     fetch(
         url,
         {
             method: 'get',
-            headers: new Headers({
-                'Content-Type': 'text/html;charset=windows-874',
-                'Accept-Charset': 'windows-874',
-                'Content-Language': 'en',
-                'Accept-Language': 'th',
-                
-            }),
         }
     )
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((result) => {
-        // console.log(result)
-        const lines = result.split('\n')
-        for (let line = 53; line < lines.length; line++) {
-          const newLine = lines[line].trim()
-          const td =  newLine.includes('<td')
-          const num = newLine.includes('<td valign="top"> ')
-          const date = newLine.includes('<td valign="top"><center>')
-          const loan = newLine.includes('<td align="right" valign="top">')
-          
-          if (num == true) { var num_data = newLine.slice(26, -15) }
-          if (date == true) { var date_data = newLine.slice(25, -14) }
-          if (loan == true) { 
-            var loan_data = (newLine.slice(31, -5)).trim()
-            this.setState({ 
-              loanData: this.state.loanData.concat(loan_data) 
-            })
-            var dLoan = this.state.loanData
-            for (const l = 0; l <  dLoan.length; l++ ) {
-              if (l%2==0) {
-                var limitLoan = dLoan[l]
-              }
-              if (l%2==1) {
-                var balances = dLoan[l]
-                const json = JSON.parse(JSON.stringify({
-                  indenture: num_data,
-                  date_loan: date_data,
-                  limit_loan: limitLoan,
-                  balancel: balances,
-                }))
-                this.setState({ calculator: this.state.calculator.concat(json) })
-              }
-            }
-          }
-        }
+        console.log(result)
+        
     })
   }
 
