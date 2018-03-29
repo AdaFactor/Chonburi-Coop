@@ -31,7 +31,7 @@ export default class Calculator extends React.Component {
   componentDidMount = () => {
     ssid = 'ssid=202695'
     tab = '&tab=2'
-    url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=202695&tab=2'
+    url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab
     
     fetch(
         url,
