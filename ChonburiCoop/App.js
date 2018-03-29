@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
 import LoginScreen from './screens/LoginScreen'
@@ -13,16 +14,13 @@ import Dividend from './screens/Dividend'
 import chargedList from './screens/chargedList'
 import NewsScreen from './screens/NewsScreen'
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component {
   render() {
     return (
       <StackNav />
     );
   }
 }
-
-0898448685
 
 const StackNav = StackNavigator(
   {

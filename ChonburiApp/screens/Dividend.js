@@ -12,18 +12,6 @@ import {
 import { Card, Header, Icon } from 'react-native-elements'
 import ProgressCircle from 'react-native-progress-circle'
 
-const dividend = [{
-    dividend_percent: 5.41,
-    dividend_money: '45325.20',
-    average_percent: 12.0,
-    average_money: '30666.50',
-    souvenir: '600',
-    fee: '10',
-    meeting: '4820.00',
-    teacher_thai: '4840.00',
-    balance: '66941.70'
-}]
-
 export default class Dividend extends React.Component {
   constructor(props) {
     super(props)

@@ -125,6 +125,7 @@ export default class newPost extends Component {
                     }}
                     centerComponent={{ text: 'ข่าวใหม่', style: { fontSize: 16, color:'#fff' } }}
                     statusBarProps={{ barStyle: 'default' }}
+                    backgroundColor='#33cc33'                    
                 />
                 <ScrollView>
                     <View style={styles.contentPost}>

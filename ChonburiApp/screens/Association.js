@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
 // import axios from 'axios'
-import Frisbee from 'frisbee'
+// import Frisbee from 'frisbee'
 
 const assList = [
     { register: '0070', name: 'นายสินใจ โรจน์ไพฑูนย์', type_member: 'กอง1-สมาชิก' },
@@ -22,13 +22,13 @@ const assList = [
 
 ]
 
-const api = new Frisbee({
-    baseURI: 'http://www.chtsc.com/check_loan',
-    headers: {
-      'Accept': 'text/html',
-      'Content-Type': 'text/html; charset=Windows-874'
-    }
-})
+// const api = new Frisbee({
+//     baseURI: 'http://www.chtsc.com/check_loan',
+//     headers: {
+//       'Accept': 'text/html',
+//       'Content-Type': 'text/html; charset=Windows-874'
+//     }
+// })
 
 
 

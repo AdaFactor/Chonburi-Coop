@@ -25,6 +25,7 @@ export default class Bill extends React.Component {
       bill_data: [],
     }
   }
+  
   componentDidMount = () => {
     ssid = 'ssid=202695'
     tab = '&tab=6'

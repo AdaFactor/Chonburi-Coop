@@ -22,11 +22,72 @@ export default class Calculator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      guarantor_new: ''
+      guarantor_new: '',
+      loanData: [],
+      calculator: []
     }
   }
 
+  componentDidMount = () => {
+    ssid = 'ssid=202695'
+    tab = '&tab=2'
+    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    
+    fetch(
+        url,
+        {
+            method: 'get',
+            headers: new Headers({
+                'Content-Type': 'text/html;charset=windows-874',
+                'Accept-Charset': 'windows-874',
+                'Content-Language': 'en',
+                'Accept-Language': 'th',
+                
+            }),
+        }
+    )
+    .then((res) => res.text())
+    .then((result) => {
+        // console.log(result)
+        const lines = result.split('\n')
+        for (let line = 53; line < lines.length; line++) {
+          const newLine = lines[line].trim()
+          const td =  newLine.includes('<td')
+          const num = newLine.includes('<td valign="top"> ')
+          const date = newLine.includes('<td valign="top"><center>')
+          const loan = newLine.includes('<td align="right" valign="top">')
+          
+          if (num == true) { var num_data = newLine.slice(26, -15) }
+          if (date == true) { var date_data = newLine.slice(25, -14) }
+          if (loan == true) { 
+            var loan_data = (newLine.slice(31, -5)).trim()
+            this.setState({ 
+              loanData: this.state.loanData.concat(loan_data) 
+            })
+            var dLoan = this.state.loanData
+            for (const l = 0; l <  dLoan.length; l++ ) {
+              if (l%2==0) {
+                var limitLoan = dLoan[l]
+              }
+              if (l%2==1) {
+                var balances = dLoan[l]
+                const json = JSON.parse(JSON.stringify({
+                  indenture: num_data,
+                  date_loan: date_data,
+                  limit_loan: limitLoan,
+                  balancel: balances,
+                }))
+                this.setState({ calculator: this.state.calculator.concat(json) })
+              }
+            }
+          }
+        }
+    })
+  }
+
   render() {
+    console.log(this.state.calculator)
+    
     return (
       <View style={styles.container}>
         <Header
@@ -37,14 +98,14 @@ export default class Calculator extends React.Component {
               color='#fff'
               />
           }
-          centerComponent={{ text: 'คำนวนเงินกู้', style: { color: '#fff' } }}
+          centerComponent={{ text: 'คำนวนเงินกู้', style: { color: '#fff', fontSize: 16 } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
           backgroundColor='#33cc33'
       />
         <ScrollView style={{ marginBottom: 10 }} >
             {
-              calList.map(( itemCal, i ) => (                
+              this.state.calculator.map(( itemCal, i ) => (                
                 <View style={{ margin: 10, borderColor: '#cc0099', borderWidth: 1 }} key={ i }>
                   <View style={{flexDirection: 'row', backgroundColor: '#cc0099',  padding: 5}} >
                     <View style={{ width: '50%' }}>
@@ -66,23 +127,6 @@ export default class Calculator extends React.Component {
                       <Text>{ itemCal.balancel }</Text>
                     </View>
                   </View>
-
-                  <TouchableOpacity 
-                    style={{ backgroundColor: '#808080', padding: 5, alignItems: 'center' }} 
-                    onPress={() => {
-                      const name_guarantor = itemCal.guarantor
-                      {
-                        name_guarantor.map((item, index) => {
-                          Alert.alert(
-                            'ผู้ค้ำประกัน', 
-                            item.name
-                          )
-                        })
-                      }
-                    }}
-                  >
-                    <Text style={{ color: '#ffffff' }}>ดูผู้ค้ำประกัน</Text>
-                  </TouchableOpacity>
                 </View>
               ))
             }

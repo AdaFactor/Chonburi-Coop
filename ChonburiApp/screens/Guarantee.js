@@ -10,44 +10,6 @@ import {
 } from 'react-native';
 import { Input, Button, List, ListItem, Card, Header, Icon } from 'react-native-elements';
 
-const list = [
-    {
-      name: 'นางสาวดาราวรรณ อุดมรัตน์',
-      avatar_url: 'https://png.icons8.com/office/30/ffffff/circled-user-male-skin-type-3.png',
-      indenture: 'สส5602854',
-      date_loan: 'dd/mm/yyyy',
-      principle: '100000.00'
-    },
-    {
-      name: 'ชื่อ-นามสกุล',
-      avatar_url: 'https://png.icons8.com/office/30/ffffff/circled-user-male-skin-type-3.png',
-      indenture: 'เลขที่สัญญาเงินกู้',
-      date_loan: 'dd/mm/yyyy',
-      principle: '200000.00' 
-    },
-    {
-      name: 'ชื่อ-นามสกุล',
-      avatar_url: 'https://png.icons8.com/office/30/ffffff/circled-user-male-skin-type-3.png',
-      indenture: 'เลขที่สัญญาเงินกู้',
-      date_loan: 'dd/mm/yyyy',
-      principle: '300000.00' 
-    },
-    {
-      name: 'ชื่อ-นามสกุล',
-      avatar_url: 'https://png.icons8.com/office/30/ffffff/circled-user-male-skin-type-3.png',
-      indenture: 'เลขที่สัญญาเงินกู้',
-      date_loan: 'dd/mm/yyyy',
-      principle: '400000.00' 
-    },
-    {
-      name: 'ชื่อ-นามสกุล',
-      avatar_url: 'https://png.icons8.com/office/30/ffffff/circled-user-male-skin-type-3.png',
-      indenture: 'เลขที่สัญญาเงินกู้',
-      date_loan: 'dd/mm/yyyy',
-      principle: '500000.00' 
-    }
-]
-
 export default class Guarantee extends React.Component {
   constructor(props) {
     super(props)
@@ -85,10 +47,6 @@ export default class Guarantee extends React.Component {
             if (td == true) {
               // const n = 52
               if (line%2 == 0) { var nameG = newLine.slice(4, -5) }
-              // if (line == n + 1) { var type = newLine.slice(4, -5) }
-              // if (line == n + 2) { var increases = newLine.slice(13, -15) }
-              // if (line == n + 3) { var name = newLine.slice(4, -5) }
-              // if (line == n + 4) { 
               //   var bal = newLine.slice(20, -5) 
               //   const json = JSON.parse(JSON.stringify({
               //     account_name: name,

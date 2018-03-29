@@ -41,6 +41,7 @@ export default class NewsScreen extends Component {
                     }}
                     centerComponent={{ text: 'สารประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
                     // statusBarProps={{ translucent: true }}
+                    backgroundColor='#33cc33'                    
                 />
                 <ScrollView>
                     {

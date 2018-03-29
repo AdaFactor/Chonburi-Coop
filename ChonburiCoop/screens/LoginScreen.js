@@ -10,37 +10,17 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-// var formBody = []
+var formBody = []
 
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: '',
+      username: '008445',
+      password: '123',
       ssid: '',
       name: '',
     }
-  }
-
-  componentDidMount = () => {
-    fetch('http://www.chtsc.com/check_loan/result.php', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }),
-      body: "id=008445&mpassword=324432"
-    })
-    .then((res) => res.text())
-    .then((resJson) => {
-      // console.log(resJson)
-      // const ssid = resJson.indexOf("ssid=")
-      const sid = resJson.slice(251, 257)
-      this.setState({ ssid: sid})
-    })
-    .catch((err) => {
-      console.log(err)
-    })
   }
 
   handleUsername = (text) => {
@@ -64,13 +44,33 @@ export default class LoginScreen extends Component {
     }
   }
 
+  componentDidMount = () => {
+    fetch('http://www.chtsc.com/check_loan/result.php', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      }),
+      body: "id=008445&mpassword=342243"
+    })
+    .then((res) => res.text())
+    .then((resJson) => {
+      console.log(resJson)
+      // const ssid = resJson.indexOf("ssid=")
+      const sid = resJson.slice(251, 257)
+      this.setState({ ssid: sid})
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <TextInput
           // ref={(ref) => {this.username = ref}}
           onChangeText={this.handleUsername}
-          placeholder='Username'
+          placeholder= {this.state['username']} //'Username'
           placeholderTextColor='#fff'
           style={ styles.input }
           returnKeyType='next'
