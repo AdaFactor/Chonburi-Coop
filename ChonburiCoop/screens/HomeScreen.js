@@ -27,13 +27,6 @@ import LoginScreen from './LoginScreen';
 import newPost from './newPost';
 
 class HomeScreen extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-
-        }
-    }
-
     render() {
         return(
             <View style={styles.contrainer}>

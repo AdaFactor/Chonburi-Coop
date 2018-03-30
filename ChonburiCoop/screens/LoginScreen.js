@@ -16,8 +16,8 @@ export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '008445',
-      password: '123',
+      username: '',
+      password: '',
       ssid: '',
       name: '',
     }
@@ -44,20 +44,30 @@ export default class LoginScreen extends Component {
     }
   }
 
-  componentDidMount = () => {
-    fetch('http://www.chtsc.com/check_loan/result.php', {
+  componentDidMount = (id, mpassword) => {
+    var formData = new FormData()
+    formData.append('id', id)
+    formData.append('mpassword', mpassword)    
+
+    fetch('http://www.chtsc.com/check_loan/get_data/mobile_login.php', {
       method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      }),
-      body: "id=008445&mpassword=342243"
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+      body: formData
     })
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((resJson) => {
+      if ( resJson.status == 200 ){ 
+        this.props.navigation.navigate('HomeScreen', { id_user: resJson.ssid })
+      } else {
+        alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
+      }
       console.log(resJson)
       // const ssid = resJson.indexOf("ssid=")
-      const sid = resJson.slice(251, 257)
-      this.setState({ ssid: sid})
+      // const sid = resJson.slice(251, 257)
+      // this.setState({ ssid: sid})
     })
     .catch((err) => {
       console.log(err)
@@ -70,7 +80,7 @@ export default class LoginScreen extends Component {
         <TextInput
           // ref={(ref) => {this.username = ref}}
           onChangeText={this.handleUsername}
-          placeholder= {this.state['username']} //'Username'
+          placeholder= 'Username'  //{this.state['username']}
           placeholderTextColor='#fff'
           style={ styles.input }
           returnKeyType='next'
@@ -93,7 +103,7 @@ export default class LoginScreen extends Component {
           style={styles.buttonLogin} 
           onPress={
             () => { 
-              this.login(this.state.username, this.state.password)
+              this.componentDidMount(this.state.username, this.state.password)
             }
           }
         >

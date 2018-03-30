@@ -16,50 +16,24 @@ export default class Association extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data:[],
-            name: '',
-            register: '',
-            association: ''
+            association: []
         }
     }
 
     componentDidMount = () => {
-        ssid = 'ssid=' + this.props.navigation.state.params.id_user
+        ssid = 'ssid=202695' //+ this.props.navigation.state.params.id_user
         tab = '&tab=5'
-        url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+        url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
         
         fetch(
             url,
             {
                 method: 'get',
-                headers: new Headers({
-                    'Content-Type': 'text/html;charset=windows-874',
-                    'Accept-Charset': 'windows-874',
-                    'Content-Language': 'th',
-                    
-                }),
             }
         )
-        .then((res) => res.text())
+        .then((res) => res.json())
         .then((result) => {
-            const lines = result.split('\n')
-            for (let line = 51; line < lines.length; line++) {
-                const newLine = lines[line].trim()
-                const td = newLine.includes('<td')
-                if (td == true) {
-                    if ( line%2 == 1 ) {
-                        var registerNew = (newLine.slice(4, -5)).trim()
-                    }
-                    else if ( line%2 == 0 ) {
-                        var nameNew = (newLine.slice(4, -5)).trim()
-                        const json = JSON.parse(JSON.stringify({
-                            key: registerNew,
-                            value: nameNew,
-                        }))
-                        this.setState({ data: this.state.data.concat(json) })
-                    }
-                }
-            }
+            this.setState({ association: result })
         })
     }
 
@@ -81,7 +55,7 @@ export default class Association extends React.Component {
                 />
                 <ScrollView style={{ marginBottom: 15 }}>
                 {
-                    this.state.data.map(( itemAss, i) => (
+                    this.state.association.map(( itemAss, i) => (
                         <Card key={i} containerStyle={ styles.content }>
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={{ width: '40%' }}>
@@ -90,8 +64,8 @@ export default class Association extends React.Component {
                                 </View>
 
                                 <View style={{ width: '60%', alignItems: 'flex-end' }}>
-                                    <Text>{ itemAss.key }</Text>
-                                    <Text>{ itemAss.value }</Text>
+                                    <Text>{ itemAss.char_no }</Text>
+                                    <Text>{ itemAss.char_name }</Text>
                                 </View>                            
                             </View>
                         </Card>

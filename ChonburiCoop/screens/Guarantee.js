@@ -76,7 +76,7 @@ export default class Guarantee extends React.Component {
 
                     <View style={{ width: '50%', marginTop: 5, alignItems: 'flex-end' }}>
                       <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.loan_id }</Text>
-                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.date_loan }</Text>
+                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.loan_date }</Text>
                       <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.guarantee_amt }</Text>
                     </View>
                     

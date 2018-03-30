@@ -6,7 +6,8 @@ import {
   View, 
   TouchableOpacity,
   ScrollView,
-  Alert
+  Alert,
+  Modal 
 } from 'react-native'
 import { Card, Header, Icon } from 'react-native-elements'
 
@@ -48,52 +49,31 @@ export default class Debt extends React.Component {
     super(props)
     this.state = {
       debt_data: [],
+      modalVisible: false,
     }
   }
   
   componentDidMount = () => {
     ssid = 'ssid=202695'
     tab = '&tab=12'
-    url = 'http://www.chtsc.com/check_loan/member_detail.php?' + ssid + tab;
+    url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
     
     fetch(
         url,
         {
             method: 'get',
-            headers: new Headers({
-                'Content-Type': 'text/html;charset=windows-874',
-                'Accept-Charset': 'windows-874',
-                'Content-Language': 'en',
-                'Accept-Language': 'th',
-                
-            }),
         }
     )
-    .then((res) => res.text())
+    .then((res) => res.json())
     .then((result) => {
-        // console.log(result)
-        const lines = result.split('\n')
-        for (let line = 0; line < lines.length; line++) {
-          console.log(line + ":" + newLine)
-          const newLine = lines[line].trim()
-          const number = newLine.includes('<td valign="top"><a')
-          const dateC = newLine.includes('<td valign="top"><center>')
-          const loan_data = newLine.includes('<td align="right" valign="top">')
-          if (number == true) { var num_data = (newLine.slice(72, -10)).trim() }
-          if (dateC == true) { var dateCom = (newLine.slice(25, -15)).trim() }
-          if (loan_data == true) {
-            var loanData = (newLine.slice(31, -5)).trim()
-            // console.log(line + ":" + newLine)
-            const json = JSON.parse(JSON.stringify({
-              number_compact: num_data,
-              date_compact: dateCom,
-              loan: loanData
-            }))
-            this.setState({ debt_data: this.state.debt_data.concat(json) })
-          } 
-        }
+        this.setState({ debt_data: result })
     })
   }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
 
   render() {
     return (
@@ -121,32 +101,59 @@ export default class Debt extends React.Component {
                   <View style={{ flexDirection: 'row' }}>
                     <View style={{ width: '50%' }}>
                       <Text style={{ fontSize: 25, color: '#5d4d2d', fontWeight: 'bold' }}>
-                        { itemDebts.number_compact }
+                        { itemDebts.loan_id }
                       </Text>
                     </View>
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                      <Text style={{ fontWeight: 'bold' }}>Date: { itemDebts.date_compact }</Text>                       
+                      <Text style={{ fontWeight: 'bold' }}>Date: { itemDebts.loan_date }</Text>                       
                     </View>
                   </View>
 
                   <View style={{ flexDirection: 'row', paddingTop: 10 }}>
-                    <View style={{ width: '40%' }}>
+                    <View style={{ width: '20%' }}>
                       <Text>วงเงินกู้:</Text>
                       <Text>คงเหลือ:</Text>
                     </View>
-                    <View style={{ width: '40%', alignItems: 'flex-end' }}>
-                      <Text style={{ color: '#555' }}>{ itemDebts.loan }</Text>
-                      <Text style={{ color: '#555' }}>{ itemDebts.balance }</Text>
+                    <View style={{ width: '20%', alignItems: 'flex-end' }}>
+                      <Text style={{ color: '#555' }}>{ itemDebts.loan_amt }</Text>
+                      <Text style={{ color: '#555' }}>{ itemDebts.loan_bal }</Text>
                     </View>
-                    <View style={{ width: '20%', alignItems: 'center', justifyContent: 'center' }} >
-                      <TouchableOpacity 
+                    <View style={{ width: '60%', alignItems: 'center', justifyContent: 'center' }} >
+                      {/* <TouchableOpacity 
                         style={{ width: '50%', backgroundColor: '#a69364', borderRadius: 5 }}
-                        onPress={() =>
-                          {}
-                        }
+                        // onPress={}
+                        onPress={() => {
+                          this.setModalVisible(true);
+                        }}
                       >
                         <Icon name='remove-red-eye' color='#fff' />
                       </TouchableOpacity>
+
+                      <Modal
+                        animationType="slide"
+                        transparent={false}
+                        visible={this.state.modalVisible}
+                        onRequestClose={() => {
+                          alert('Modal has been closed.');
+                        }}
+                      >
+                        <View style={{marginTop: 22}}> */}
+                            {
+                              itemDebts.guarantor.map((g, ind) => (
+                                <View key={ind}>
+                                  <Text>{ g.member_name }</Text>
+                                </View>
+                              ))
+                            }
+
+                            {/* <TouchableOpacity
+                              onPress={() => {
+                                this.setModalVisible(!this.state.modalVisible);
+                              }}>
+                              <Text>X</Text>
+                            </TouchableOpacity>
+                        </View>
+                      </Modal> */}
                     </View>
                   </View>
                   

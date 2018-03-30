@@ -38,7 +38,7 @@ export default class Saving extends React.Component {
     )
     .then((res) => res.json())
     .then((result) => {
-      console.log(result)
+      this.setState({ data_save: result })
     })
   }
 
@@ -77,10 +77,10 @@ export default class Saving extends React.Component {
                       
                     </View>
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                      <Text>{ itemMoney.number }</Text>
-                      <Text>{ itemMoney.type_save }</Text>                      
-                      <Text>{ itemMoney.increase }</Text>
-                      <Text>{ itemMoney.balance }</Text>                                           
+                      <Text>{ itemMoney.member_id }</Text>
+                      <Text>{ itemMoney.acc_type }</Text>                      
+                      <Text>{ itemMoney.rate_1 }%</Text>
+                      <Text>{ itemMoney.led_bal }</Text>                                           
                     </View>
                   </View>
                 </Card>
