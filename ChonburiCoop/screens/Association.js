@@ -21,20 +21,16 @@ export default class Association extends React.Component {
     }
 
     componentDidMount = () => {
-        ssid = 'ssid=202695' //+ this.props.navigation.state.params.id_user
+        ssid = 'ssid=' + this.props.navigation.state.params.id_user
         tab = '&tab=5'
         url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
         
         fetch(
             url,
-            {
-                method: 'get',
-            }
+            { method: 'get' }
         )
         .then((res) => res.json())
-        .then((result) => {
-            this.setState({ association: result })
-        })
+        .then((result) => { this.setState({ association: result }) })
     }
 
     render() {
@@ -49,8 +45,14 @@ export default class Association extends React.Component {
                         />
                     }
                     centerComponent={{ text: 'สมาคม', style: { color: '#fff', fontSize: 16 } }}
-                    rightComponent={{ icon: 'email', color: '#fff' }}
-                    statusBarProps={{ translucent: true }}
+                    rightComponent={
+                        <Icon 
+                            name='email' 
+                            onPress={() => {this.props.navigation.navigate('NewsScreen',  {id_user: this.props.navigation.state.params.id_user})}}
+                            color='#fff'
+                        />
+                    }
+                    // statusBarProps={{ translucent: true }}
                     backgroundColor='#248f24'
                 />
                 <ScrollView style={{ marginBottom: 15 }}>

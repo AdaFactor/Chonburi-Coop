@@ -19,7 +19,7 @@ export default class Bill extends React.Component {
   }
   
   componentDidMount = () => {
-    ssid = 'ssid=202695'
+    ssid = 'ssid=' + this.props.navigation.state.params.id_user
     tab = '&tab=6'
     url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
     
@@ -40,14 +40,14 @@ export default class Bill extends React.Component {
       <View style={styles.container}>
         <Header
           leftComponent={
-              <Icon 
-              name='menu' 
-              onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
-              color='#fff'
+              <Icon
+                name='arrow-back' 
+                onPress={() => {this.props.navigation.navigate('HomeScreen',  { id_user: this.props.navigation.state.params.id_user })}}
+                color='#fff'
               />
           }
           centerComponent={{ text: 'ใบเสร็จ', style: { color: '#fff', fontSize: 16 } }}
-          rightComponent={{ icon: 'email', color: '#fff' }}
+          // rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'
         />

@@ -10,14 +10,6 @@ import {
 } from 'react-native'
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
 
-const calList = [
-  { indenture: 'สว5400086', date_loan: '01/03/2561', limit_loan: '299530.32', balancel: '100000.00', guarantor: [{name: "Kopiko"}, {name: "yoyo"}]},
-  { indenture: 'เลขที่สัญญา', date_loan: 'dd/mm/yyyy', limit_loan: '599531.32', balancel: '100000.00', guarantor: [{name: "ชื่อ-นามสกุล"}, {name: "ชื่อ-นามสกุล"}]},
-  { indenture: 'เลขที่สัญญา', date_loan: 'dd/mm/yyyy', limit_loan: '499532.32', balancel: '100000.00', guarantor: [{name: "ชื่อ-นามสกุล"}, {name: "ชื่อ-นามสกุล"}]},
-  { indenture: 'เลขที่สัญญา', date_loan: 'dd/mm/yyyy', limit_loan: '399533.32', balancel: '100000.00', guarantor: [{name: "ชื่อ-นามสกุล"}]},
-  { indenture: 'เลขที่สัญญา', date_loan: 'dd/mm/yyyy', limit_loan: '209534.32', balancel: '100000.00', guarantor: [{name: "ชื่อ-นามสกุล"}]},  
-]
-
 export default class Calculator extends React.Component {
   constructor(props) {
     super(props)
@@ -29,7 +21,7 @@ export default class Calculator extends React.Component {
   }
 
   componentDidMount = () => {
-    ssid = 'ssid=202695'
+    ssid = 'ssid=' + this.props.navigation.state.params.id_user
     tab = '&tab=2'
     url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab
     
@@ -52,14 +44,14 @@ export default class Calculator extends React.Component {
       <View style={styles.container}>
         <Header
           leftComponent={
-              <Icon 
-              name='menu' 
-              onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
-              color='#fff'
+            <Icon
+                name='arrow-back' 
+                onPress={() => {this.props.navigation.navigate('HomeScreen',  { id_user: this.props.navigation.state.params.id_user })}}
+                color='#fff'
               />
           }
           centerComponent={{ text: 'คำนวนเงินกู้', style: { color: '#fff', fontSize: 16 } }}
-          rightComponent={{ icon: 'email', color: '#fff' }}
+          // rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'
       />

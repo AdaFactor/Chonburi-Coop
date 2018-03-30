@@ -7,7 +7,9 @@ import {
   TextInput,
   Button,
   Alert,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground,
+  KeyboardAvoidingView
 } from 'react-native'
 
 var formBody = []
@@ -61,10 +63,12 @@ export default class LoginScreen extends Component {
     .then((resJson) => {
       if ( resJson.status == 200 ){ 
         this.props.navigation.navigate('HomeScreen', { id_user: resJson.ssid })
+      } else if ( id == '' || mpassword == ''){
+        console.log('username or password cannot null')
       } else {
         alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
       }
-      console.log(resJson)
+      // console.log(resJson)
       // const ssid = resJson.indexOf("ssid=")
       // const sid = resJson.slice(251, 257)
       // this.setState({ ssid: sid})
@@ -76,40 +80,44 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <TextInput
-          // ref={(ref) => {this.username = ref}}
-          onChangeText={this.handleUsername}
-          placeholder= 'Username'  //{this.state['username']}
-          placeholderTextColor='#fff'
-          style={ styles.input }
-          returnKeyType='next'
-          underlineColorAndroid='transparent'
-          clearTextOnFocus
-        />
+      <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
+        <View style={styles.container}>
+          <KeyboardAvoidingView behavior="padding" style={styles.form}>
+            <TextInput
+              // ref={(ref) => {this.username = ref}}
+              onChangeText={this.handleUsername}
+              placeholder= 'Username'  //{this.state['username']}
+              placeholderTextColor='#fff'
+              style={ styles.input }
+              returnKeyType='next'
+              underlineColorAndroid='transparent'
+              clearTextOnFocus
+            />
 
-        <TextInput
-          // ref={(ref) => {this.password = ref}}
-          onChangeText={this.handlePassword}          
-          placeholder='Password'
-          placeholderTextColor='#fff'            
-          secureTextEntry        
-          style={ styles.input }
-          underlineColorAndroid='transparent'
-          clearTextOnFocus
-        />
+            <TextInput
+              // ref={(ref) => {this.password = ref}}
+              onChangeText={this.handlePassword}          
+              placeholder='Password'
+              placeholderTextColor='#fff'            
+              secureTextEntry        
+              style={ styles.input }
+              underlineColorAndroid='transparent'
+              clearTextOnFocus
+            />
 
-        <TouchableOpacity 
-          style={styles.buttonLogin} 
-          onPress={
-            () => { 
-              this.componentDidMount(this.state.username, this.state.password)
-            }
-          }
-        >
-          <Text style={{ color: '#fff' }}>เข้าสู่ระบบ</Text>          
-        </TouchableOpacity>
-      </View>
+            <TouchableOpacity 
+              style={styles.buttonLogin} 
+              onPress={
+                () => { 
+                  this.componentDidMount(this.state.username, this.state.password)
+                }
+              }
+            >
+              <Text style={{ color: '#fff' }}>เข้าสู่ระบบ</Text>          
+            </TouchableOpacity>
+          </KeyboardAvoidingView>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -117,10 +125,14 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      // backgroundColor: '#FF85BA',
+    },
+    form: {
+      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#FF85BA',
-      padding: 30
     },
     welcome: {
       fontSize: 20,
@@ -141,6 +153,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       backgroundColor: '#B21970',
       borderRadius: 10
-    }
+    },
+    welcomeImage: {
+      width: '100%',
+      height: '100%',
+      padding: 30
+      
+    },
 });
   

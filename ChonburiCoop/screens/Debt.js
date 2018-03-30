@@ -54,7 +54,7 @@ export default class Debt extends React.Component {
   }
   
   componentDidMount = () => {
-    ssid = 'ssid=202695'
+    ssid = 'ssid=' + this.props.navigation.state.params.id_user
     tab = '&tab=12'
     url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
     
@@ -87,7 +87,13 @@ export default class Debt extends React.Component {
               />
           }
           centerComponent={{ text: 'หนี้สิน', style: { color: '#fff', fontSize: 16 } }}
-          rightComponent={{ icon: 'email', color: '#fff' }}
+          rightComponent={
+            <Icon 
+                name='email' 
+                onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user})}}
+                color='#fff'
+            />
+          }
           // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'
       />

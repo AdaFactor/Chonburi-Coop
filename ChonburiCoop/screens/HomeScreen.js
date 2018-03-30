@@ -26,8 +26,10 @@ import Saving from './Saving'
 import LoginScreen from './LoginScreen';
 import newPost from './newPost';
 
-class HomeScreen extends React.Component {
+
+class HomeScreen extends React.Component {    
     render() {
+        var userId = this.props.navigation.state.params.id_user
         return(
             <View style={styles.contrainer}>
                 <Header
@@ -42,7 +44,7 @@ class HomeScreen extends React.Component {
                     rightComponent={
                         <Icon 
                             name='email' 
-                            onPress={() => {this.props.navigation.navigate('NewsScreen')}}
+                            onPress={() => {this.props.navigation.navigate('NewsScreen', { id_user: userId })}}
                             color='#fff'
                         />
                     }
@@ -57,7 +59,7 @@ class HomeScreen extends React.Component {
                             style={styles.bill}
                             onPress={
                                 () => { 
-                                  this.props.navigation.navigate('Bill')
+                                  this.props.navigation.navigate('Bill', { id_user: userId })
                                 }
                             }
                         >
@@ -69,7 +71,7 @@ class HomeScreen extends React.Component {
                             style={styles.money}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Saving')
+                                this.props.navigation.navigate('Saving', { id_user: userId })
                                 }
                             }
                         >
@@ -81,7 +83,7 @@ class HomeScreen extends React.Component {
                             style={styles.guarantee}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Guarantee')
+                                this.props.navigation.navigate('Guarantee', { id_user: userId })
                                 }
                             }
                         >
@@ -94,7 +96,7 @@ class HomeScreen extends React.Component {
                             style={styles.receive}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Dividend')
+                                this.props.navigation.navigate('Dividend', { id_user: userId })
                                 }
                             }
                         >
@@ -106,7 +108,7 @@ class HomeScreen extends React.Component {
                             style={styles.calculator}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Calculator')
+                                this.props.navigation.navigate('Calculator', { id_user: userId })
                                 }
                             }
                         >
@@ -118,7 +120,7 @@ class HomeScreen extends React.Component {
                             style={styles.todolist}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('chargedList')
+                                this.props.navigation.navigate('chargedList', { id_user: userId })
                                 }
                             }
                         >
@@ -150,7 +152,6 @@ const DrawerNav = DrawerNavigator(
         },
         สมาคม: { screen: Association },
         หนี้สิน: { screen: Debt },
-        ผู้ดูแลระบบ: { screen: newPost },
         ใบเสร็จ: { 
             screen: Bill,
             navigationOptions: {

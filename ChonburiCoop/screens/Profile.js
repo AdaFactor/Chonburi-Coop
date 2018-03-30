@@ -22,7 +22,7 @@ export default class Profile extends Component {
 
     componentDidMount = () => {
         //this.props.navigation.state.params.id_user
-        fetch( 'http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=202695&tab=3', { 
+        fetch( 'http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=' + this.props.navigation.state.params.id_user + '&tab=3', { 
             method: 'GET',
             
         })
@@ -58,7 +58,13 @@ export default class Profile extends Component {
                         />
                     }
                     centerComponent={{ text: 'สมาชิก', style: { color: '#fff', fontSize: 16 } }}
-                    rightComponent={{ icon: 'email', color: '#fff' }}
+                    rightComponent={
+                        <Icon 
+                            name='email' 
+                            onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user})}}
+                            color='#fff'
+                        />
+                    }
                     // statusBarProps={{ translucent: true }}
                     backgroundColor='#248f24'
                 />

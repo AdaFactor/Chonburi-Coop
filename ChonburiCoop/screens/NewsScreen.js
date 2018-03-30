@@ -6,52 +6,65 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    Linking
 } from 'react-native'
 import { Header, Icon } from 'react-native-elements'
 
-const news = [
-    { id: 1, head_news: 'Head News 1', content_news: 'This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html' },
-    { id: 2, head_news: 'Head News 2', content_news: 'This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html' },
-    { id: 3, head_news: 'Head News 3', content_news: 'This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html' },
-    { id: 4, head_news: 'Head News 4', content_news: 'This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.14.1/userguide/gradle_daemon.html' },
-]
-
 export default class NewsScreen extends Component {
-    state = {
-        data: []
+    constructor(props){
+        super(props)
+        this.state = {
+            data_news:[]
+        }
     }
-
     componentDidMount = () => {
-        fetch( 'https://jsonplaceholder.typicode.com/posts/', { method: 'GET' })
-            .then(res => res.json())
-            .then((resJson) => { this.setState({ data: resJson}) })
-            .catch((error) => { console.log(error) })
+        fetch( 'http://www.chtsc.com/index.php/component/content/article/14-infor/109-info-13', { method: 'GET' })
+        .then(res => res.text())
+        .then((result) => { 
+            // console.log(result)
+            const newResult = result.split('\n')
+            for (let index = 161; index < newResult.length; index++) {
+                var year = new Date().getFullYear()
+                const link = newResult[index].includes('<td style="text-align: left;"><a href="/images/2560')            
+                const name = newResult[index].includes('<span style="color: #000000; text-decoration: underline;"></span')
+                if (link == true && name == true) {
+                    const json = JSON.parse(JSON.stringify({
+                        news_date: newResult[index].trim().slice(40, 66),
+                        news_name: newResult[index].trim().slice(245, -32)
+                    }))
+                    this.setState({ data_news: this.state.data_news.concat(json) })
+                }
+            }
+            
+        })
+        .catch((error) => { console.log(error) })
     }
 
     render(){
-        const newsData = this.state.data
-        console.log(this.state.data)
         return (
             <View style={styles.container}>
                 <Header
                     leftComponent={{
-                            icon: 'arrow-back' ,
-                            onPress: () => {this.props.navigation.navigate('HomeScreen')}
+                        icon: 'home' ,
+                        onPress: () => {this.props.navigation.navigate('HomeScreen', {id_user: this.props.navigation.state.params.id_user})}
                     }}
-                    centerComponent={{ text: 'สารประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
+                    centerComponent={{ text: 'ข่าวประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
                     // statusBarProps={{ translucent: true }}
                     backgroundColor='#248f24'                    
                 />
                 <ScrollView>
                     {
-                        this.state.data.map(( itemNews, i ) => (
-                            <View key={i} style={styles.contentNews}>
-                                <Text style={styles.headNews}>{ itemNews.title }</Text>
-                                <Text>{ itemNews.body }</Text>
+                        this.state.data_news.map((item, i) => (
+                            <View style={styles.contentNews} key={i}>
+                                <Text 
+                                    onPress={() => Linking.openURL('http://www.chtsc.com' + item.news_date) 
+                                    }
+                                >{ item.news_name }</Text>
                             </View>
                         ))
                     }
+                    
                 </ScrollView>
             </View>
         );

@@ -19,7 +19,7 @@ export default class Guarantee extends React.Component {
   }
 
   componentDidMount = () => {
-    ssid = 'ssid=202695'
+    ssid = 'ssid=' + this.props.navigation.state.params.id_user
     tab = '&tab=4'
     url = 'http://www.chtsc.com/check_loan/get_data/php2json.php?' + ssid + tab;
     
@@ -31,7 +31,6 @@ export default class Guarantee extends React.Component {
     )
     .then((res) => res.json())
     .then((result) => {
-      console.log(result)
       this.setState({ guarantee_data: result })
     })
   }
@@ -41,11 +40,11 @@ export default class Guarantee extends React.Component {
       <View style={{ flex: 1, backgroundColor: '#f9f2ec' }}>
         <Header
           leftComponent={
-              <Icon 
-              name='menu' 
-              onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
+            <Icon
+              name='arrow-back' 
+              onPress={() => {this.props.navigation.navigate('HomeScreen',  { id_user: this.props.navigation.state.params.id_user })}}
               color='#fff'
-              />
+            />
           }
           centerComponent={{ text: 'การค้ำประกัน', style: { color: '#fff', fontSize: 16 } }}
           rightComponent={{ icon: 'email', color: '#fff' }}
