@@ -1,20 +1,25 @@
 {
   "expo": {
-    "name": "ChonburiCoop",
+    "name": "chtsc",
     "description": "This project is really great.",
-    "slug": "ChonburiCoop",
+    "slug": "chtsc",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ios-logo_chtsc.png",     
     "splash": {
-      "image": "./assets/welcome.png",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/logo_chtsc.png",
+      "backgroundColor": "#1CB5E0"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.adafactor.chtsc"
+    },
+    "android": {
+      "package": "com.adafactor.chtsc",
+      "icon": "./assets/android-logo_chtsc.png" 
     }
   }
 }

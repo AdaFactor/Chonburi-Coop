@@ -25,7 +25,7 @@ import Profile from './Profile'
 import Saving from './Saving'
 import LoginScreen from './LoginScreen';
 
-class HomeScreen extends React.Component {    
+class HomeScreen extends React.Component {
     render() {
         var userId = this.props.navigation.state.params.id_user
         return(
@@ -34,7 +34,7 @@ class HomeScreen extends React.Component {
                     leftComponent={
                         <Icon 
                             name='menu' 
-                            onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
+                            onPress={() => {this.props.navigation.navigate('DrawerOpen', { id_user: userId })}}
                             color='#fff'
                         />
                     }
@@ -131,16 +131,18 @@ class HomeScreen extends React.Component {
         );
     }
 }
-
-const CustomDrawerContentComponent = (props) => (
-    <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-        <Header
-            centerComponent={{ text: '', style: { color: '#fff' } }}
-            backgroundColor='#2a2c32'
-        />
-        <DrawerItems {...props} />
-    </View>
-);
+const CustomDrawerContentComponent = (props) => {
+    id_user = props.navigation.state.params.id_user
+    return (
+        <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
+            <Header
+                centerComponent={{ text: id_user.toString(), style: { color: '#fff' } }}
+                backgroundColor='#2a2c32'
+            />
+            <DrawerItems {...props} />
+        </View>
+    );
+}
 
 const DrawerNav = DrawerNavigator(
     {
