@@ -11,6 +11,40 @@ import {
 
 import Swiper from 'react-native-swiper'
 
+export default class SwiperScreen extends Component {
+  render(){
+    return (
+      <Swiper 
+        style={styles.wrapper} 
+        autoplay={true}
+        dotColor='#999'
+        activeDotColor='#fff'
+      >
+        <View style={styles.welcome}>
+            <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
+                <Text style={{color: '#fff', fontSize: 20}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
+            </ImageBackground>                                        
+        </View>
+        <View style={styles.slide1}>
+            <ImageBackground source={require('../static/images/sweper-home.png')} style={styles.welcomeImage}>
+                <Text style={{color: '#fff', fontSize: 16}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
+                <Text style={{color: '#fff', fontSize: 16}}>เป็นสถาบันการเงินที่ได้มาตรฐาน จัดสวัสดิการทั่วถึง</Text>
+                <Text style={{color: '#fff', fontSize: 16}}>สมาชิกพึงพอใจ ให้บริการด้วยเทคโนโลยี </Text>       
+                <Text style={{color: '#fff', fontSize: 16}}>เป็นศักดิ์ศรีของครูชล</Text>         
+            </ImageBackground>
+        </View>
+        <View style={styles.slide2}>
+            <ImageBackground source={require('../static/images/swiper-home-3.png')} style={styles.welcomeImage}>
+                <Text style={{color: '#fff', fontSize: 16}}>55/99 หมู่ที่ 3</Text>
+                <Text style={{color: '#fff', fontSize: 16}}>ถนนสุขุมวิท ตำบลเสม็ด อำเภอเมือง</Text>
+                <Text style={{color: '#fff', fontSize: 16}}>จังหวัดชลบุรี 20000</Text>       
+            </ImageBackground>                                                   
+        </View>
+      </Swiper>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
     wrapper: {
         height: '45%',        
@@ -50,37 +84,3 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 })
-
-export default class SwiperScreen extends Component {
-  render(){
-    return (
-      <Swiper 
-        style={styles.wrapper} 
-        autoplay={true}
-        dotColor='#999'
-        activeDotColor='#fff'
-      >
-        <View style={styles.welcome}>
-            <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
-                <Text style={{color: '#fff', fontSize: 20}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
-            </ImageBackground>                                        
-        </View>
-        <View style={styles.slide1}>
-            <ImageBackground source={require('../static/images/sweper-home.png')} style={styles.welcomeImage}>
-                <Text style={{color: '#fff', fontSize: 16}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>เป็นสถาบันการเงินที่ได้มาตรฐาน จัดสวัสดิการทั่วถึง</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>สมาชิกพึงพอใจ ให้บริการด้วยเทคโนโลยี </Text>       
-                <Text style={{color: '#fff', fontSize: 16}}>เป็นศักดิ์ศรีของครูชล</Text>         
-            </ImageBackground>
-        </View>
-        <View style={styles.slide2}>
-            <ImageBackground source={require('../static/images/swiper-home-3.png')} style={styles.welcomeImage}>
-                <Text style={{color: '#fff', fontSize: 16}}>55/99 หมู่ที่ 3</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>ถนนสุขุมวิท ตำบลเสม็ด อำเภอเมือง</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>จังหวัดชลบุรี 20000</Text>       
-            </ImageBackground>                                                   
-        </View>
-      </Swiper>
-    );
-  }
-}

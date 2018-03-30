@@ -39,7 +39,6 @@ export default class Dividend extends React.Component {
   }
 
   render() {
-    console.log(this.state.dividend_data)
     return (
       <View style={styles.container}>
         <Header

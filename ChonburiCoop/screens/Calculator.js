@@ -38,8 +38,6 @@ export default class Calculator extends React.Component {
   }
 
   render() {
-    console.log(this.state.calculator)
-    
     return (
       <View style={styles.container}>
         <Header

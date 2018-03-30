@@ -47,7 +47,7 @@ export default class Guarantee extends React.Component {
             />
           }
           centerComponent={{ text: 'การค้ำประกัน', style: { color: '#fff', fontSize: 16 } }}
-          rightComponent={{ icon: 'email', color: '#fff' }}
+          // rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'
         />

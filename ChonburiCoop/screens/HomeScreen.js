@@ -24,8 +24,6 @@ import Guarantee from './Guarantee'
 import Profile from './Profile'
 import Saving from './Saving'
 import LoginScreen from './LoginScreen';
-import newPost from './newPost';
-
 
 class HomeScreen extends React.Component {    
     render() {

@@ -11,6 +11,7 @@ import {
   ImageBackground,
   KeyboardAvoidingView
 } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 
 var formBody = []
 
@@ -25,28 +26,7 @@ export default class LoginScreen extends Component {
     }
   }
 
-  handleUsername = (text) => {
-    this.setState({ username: text })
-  }
-
-  handlePassword = (text) => {
-    this.setState({ password: text })
-  }
-
-  login = ( user , pass ) => {
-    if (user == '' || pass == '') {
-      alert('username or password cannot null')
-    } 
-    else if ( user * 24 + 15 == this.state.ssid ) {
-      this.props.navigation.navigate('HomeScreen', { id_user: this.state.ssid })
-      // console.log( this.state.ssid )
-    }
-    else {
-      alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')      
-    }
-  }
-
-  componentDidMount = (id, mpassword) => {
+  _login = (id, mpassword) => {
     var formData = new FormData()
     formData.append('id', id)
     formData.append('mpassword', mpassword)    
@@ -63,15 +43,9 @@ export default class LoginScreen extends Component {
     .then((resJson) => {
       if ( resJson.status == 200 ){ 
         this.props.navigation.navigate('HomeScreen', { id_user: resJson.ssid })
-      } else if ( id == '' || mpassword == ''){
-        console.log('username or password cannot null')
       } else {
         alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
       }
-      // console.log(resJson)
-      // const ssid = resJson.indexOf("ssid=")
-      // const sid = resJson.slice(251, 257)
-      // this.setState({ ssid: sid})
     })
     .catch((err) => {
       console.log(err)
@@ -81,13 +55,18 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
-        <View style={styles.container}>
+        <View 
+          style={styles.container}
+        >
           <KeyboardAvoidingView behavior="padding" style={styles.form}>
+            <View style={{ marginBottom: 10 }}>
+              <Text style={{ color: '#fff', fontSize: 20, fontWeight: 'bold' }}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
+            </View>
             <TextInput
-              // ref={(ref) => {this.username = ref}}
-              onChangeText={this.handleUsername}
-              placeholder= 'Username'  //{this.state['username']}
-              placeholderTextColor='#fff'
+              onChangeText={(text) => this.setState({ username: text })}
+              value={this.state.username}              
+              placeholder= 'Username'
+              placeholderTextColor='#737373'
               style={ styles.input }
               returnKeyType='next'
               underlineColorAndroid='transparent'
@@ -95,10 +74,10 @@ export default class LoginScreen extends Component {
             />
 
             <TextInput
-              // ref={(ref) => {this.password = ref}}
-              onChangeText={this.handlePassword}          
+              onChangeText={(text) => this.setState({ password: text })}
+              value={this.state.password}
               placeholder='Password'
-              placeholderTextColor='#fff'            
+              placeholderTextColor='#737373'            
               secureTextEntry        
               style={ styles.input }
               underlineColorAndroid='transparent'
@@ -109,7 +88,7 @@ export default class LoginScreen extends Component {
               style={styles.buttonLogin} 
               onPress={
                 () => { 
-                  this.componentDidMount(this.state.username, this.state.password)
+                  this._login(this.state.username, this.state.password)
                 }
               }
             >
@@ -125,9 +104,6 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      // justifyContent: 'center',
-      // alignItems: 'center',
-      // backgroundColor: '#FF85BA',
     },
     form: {
       flex: 1,
@@ -142,9 +118,12 @@ const styles = StyleSheet.create({
     input: {
       height: 40,
       width: '100%',      
-      backgroundColor: '#FFAED8',
+      backgroundColor: '#f2f2f2',
       marginBottom: 15,
-      padding: 10
+      padding: 10,
+      borderColor: '#d9d9d9',
+      borderWidth: 1,
+      opacity: 0.7
     },
     buttonLogin: {
       height: 35,

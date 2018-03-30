@@ -26,7 +26,7 @@ export default class NewsScreen extends Component {
             const newResult = result.split('\n')
             for (let index = 161; index < newResult.length; index++) {
                 var year = new Date().getFullYear()
-                const link = newResult[index].includes('<td style="text-align: left;"><a href="/images/2560')            
+                const link = newResult[index].includes('<td style="text-align: left;"><a href="/images/256')            
                 const name = newResult[index].includes('<span style="color: #000000; text-decoration: underline;"></span')
                 if (link == true && name == true) {
                     const json = JSON.parse(JSON.stringify({
