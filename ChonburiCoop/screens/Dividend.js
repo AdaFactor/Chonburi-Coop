@@ -45,7 +45,12 @@ export default class Dividend extends React.Component {
           leftComponent={
             <Icon
               name='arrow-back' 
-              onPress={() => {this.props.navigation.navigate('HomeScreen',  { id_user: this.props.navigation.state.params.id_user })}}
+              onPress={() => {this.props.navigation.navigate('HomeScreen',  
+                { 
+                  id_user: this.props.navigation.state.params.id_user ,
+                  memberName: this.props.navigation.state.params.memberName
+                }
+              )}}
               color='#fff'
             />
           }

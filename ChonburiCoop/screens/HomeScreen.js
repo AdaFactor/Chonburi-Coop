@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     Image,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    Keyboard
 } from 'react-native'
 
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
@@ -23,18 +24,28 @@ import Dividend from './Dividend'
 import Guarantee from './Guarantee'
 import Profile from './Profile'
 import Saving from './Saving'
-import LoginScreen from './LoginScreen';
+import LoginScreen from './LoginScreen'
 
 class HomeScreen extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            memberName: ''
+        }
+    }
+
     render() {
-        var userId = this.props.navigation.state.params.id_user
+        let userId = this.props.navigation.state.params.id_user
+        let name = this.props.navigation.state.params.memberName
         return(
             <View style={styles.contrainer}>
                 <Header
                     leftComponent={
                         <Icon 
                             name='menu' 
-                            onPress={() => {this.props.navigation.navigate('DrawerOpen', { id_user: userId })}}
+                            onPress={
+                                () => {this.props.navigation.navigate('DrawerOpen')}
+                            }
                             color='#fff'
                         />
                     }
@@ -42,7 +53,7 @@ class HomeScreen extends React.Component {
                     rightComponent={
                         <Icon 
                             name='email' 
-                            onPress={() => {this.props.navigation.navigate('NewsScreen', { id_user: userId })}}
+                            onPress={() => {this.props.navigation.navigate('NewsScreen', { id_user: userId, memberName: name })}}
                             color='#fff'
                         />
                     }
@@ -51,13 +62,14 @@ class HomeScreen extends React.Component {
                 />
                 
                 <SwiperScreen />
+
                 <View style={{justifyContent: 'center', alignItems: 'center', height: '45%', backgroundColor: '#ffffff'}}>
                     <View style={{flexDirection: 'row', alignItems: 'center',}}>
                         <TouchableOpacity 
                             style={styles.bill}
                             onPress={
                                 () => { 
-                                  this.props.navigation.navigate('Bill', { id_user: userId })
+                                  this.props.navigation.navigate('Bill', { id_user: userId, memberName: name })
                                 }
                             }
                         >
@@ -69,7 +81,7 @@ class HomeScreen extends React.Component {
                             style={styles.money}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Saving', { id_user: userId })
+                                this.props.navigation.navigate('Saving', { id_user: userId, memberName: name })
                                 }
                             }
                         >
@@ -81,7 +93,7 @@ class HomeScreen extends React.Component {
                             style={styles.guarantee}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Guarantee', { id_user: userId })
+                                this.props.navigation.navigate('Guarantee', { id_user: userId, memberName: name })
                                 }
                             }
                         >
@@ -94,7 +106,7 @@ class HomeScreen extends React.Component {
                             style={styles.receive}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Dividend', { id_user: userId })
+                                this.props.navigation.navigate('Dividend', { id_user: userId, memberName: name })
                                 }
                             }
                         >
@@ -106,7 +118,7 @@ class HomeScreen extends React.Component {
                             style={styles.calculator}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('Calculator', { id_user: userId })
+                                this.props.navigation.navigate('Calculator', { id_user: userId , memberName: name})
                                 }
                             }
                         >
@@ -118,7 +130,7 @@ class HomeScreen extends React.Component {
                             style={styles.todolist}
                             onPress={
                                 () => { 
-                                this.props.navigation.navigate('chargedList', { id_user: userId })
+                                this.props.navigation.navigate('chargedList', { id_user: userId , memberName: name})
                                 }
                             }
                         >
@@ -131,17 +143,22 @@ class HomeScreen extends React.Component {
         );
     }
 }
+
+
+
 const CustomDrawerContentComponent = (props) => {
-    id_user = props.navigation.state.params.id_user
+    let id_user = props.navigation.state.params.id_user
+    let name = props.navigation.state.params.memberName
+    console.log(props)
     return (
         <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
             <Header
-                centerComponent={{ text: id_user.toString(), style: { color: '#fff' } }}
+                centerComponent={{ text: name, style: { color: '#fff', fontSize: 16 } }}
                 backgroundColor='#2a2c32'
             />
             <DrawerItems {...props} />
         </View>
-    );
+    )
 }
 
 const DrawerNav = DrawerNavigator(

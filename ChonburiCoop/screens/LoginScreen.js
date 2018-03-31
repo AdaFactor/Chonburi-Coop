@@ -9,7 +9,8 @@ import {
   Alert,
   TouchableOpacity,
   ImageBackground,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Keyboard
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -41,8 +42,20 @@ export default class LoginScreen extends Component {
     })
     .then((res) => res.json())
     .then((resJson) => {
-      if ( resJson.status == 200 ){ 
-        this.props.navigation.navigate('HomeScreen', { id_user: resJson.ssid })
+      if ( resJson.status == 200 ){
+        fetch('http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=' + resJson.ssid + '&tab=3')
+        .then((resp) => resp.json())
+        .then((response) => {
+          this.props.navigation.navigate(
+            'HomeScreen', 
+            { 
+              memberName: response[0].member_name,
+              id_user: resJson.ssid,
+              username: this.state.username
+            }
+          )
+        })
+        
       } else {
         alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
       }
@@ -89,6 +102,7 @@ export default class LoginScreen extends Component {
               onPress={
                 () => { 
                   this._login(this.state.username, this.state.password)
+                  Keyboard.dismiss()                  
                 }
               }
             >
