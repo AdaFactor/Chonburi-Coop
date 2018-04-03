@@ -13,6 +13,7 @@ import {
 
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
 import { Header, Icon } from 'react-native-elements'
+import { LinearGradient } from 'expo'
 
 import SwiperScreen from './SwiperScreen'
 import styles from '../static/css/home-style'
@@ -58,44 +59,48 @@ export default class HomeScreen extends React.Component {
                     <View style={{flex: 1}}>
                         <View style={{justifyContent: 'center', height:'100%',backgroundColor: '#ffffff'}}>
                             <View style={{flexDirection: 'row'}}>
-                                <TouchableOpacity 
-                                    style={styles.receive}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Profile', { id_user: userId, memberName: name })
+                                <LinearGradient colors={['#B2D732', '#71881B', '#2B3409']} style={styles.menuBtn}>
+                                    <TouchableOpacity style={styles.menuBtn}
+                                        onPress={
+                                            () => { 
+                                                this.props.navigation.navigate('Profile', { id_user: userId })
+                                            }
                                         }
-                                    }
-                                >
-                                    <Icon
-                                        name='account-circle'
-                                        color='#fff' />
-                                    {/* <Image source={require('../static/images/receive.png')} />                     */}
-                                    <Text style={{color: '#ff6600'}}>สมาชิก</Text>                        
-                                </TouchableOpacity>
+                                    >
+                                        <Icon name='account-circle' color='#fff' size={50} />
+                                
+                                        {/* <Image source={require('../static/images/receive.png')} />                     */}
+                                        <Text style={{color: '#fff'}}>สมาชิก</Text>                        
+                                    </TouchableOpacity>
+                                </LinearGradient>
 
-                                <TouchableOpacity 
-                                    style={styles.calculator}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Association', { id_user: userId , memberName: name})
+                                <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.menuBtn}>
+                                    <TouchableOpacity 
+                                        style={styles.menuBtn}
+                                        onPress={
+                                            () => { 
+                                            this.props.navigation.navigate('Association', { id_user: userId })
+                                            }
                                         }
-                                    }
-                                >
-                                    <Image source={require('../static/images/calculator.png')} />                    
-                                    <Text style={{color: '#cc0099'}}>สมาคม</Text>                        
-                                </TouchableOpacity>
-
-                                <TouchableOpacity 
-                                    style={styles.todolist}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Debt', { id_user: userId , memberName: name})
+                                    >
+                                        <Icon name='group' color='#fff' size={50} />
+                                        <Text style={{color: '#fff'}}>สมาคม</Text>                        
+                                    </TouchableOpacity>
+                                </LinearGradient>
+                                
+                                <LinearGradient colors={['#FE9772', '#FD4D0C', '#A22C02']} style={styles.menuBtn}>
+                                    <TouchableOpacity 
+                                        style={styles.menuBtn}
+                                        onPress={
+                                            () => { 
+                                            this.props.navigation.navigate('Debt', { id_user: userId })
+                                            }
                                         }
-                                    }
-                                >
-                                    <Image source={require('../static/images/todolist.png')} />                    
-                                    <Text style={{color: '#003300'}}>หนี้สิน</Text>                        
-                                </TouchableOpacity>
+                                    >
+                                        <Icon name='group' color='#fff' size={50} />
+                                        <Text style={{color: '#fff'}}>หนี้สิน</Text>                        
+                                    </TouchableOpacity>
+                                </LinearGradient>
                             </View>
                             <View style={{flexDirection: 'row', alignItems: 'center',}}>
                                 <TouchableOpacity 

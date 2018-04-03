@@ -44,6 +44,14 @@ const styles = StyleSheet.create({
         flex: 1,        
         backgroundColor: '#006666',
     },
+    menuBtn: {
+        margin: 10,                
+        width: 100, 
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center', 
+        borderRadius: 50,
+    },
     bill: {
         margin: 10,                
         width: 100, 
