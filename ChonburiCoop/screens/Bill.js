@@ -39,23 +39,6 @@ export default class Bill extends React.Component {
     return (
       <View style={styles.container}>
         <Header
-          leftComponent={
-              <Icon
-                name='arrow-back' 
-                onPress={
-                  () => {
-                    this.props.navigation.navigate(
-                      'HomeScreen',  
-                      { 
-                        id_user: this.props.navigation.state.params.id_user,
-                        memberName: this.props.navigation.state.params.memberName
-                      }
-                    )
-                  }
-                }
-                color='#fff'
-              />
-          }
           centerComponent={{ text: 'ใบเสร็จ', style: { color: '#fff', fontSize: 16 } }}
           // rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}

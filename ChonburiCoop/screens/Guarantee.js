@@ -39,18 +39,6 @@ export default class Guarantee extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: '#f9f2ec' }}>
         <Header
-          leftComponent={
-            <Icon
-              name='arrow-back' 
-              onPress={() => {this.props.navigation.navigate('HomeScreen',  
-                { 
-                  id_user: this.props.navigation.state.params.id_user ,
-                  memberName: this.props.navigation.state.params.memberName
-                }
-              )}}
-              color='#fff'
-            />
-          }
           centerComponent={{ text: 'การค้ำประกัน', style: { color: '#fff', fontSize: 16 } }}
           // rightComponent={{ icon: 'email', color: '#fff' }}
           // statusBarProps={{ translucent: true }}

@@ -51,13 +51,7 @@ export default class Profile extends Component {
         return (
             <View style={styles.container}>
                 <Header
-                    leftComponent={
-                        <Icon 
-                        name='menu' 
-                        onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
-                        color='#fff'
-                        />
-                    }
+                    
                     centerComponent={{ text: 'สมาชิก', style: { color: '#fff', fontSize: 16 } }}
                     rightComponent={
                         <Icon 

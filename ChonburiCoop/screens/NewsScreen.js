@@ -55,14 +55,7 @@ export default class NewsScreen extends Component {
         return (
             <View style={styles.container}>
                 <Header
-                    leftComponent={{
-                        icon: 'home' ,
-                        onPress: () => {this.props.navigation.navigate('HomeScreen', 
-                        {
-                            id_user: this.props.navigation.state.params.id_user,
-                            memberName: this.props.navigation.state.params.memberName
-                        })}
-                    }}
+                    
                     centerComponent={{ text: 'ข่าวประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
                     // statusBarProps={{ translucent: true }}
                     backgroundColor='#248f24'                    

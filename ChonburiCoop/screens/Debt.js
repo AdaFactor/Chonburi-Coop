@@ -81,13 +81,6 @@ export default class Debt extends React.Component {
     return (
       <View style={styles.container}>
         <Header
-          leftComponent={
-              <Icon 
-              name='menu' 
-              onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
-              color='#fff'
-              />
-          }
           centerComponent={{ text: 'หนี้สิน', style: { color: '#fff', fontSize: 16 } }}
           rightComponent={
             <Icon 

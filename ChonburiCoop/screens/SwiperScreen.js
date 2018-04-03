@@ -22,6 +22,7 @@ export default class SwiperScreen extends Component {
       >
         <View style={styles.welcome}>
             <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
+
                 <Text style={{color: '#fff', fontSize: 20}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
             </ImageBackground>                                        
         </View>
@@ -47,7 +48,8 @@ export default class SwiperScreen extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-        height: '45%',        
+        height: '30%',        
+
     },
     slide1: {
         flex: 1,

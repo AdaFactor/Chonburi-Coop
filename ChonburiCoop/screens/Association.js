@@ -39,13 +39,6 @@ export default class Association extends React.Component {
         return (
             <View style={ styles.contrainer }>
                 <Header
-                    leftComponent={
-                        <Icon 
-                        name='menu' 
-                        onPress={() => {this.props.navigation.navigate('DrawerOpen')}}
-                        color='#fff'
-                        />
-                    }
                     centerComponent={{ text: 'สมาคม', style: { color: '#fff', fontSize: 16 } }}
                     rightComponent={
                         <Icon 
