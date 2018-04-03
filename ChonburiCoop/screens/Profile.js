@@ -28,25 +28,26 @@ export default class Profile extends Component {
         })
         .then(res => res.json())
         .then((result) => {
-            for (let index = 0; index < result.length; index++) {
-                this.setState({ 
-                    member_id: result[index].member_id,
-                    member_name: result[index].member_name,
-                    share_v: result[index].share_v,
-                    identity_card: result[index].identity_card,
-                    address: result[index].address,
-                    mobile: result[index].mobile,
-                    member_date: result[index].member_date,
-                    birth_date: result[index].birth_date,
-                    rkeep: result[index].rkeep,
-                    apply_date: result[index].apply_date
-                })                
-            }
+            let address = result[0].address
+            this.setState({ 
+                member_id: result[0].member_id,
+                member_name: result[0].member_name,
+                share_v: result[0].share_v,
+                identity_card: result[0].identity_card,
+                address: address.replace('<br>', ''),
+                mobile: result[0].mobile,
+                member_date: result[0].member_date,
+                birth_date: result[0].birth_date,
+                rkeep: result[0].rkeep,
+                apply_date: result[0].apply_date
+            })                
         })
         .catch((error) => { console.log(error) })
     }
 
     render() {
+        let name = this.props.navigation.state.params.memberName
+        
         return (
             <View style={styles.container}>
                 <Header
@@ -61,7 +62,7 @@ export default class Profile extends Component {
                     rightComponent={
                         <Icon 
                             name='email' 
-                            onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user})}}
+                            onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user, memberName: name})}}
                             color='#fff'
                         />
                     }

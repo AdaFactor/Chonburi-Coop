@@ -15,30 +15,40 @@ export default class NewsScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
-            data_news:[]
+            data_news:[],
+            dataNews: ''
         }
     }
     componentDidMount = () => {
-        fetch( 'http://www.chtsc.com/index.php/component/content/article/14-infor/109-info-13', { method: 'GET' })
-        .then(res => res.text())
-        .then((result) => { 
+        // fetch( 'http://www.chtsc.com/index.php/component/content/article/14-infor/109-info-13', { method: 'GET' })
+        fetch('http://www.chtsc.com/check_loan/mobile/news.json')
+        .then(res => res.json())
+        .then((result) => {
             // console.log(result)
-            const newResult = result.split('\n')
-            for (let index = 161; index < newResult.length; index++) {
-                var year = new Date().getFullYear()
-                const link = newResult[index].includes('<td style="text-align: left;"><a href="/images/256')            
-                const name = newResult[index].includes('<span style="color: #000000; text-decoration: underline;"></span')
-                if (link == true && name == true) {
-                    const json = JSON.parse(JSON.stringify({
-                        news_date: newResult[index].trim().slice(40, 66),
-                        news_name: newResult[index].trim().slice(245, -32)
-                    }))
-                    this.setState({ data_news: this.state.data_news.concat(json) })
-                }
-            }
-            
+            this.setState({ data_news: result })
         })
         .catch((error) => { console.log(error) })
+    }
+
+    _getNews(){
+        data = this.state.data_news
+        const news_items = data.map( (item, i) => {
+            if ( item.type == 'header' ) {
+                return (
+                    <View key={i} style={styles.headNews}>
+                        <Text style={{ fontWeight: 'bold' }}> { item.text } </Text>
+                    </View>
+                )
+            } else {
+                return (
+                    <TouchableOpacity key={i} style={styles.getNews} onPress={() => Linking.openURL( item.link )}>
+                        <Text> { item.text } </Text>
+                    </TouchableOpacity>
+                )
+            }
+            
+        });
+        return news_items;
     }
 
     render(){
@@ -58,16 +68,9 @@ export default class NewsScreen extends Component {
                     backgroundColor='#248f24'                    
                 />
                 <ScrollView>
-                    {
-                        this.state.data_news.map((item, i) => (
-                            <View style={styles.contentNews} key={i}>
-                                <Text 
-                                    onPress={() => Linking.openURL('http://www.chtsc.com' + item.news_date) 
-                                    }
-                                >{ item.news_name }</Text>
-                            </View>
-                        ))
-                    }
+                    <View style={styles.contentNews}>
+                        { this._getNews() }
+                    </View>
                     
                 </ScrollView>
             </View>
@@ -81,12 +84,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#e9e9ee'
     },
     contentNews: {
-        margin: 10,
-        padding: 10,
+        // margin: 10,
+        // padding: 10,
         backgroundColor: '#fff'
     },
     headNews: {
-        fontWeight: 'bold',
-        fontSize: 20
+        padding: 10,
+        backgroundColor: '#ccc'
+    },
+    getNews: {
+        padding: 10,
+        borderBottomWidth: 1
     }
 })

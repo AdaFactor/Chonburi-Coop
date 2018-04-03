@@ -76,6 +76,8 @@ export default class Debt extends React.Component {
 
 
   render() {
+    let name = this.props.navigation.state.params.memberName
+    
     return (
       <View style={styles.container}>
         <Header
@@ -90,7 +92,7 @@ export default class Debt extends React.Component {
           rightComponent={
             <Icon 
                 name='email' 
-                onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user})}}
+                onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user, memberName: name })}}
                 color='#fff'
             />
           }

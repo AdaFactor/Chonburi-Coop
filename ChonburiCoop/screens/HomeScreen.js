@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { 
+    Platform,
     StyleSheet, 
     Text, 
     View,
@@ -57,7 +58,7 @@ class HomeScreen extends React.Component {
                             color='#fff'
                         />
                     }
-                    // statusBarProps={{ translucent: true }}
+                    // statusBarProps={translucent= Platform.OS === 'ios' ? false : true }
                     backgroundColor='#248f24'
                 />
                 
@@ -149,7 +150,6 @@ class HomeScreen extends React.Component {
 const CustomDrawerContentComponent = (props) => {
     let id_user = props.navigation.state.params.id_user
     let name = props.navigation.state.params.memberName
-    console.log(props)
     return (
         <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
             <Header
