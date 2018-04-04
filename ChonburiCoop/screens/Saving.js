@@ -39,9 +39,14 @@ export default class Saving extends React.Component {
     return (
       <View style={styles.container}>
         <Header
+          leftComponent={
+            <Icon 
+                name='home' 
+                onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
+                color='#fff'
+            />
+          }
           centerComponent={{ text: 'เงินฝาก', style: { color: '#fff', fontSize: 16 } }}
-          // rightComponent={{ icon: 'email', color: '#fff' }}
-          // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'
         />
         <ScrollView style={{ marginBottom: 10, backgroundColor: '#e6f9ff' }}>
@@ -86,7 +91,5 @@ const styles = StyleSheet.create({
   },
   saveCard: {
     width: '50%',
-    // justifyContent: 'center',
-    // alignItems: 'center',
   }
 });

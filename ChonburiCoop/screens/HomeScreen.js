@@ -80,15 +80,15 @@ export default class HomeScreen extends React.Component {
                             </TouchableOpacity>
                             
                             <TouchableOpacity 
-                                style={[styles.menuBtn, {backgroundColor: '#ededee'}]}
+                                style={[styles.menuBtn, {backgroundColor: '#F4C3C3'}]}
                                 onPress={
                                     () => { 
                                         this.props.navigation.navigate('Debt', { id_user: userId })
                                     }
                                 }
                             >
-                                <Icon name='group' color='#5d4d2d' size={50} />
-                                <Text style={{color: '#5d4d2d'}}>หนี้สิน</Text>                        
+                                <Icon name='attach-money' color='#D00000' size={50} />
+                                <Text style={{color: '#D00000'}}>หนี้สิน</Text>                        
                             </TouchableOpacity>
                         </View>
                         

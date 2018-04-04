@@ -39,15 +39,21 @@ export default class Association extends React.Component {
         return (
             <View style={ styles.contrainer }>
                 <Header
-                    centerComponent={{ text: 'สมาคม', style: { color: '#fff', fontSize: 16 } }}
-                    rightComponent={
+                    leftComponent={
                         <Icon 
-                            name='email' 
-                            onPress={() => {this.props.navigation.navigate('NewsScreen',  {id_user: this.props.navigation.state.params.id_user, memberName: name})}}
+                            name='home' 
+                            onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
                             color='#fff'
                         />
                     }
-                    // statusBarProps={{ translucent: true }}
+                    centerComponent={{ text: 'สมาคม', style: { color: '#fff', fontSize: 16 } }}
+                    // rightComponent={
+                    //     <Icon 
+                    //         name='email' 
+                    //         onPress={() => {this.props.navigation.navigate('NewsScreen',  {id_user: this.props.navigation.state.params.id_user })}}
+                    //         color='#fff'
+                    //     />
+                    // }
                     backgroundColor='#248f24'
                 />
                 <ScrollView style={{ marginBottom: 15 }}>

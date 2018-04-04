@@ -40,10 +40,14 @@ export default class chargedList extends React.Component {
     return (
       <View style={styles.container}>
         <Header
-          
+          leftComponent={
+            <Icon 
+                name='home' 
+                onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
+                color='#fff'
+            />
+          }        
           centerComponent={{ text: 'รายการเรียกเก็บ', style: { color: '#fff', fontSize: 16 } }}
-          // rightComponent={{ icon: 'email', color: '#fff' }}
-          // statusBarProps={{ translucent: true }}
           backgroundColor='#248f24'
       />
         <ScrollView style={{ marginBottom: 10, padding: 10 }} >
