@@ -9,6 +9,7 @@ import {
   Alert
 } from 'react-native'
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
+import formatMoney from 'accounting-js/lib/formatMoney.js'
 
 export default class Calculator extends React.Component {
   constructor(props) {
@@ -66,8 +67,8 @@ export default class Calculator extends React.Component {
                     </View>
 
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                      <Text>{ itemCal.loan_amt }</Text>
-                      <Text>{ itemCal.loan_bal }</Text>
+                      <Text>{ formatMoney(itemCal.loan_amt*1, { symbol: "บาท",  format: "%v %s" }) }</Text>
+                      <Text>{ formatMoney(itemCal.loan_bal*1, { symbol: "บาท",  format: "%v %s" }) }</Text>
                     </View>
                   </View>
                 </View>
