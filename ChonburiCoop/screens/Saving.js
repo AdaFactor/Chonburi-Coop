@@ -8,14 +8,7 @@ import {
   ScrollView
 } from 'react-native';
 import { Card, Icon, Header } from 'react-native-elements'
-
-const moneyList = [
-  { number: '02000203', account_name: 'ชื่อ-นามสกุล', type: 'ออมทรัพย์พิเศษ', increase: '2.8%', balance: '1000.32'},
-  { number: '02000204', account_name: 'ชื่อ-นามสกุล', type: 'ออมทรัพย์พิเศษ', increase: '2.8%', balance: '1001.32'},
-  { number: '02000205', account_name: 'ชื่อ-นามสกุล', type: 'ออมทรัพย์พิเศษ', increase: '2.8%', balance: '1002.32'},
-  { number: '02000206', account_name: 'ชื่อ-นามสกุล', type: 'ออมทรัพย์พิเศษ', increase: '2.8%', balance: '1003.32'},
-  { number: '02000207', account_name: 'ชื่อ-นามสกุล', type: 'ออมทรัพย์พิเศษ', increase: '2.8%', balance: '1004.32'},  
-]
+import formatMoney from 'accounting-js/lib/formatMoney.js'
 
 export default class Saving extends React.Component {
   constructor(props) {
@@ -73,7 +66,7 @@ export default class Saving extends React.Component {
                       <Text>{ itemMoney.member_id }</Text>
                       <Text>{ itemMoney.acc_type }</Text>                      
                       <Text>{ itemMoney.rate_1 }%</Text>
-                      <Text>{ itemMoney.led_bal }</Text>                                           
+                      <Text>{ formatMoney(itemMoney.led_bal*1, { symbol: "บาท",  format: "%v %s" }) }</Text>                                           
                     </View>
                   </View>
                 </Card>
