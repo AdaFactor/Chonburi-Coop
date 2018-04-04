@@ -9,12 +9,7 @@ import {
   Alert
 } from 'react-native'
 import { Card, Header, Icon } from 'react-native-elements'
-
-const charged = [
-    { list_name: 'หุ้น', period: '411', money: '0.00', interest: '0.00', sum: '3200.00' },
-    { list_name: 'ประกัน', period: '0', money: '0.00', interest: '0.00', sum: '00.00' },
-    { list_name: 'สส6001308	', period: '10', money: '12000.00', interest: '12792.30', sum: '24792.30' },    
-]
+import formatMoney from 'accounting-js/lib/formatMoney.js'
 
 export default class chargedList extends React.Component {
   constructor(props) {
@@ -72,15 +67,15 @@ export default class chargedList extends React.Component {
                   <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                     <View style={{ width: '33.33%', alignItems: 'center' }}>
                       <Text style={{ fontWeight: 'bold' }}>เงินต้น</Text>
-                      <Text style={{ color: '#555' }}>{ itemCharged.install_amt }</Text>
+                      <Text style={{ color: '#555' }}>{ formatMoney(itemCharged.install_amt*1, { symbol: "บาท",  format: "%v %s" }) }</Text>
                     </View>
                     <View style={{ width: '33.33%', alignItems: 'center' }}>
                       <Text style={{ fontWeight: 'bold' }}>ดอกเบี้ย</Text>
-                      <Text style={{ color: '#555' }}>{ itemCharged.int_amt }</Text>
+                      <Text style={{ color: '#555' }}>{ formatMoney(itemCharged.int_amt*1, { symbol: "",  format: "%v %s" }) }</Text>
                     </View>
                     <View style={{ width: '33.33%', alignItems: 'center', justifyContent: 'center' }} >
                       <Text style={{ fontWeight: 'bold' }}>รวม</Text>
-                      <Text style={{ color: '#555' }}>{ itemCharged.printciple_bal }</Text>
+                      <Text style={{ color: '#555' }}>{ formatMoney(itemCharged.printciple_bal*1, { symbol: "บาท",  format: "%v %s" })}</Text>
                     </View>
                   </View>
                 </View>

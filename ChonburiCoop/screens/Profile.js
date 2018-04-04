@@ -11,6 +11,7 @@ import {
     TextInput,
 } from 'react-native'
 import { Input, Button, Card, ButtonGroup, Header, Icon } from 'react-native-elements'
+import formatMoney from 'accounting-js/lib/formatMoney.js'
 
 export default class Profile extends Component {
     constructor(props) {
@@ -136,13 +137,13 @@ export default class Profile extends Component {
                     <View style={{margin: 15, flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={styles.button} 
-                            onPress={() => Alert.alert('มูลค่าหุ้น', 'จำนวน ' + (this.state.share_v)*10 + ' บาท')}
+                            onPress={() => Alert.alert('มูลค่าหุ้น', 'จำนวน ' + formatMoney(this.state.share_v*10, { symbol: "บาท",  format: "%v %s" }))}
                         >
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>มูลค่าหุ้น</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={styles.button}
-                            onPress={() => Alert.alert('หุ้นรายเดือน', 'จำนวน ' + this.state.rkeep + ' บาท')}                            
+                            onPress={() => Alert.alert('หุ้นรายเดือน', 'จำนวน ' + this.state.rkeep + ' บาท' )}                            
                         >
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>หุ้นรายเดือน</Text>
                         </TouchableOpacity>
