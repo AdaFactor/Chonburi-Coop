@@ -46,213 +46,134 @@ export default class HomeScreen extends React.Component {
                     rightComponent={
                         <Icon 
                             name='email' 
-                            onPress={() => {this.props.navigation.navigate('NewsScreen', { id_user: userId, memberName: name })}}
+                            onPress={() => {this.props.navigation.navigate('NewsScreen', { id_user: userId })}}
                             color='#fff'
                         />
                     }
-                    // statusBarProps={translucent= Platform.OS === 'ios' ? false : true }
                     backgroundColor='#248f24'
                 />
                 <SwiperScreen />
-
-                <ScrollView style={{flex:1}} >
-                    <View style={{flex: 1}}>
-                        <View style={{justifyContent: 'center', height:'100%',backgroundColor: '#ffffff'}}>
-                            <View style={{flexDirection: 'row'}}>
-                                <LinearGradient colors={['#B2D732', '#71881B', '#2B3409']} style={styles.menuBtn}>
-                                    <TouchableOpacity style={styles.menuBtn}
-                                        onPress={
-                                            () => { 
-                                                this.props.navigation.navigate('Profile', { id_user: userId })
-                                            }
-                                        }
-                                    >
-                                        <Icon name='account-circle' color='#fff' size={50} />
-                                
-                                        {/* <Image source={require('../static/images/receive.png')} />                     */}
-                                        <Text style={{color: '#fff'}}>สมาชิก</Text>                        
-                                    </TouchableOpacity>
-                                </LinearGradient>
-
-                                <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.menuBtn}>
-                                    <TouchableOpacity 
-                                        style={styles.menuBtn}
-                                        onPress={
-                                            () => { 
-                                            this.props.navigation.navigate('Association', { id_user: userId })
-                                            }
-                                        }
-                                    >
-                                        <Icon name='group' color='#fff' size={50} />
-                                        <Text style={{color: '#fff'}}>สมาคม</Text>                        
-                                    </TouchableOpacity>
-                                </LinearGradient>
-                                
-                                <LinearGradient colors={['#FE9772', '#FD4D0C', '#A22C02']} style={styles.menuBtn}>
-                                    <TouchableOpacity 
-                                        style={styles.menuBtn}
-                                        onPress={
-                                            () => { 
-                                            this.props.navigation.navigate('Debt', { id_user: userId })
-                                            }
-                                        }
-                                    >
-                                        <Icon name='group' color='#fff' size={50} />
-                                        <Text style={{color: '#fff'}}>หนี้สิน</Text>                        
-                                    </TouchableOpacity>
-                                </LinearGradient>
-                            </View>
-                            <View style={{flexDirection: 'row', alignItems: 'center',}}>
-                                <TouchableOpacity 
-                                    style={styles.bill}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Bill', { id_user: userId, memberName: name })
-                                        }
+                <View style={{justifyContent: 'center', height:'37%', backgroundColor:'#fff'}}>
+                    <ScrollView >
+                        <View style={{flexDirection: 'row'}}>
+                            <TouchableOpacity style={[styles.menuBtn, {backgroundColor:'#e6ffff'}]}
+                                onPress={
+                                    () => { 
+                                        this.props.navigation.navigate('Profile', { id_user: userId })
                                     }
-                                >
-                                    <Image source={require('../static/images/bill.png')} />
-                                    <Text style={{color: '#000066'}}>ใบเสร็จ</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity 
-                                    style={styles.money}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Saving', { id_user: userId, memberName: name })
-                                        }
-                                    }
-                                >
-                                    <Image source={require('../static/images/money.png')} />
-                                    <Text style={{color: '#0099cc'}}>เงินฝาก</Text>                        
-                                </TouchableOpacity>
-                                
-                                <TouchableOpacity 
-                                    style={styles.guarantee}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Guarantee', { id_user: userId, memberName: name })
-                                        }
-                                    }
-                                >
-                                    <Image source={require('../static/images/guarantee.png')} />                                
-                                    <Text style={{color: '#996633'}}>ค้ำประกัน</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={{flexDirection: 'row'}}>
-                                <TouchableOpacity 
-                                    style={styles.receive}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Dividend', { id_user: userId, memberName: name })
-                                        }
-                                    }
-                                >
-                                    <Image source={require('../static/images/receive.png')} />                    
-                                    <Text style={{color: '#ff6600'}}>ปันผล</Text>                        
-                                </TouchableOpacity>
-
-                                <TouchableOpacity 
-                                    style={styles.calculator}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('Calculator', { id_user: userId , memberName: name})
-                                        }
-                                    }
-                                >
-                                    <Image source={require('../static/images/calculator.png')} />                    
-                                    <Text style={{color: '#cc0099'}}>คำนวณเงินกู้</Text>                        
-                                </TouchableOpacity>
-
-                                <TouchableOpacity 
-                                    style={styles.todolist}
-                                    onPress={
-                                        () => { 
-                                        this.props.navigation.navigate('chargedList', { id_user: userId , memberName: name})
-                                        }
-                                    }
-                                >
-                                    <Image source={require('../static/images/todolist.png')} />                    
-                                    <Text style={{color: '#003300'}}>เรียกเก็บ</Text>                        
-                                </TouchableOpacity>
-                            </View>
+                                }
+                            >
+                                <Icon name='account-circle' color='#006666' size={50} />
                         
+                                {/* <Image source={require('../static/images/receive.png')} />                     */}
+                                <Text style={{color: '#006666'}}>สมาชิก</Text>                        
+                            </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor: '#ffffe6'}]}
+                                onPress={
+                                    () => { 
+                                    this.props.navigation.navigate('Association', { id_user: userId })
+                                    console.log('test')
+                                    
+                                    }
+                                }
+                            >
+                                <Icon name='group' color='#b3b300' size={50} />
+                                <Text style={{color: '#b3b300'}}>สมาคม</Text>                        
+                            </TouchableOpacity>
+                            
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor: '#ededee'}]}
+                                onPress={
+                                    () => { 
+                                        this.props.navigation.navigate('Debt', { id_user: userId })
+                                        console.log('test')
+                                    }
+                                }
+                            >
+                                <Icon name='group' color='#5d4d2d' size={50} />
+                                <Text style={{color: '#5d4d2d'}}>หนี้สิน</Text>                        
+                            </TouchableOpacity>
                         </View>
-                    </View>
-                </ScrollView>
+                        
+                        <View style={{flexDirection: 'row', alignItems: 'center',}}>
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor: '#e6e6ff'}]}
+                                onPress={
+                                    () => { 
+                                    this.props.navigation.navigate('Bill', { id_user: userId })
+                                    }
+                                }
+                            >
+                                <Image source={require('../static/images/bill.png')} />
+                                <Text style={{color: '#000066'}}>ใบเสร็จ</Text>
+                            </TouchableOpacity>
+                            
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor:'#e6f9ff'}]}
+                                onPress={
+                                    () => { 
+                                    this.props.navigation.navigate('Saving', { id_user: userId })
+                                    }
+                                }
+                            >
+                                <Image source={require('../static/images/money.png')} />   
+                                <Text style={{color: '#0099cc'}}>เงินฝาก</Text>                        
+                            </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor:'#f9f2ec'}]}
+                                onPress={
+                                    () => { 
+                                    this.props.navigation.navigate('Guarantee', { id_user: userId })
+                                    }
+                                }
+                            >
+                                <Image source={require('../static/images/guarantee.png')} />
+                                <Text style={{color: '#996633'}}>ค้ำประกัน</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{flexDirection: 'row'}}>
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor:'#fff0e6'}]}
+                                onPress={
+                                    () => { 
+                                    this.props.navigation.navigate('Dividend', { id_user: userId })
+                                    }
+                                }
+                            >
+                                <Image source={require('../static/images/receive.png')} />
+                                <Text style={{color: '#ff6600'}}>ปันผล</Text>                        
+                            </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor: '#ffe6f9'}]}
+                                onPress={
+                                    () => { 
+                                    this.props.navigation.navigate('Calculator', { id_user: userId })
+                                    }
+                                }
+                            >
+                                <Image source={require('../static/images/calculator.png')} />
+                                <Text style={{color: '#cc0099'}}>คำนวณเงินกู้</Text>                        
+                            </TouchableOpacity>
+
+                            <TouchableOpacity 
+                                style={[styles.menuBtn, {backgroundColor: '#e6ffe6'}]}
+                                onPress={
+                                    () => { 
+                                    this.props.navigation.navigate('chargedList', { id_user: userId })
+                                    }
+                                }
+                            >
+                                <Image source={require('../static/images/todolist.png')} />
+                                <Text style={{color: '#003300'}}>เรียกเก็บ</Text>                        
+                            </TouchableOpacity>
+                        </View>
+                    </ScrollView>
+                </View>
             </View>
         );
     }
 }
-
-
-
-// const CustomDrawerContentComponent = (props) => {
-//     let id_user = props.navigation.state.params.id_user
-//     let name = props.navigation.state.params.memberName
-//     return (
-//         <View style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-//             <Header
-//                 centerComponent={{ text: name, style: { color: '#fff', fontSize: 16 } }}
-//                 backgroundColor='#2a2c32'
-//             />
-//             <DrawerItems {...props} />
-//         </View>
-//     )
-// }
-
-// const DrawerNav = DrawerNavigator(
-//     {
-//         หน้าหลัก: { screen: HomeScreen },
-//         สมาชิก: { 
-//             screen: Profile 
-//         },
-//         สมาคม: { screen: Association },
-//         หนี้สิน: { screen: Debt },
-//         ใบเสร็จ: { 
-//             screen: Bill,
-//             navigationOptions: {
-//                 drawerLabel: () => null
-//             }
-//         },
-//         เงินฝาก: { 
-//             screen: Saving,
-//             navigationOptions: {
-//                 drawerLabel: () => null
-//             }
-//         },
-//         ค้ำประกัน: { 
-//             screen: Guarantee,
-//             navigationOptions: {
-//                 drawerLabel: () => null
-//             }
-//         },
-//         ปันผล: { 
-//             screen: Dividend,
-//             navigationOptions: {
-//                 drawerLabel: () => null
-//             }
-//         },
-//         คำนวนเงินกู้: { 
-//             screen: Calculator,
-//             navigationOptions: {
-//                 drawerLabel: () => null
-//             }
-//         },
-//         รายการเรียกเก็บ: { 
-//             screen: chargedList,
-//             navigationOptions: {
-//                 drawerLabel: () => null
-//             }
-//         },
-//         ออกจากระบบ: { screen: LoginScreen }
-//     },
-//     {
-//         contentComponent: CustomDrawerContentComponent,
-//         drawerOpenRoute: 'DrawerOpen',
-//         drawerCloseRoute: 'DrawerClose',
-//         drawerToggleRoute: 'DrawerToggle',        
-//     }
-// )
-  
-// export default DrawerNav

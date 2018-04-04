@@ -13,6 +13,7 @@ import Association from './screens/Association'
 import Dividend from './screens/Dividend'
 import chargedList from './screens/chargedList'
 import NewsScreen from './screens/NewsScreen'
+import Debt from './screens/Debt'
 
 export default class App extends React.Component {
   render() {
@@ -35,6 +36,7 @@ const StackNav = StackNavigator(
       Dividend: { screen: Dividend },
       chargedList: { screen: chargedList },
       NewsScreen: { screen: NewsScreen },
+      Debt: { screen: Debt }
   },
   {
       headerMode: 'none'

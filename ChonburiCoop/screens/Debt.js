@@ -11,45 +11,11 @@ import {
 } from 'react-native'
 import { Card, Header, Icon } from 'react-native-elements'
 
-const debts = [
-    { 
-      number_compact: 'ฉฉ6000167', 
-      date_compact: '07/11/60', 
-      loan: '30000.00', 
-      balance: '15000.00', 
-      guarantor: [
-        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
-        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
-        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },       
-      ],
-      motion: [
-        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},
-        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},
-        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},        
-      ] 
-    },
-    { 
-      number_compact: 'ฉฉ6000167', 
-      date_compact: '07/11/60', 
-      loan: '30000.00', 
-      balance: '15000.00', 
-      guarantor: [
-        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
-        { registation_number: '000000', name: 'ชื่อ-นามสกุล' },
-      ],
-      motion: [
-        { date: '07/11/61', principle: '2500.00', interest: '2588.00', balance_motion: '4000', notation: '--ชำระหนี้ประจำเดือน'},
-      ]
-    },
-]
-
 export default class Debt extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
       debt_data: [],
-      modalVisible: false,
     }
   }
   
@@ -69,11 +35,6 @@ export default class Debt extends React.Component {
         this.setState({ debt_data: result })
     })
   }
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
-
 
   render() {
     let name = this.props.navigation.state.params.memberName
@@ -120,51 +81,15 @@ export default class Debt extends React.Component {
                       <Text style={{ color: '#555' }}>{ itemDebts.loan_bal }</Text>
                     </View>
                     <View style={{ width: '60%', alignItems: 'center', justifyContent: 'center' }} >
-                      {/* <TouchableOpacity 
-                        style={{ width: '50%', backgroundColor: '#a69364', borderRadius: 5 }}
-                        // onPress={}
-                        onPress={() => {
-                          this.setModalVisible(true);
-                        }}
-                      >
-                        <Icon name='remove-red-eye' color='#fff' />
-                      </TouchableOpacity>
-
-                      <Modal
-                        animationType="slide"
-                        transparent={false}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => {
-                          alert('Modal has been closed.');
-                        }}
-                      >
-                        <View style={{marginTop: 22}}> */}
-                            {
-                              itemDebts.guarantor.map((g, ind) => (
-                                <View key={ind}>
-                                  <Text>{ g.member_name }</Text>
-                                </View>
-                              ))
-                            }
-
-                            {/* <TouchableOpacity
-                              onPress={() => {
-                                this.setModalVisible(!this.state.modalVisible);
-                              }}>
-                              <Text>X</Text>
-                            </TouchableOpacity>
-                        </View>
-                      </Modal> */}
+                      {
+                        itemDebts.guarantor.map((g, ind) => (
+                          <View key={ind}>
+                            <Text>{ g.member_name }</Text>
+                          </View>
+                        ))
+                      }
                     </View>
                   </View>
-                  
-                  {/* <View>
-                    {
-                      itemDebts.guarantor.map(( itemGuarantor, j ) => {
-                        return <Text key={j}>{ itemGuarantor.name }</Text>
-                      })
-                    }
-                  </View> */}
                 </View>
               ))
             }
