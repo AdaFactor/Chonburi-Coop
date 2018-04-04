@@ -64,8 +64,6 @@ export default class HomeScreen extends React.Component {
                                 }
                             >
                                 <Icon name='account-circle' color='#006666' size={50} />
-                        
-                                {/* <Image source={require('../static/images/receive.png')} />                     */}
                                 <Text style={{color: '#006666'}}>สมาชิก</Text>                        
                             </TouchableOpacity>
 
@@ -73,9 +71,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor: '#ffffe6'}]}
                                 onPress={
                                     () => { 
-                                    this.props.navigation.navigate('Association', { id_user: userId })
-                                    console.log('test')
-                                    
+                                        this.props.navigation.navigate('Association', { id_user: userId })
                                     }
                                 }
                             >
@@ -88,7 +84,6 @@ export default class HomeScreen extends React.Component {
                                 onPress={
                                     () => { 
                                         this.props.navigation.navigate('Debt', { id_user: userId })
-                                        console.log('test')
                                     }
                                 }
                             >
@@ -102,7 +97,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor: '#e6e6ff'}]}
                                 onPress={
                                     () => { 
-                                    this.props.navigation.navigate('Bill', { id_user: userId })
+                                        this.props.navigation.navigate('Bill', { id_user: userId })
                                     }
                                 }
                             >
@@ -114,7 +109,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor:'#e6f9ff'}]}
                                 onPress={
                                     () => { 
-                                    this.props.navigation.navigate('Saving', { id_user: userId })
+                                        this.props.navigation.navigate('Saving', { id_user: userId })
                                     }
                                 }
                             >
@@ -126,7 +121,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor:'#f9f2ec'}]}
                                 onPress={
                                     () => { 
-                                    this.props.navigation.navigate('Guarantee', { id_user: userId })
+                                        this.props.navigation.navigate('Guarantee', { id_user: userId })
                                     }
                                 }
                             >
@@ -139,7 +134,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor:'#fff0e6'}]}
                                 onPress={
                                     () => { 
-                                    this.props.navigation.navigate('Dividend', { id_user: userId })
+                                        this.props.navigation.navigate('Dividend', { id_user: userId })
                                     }
                                 }
                             >
@@ -151,7 +146,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor: '#ffe6f9'}]}
                                 onPress={
                                     () => { 
-                                    this.props.navigation.navigate('Calculator', { id_user: userId })
+                                        this.props.navigation.navigate('Calculator', { id_user: userId })
                                     }
                                 }
                             >
@@ -163,7 +158,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor: '#e6ffe6'}]}
                                 onPress={
                                     () => { 
-                                    this.props.navigation.navigate('chargedList', { id_user: userId })
+                                        this.props.navigation.navigate('chargedList', { id_user: userId })
                                     }
                                 }
                             >

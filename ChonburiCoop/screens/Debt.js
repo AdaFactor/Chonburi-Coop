@@ -10,6 +10,7 @@ import {
   Modal 
 } from 'react-native'
 import { Card, Header, Icon } from 'react-native-elements'
+import formatMoney from 'accounting-js/lib/formatMoney.js'
 
 export default class Debt extends React.Component {
   constructor(props) {
@@ -72,21 +73,39 @@ export default class Debt extends React.Component {
                   </View>
 
                   <View style={{ flexDirection: 'row', paddingTop: 10 }}>
-                    <View style={{ width: '20%' }}>
+                    <View style={{ width: '50%' }}>
                       <Text>วงเงินกู้:</Text>
                       <Text>คงเหลือ:</Text>
                     </View>
-                    <View style={{ width: '20%', alignItems: 'flex-end' }}>
-                      <Text style={{ color: '#555' }}>{ itemDebts.loan_amt }</Text>
-                      <Text style={{ color: '#555' }}>{ itemDebts.loan_bal }</Text>
+                    <View style={{ width: '50%', alignItems: 'flex-end' }}>
+                      <Text style={{ color: '#555' }}>{ formatMoney(itemDebts.loan_amt*1, { symbol: "บาท",  format: "%v %s" }) }</Text>
+                      <Text style={{ color: '#555' }}>{ formatMoney(itemDebts.loan_bal*1, { symbol: "บาท",  format: "%v %s" }) }</Text>
                     </View>
-                    <View style={{ width: '60%', alignItems: 'center', justifyContent: 'center' }} >
+                  </View>
+                  <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+                    <View style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }} >
+                      <Text style={{fontWeight: 'bold'}}>ผู้ค้ำประกัน</Text>
                       {
                         itemDebts.guarantor.map((g, ind) => (
                           <View key={ind}>
                             <Text>{ g.member_name }</Text>
                           </View>
                         ))
+                        // itemDebts.guarantor.map((g, ind) => {
+                        //   if(g.member_name == undefined){
+                        //     return (
+                        //       <View key={ind}>
+                        //         <Text>ไม่มีผู้ค้ำประกัน</Text>
+                        //       </View>
+                        //     )
+                        //   } else {
+                        //     return(
+                        //       <View key={ind}>
+                        //         <Text>{ g.member_name }</Text>
+                        //       </View>
+                        //     ) 
+                        //   }
+                        // })
                       }
                     </View>
                   </View>
