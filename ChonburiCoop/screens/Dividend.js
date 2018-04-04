@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import { Card, Header, Icon } from 'react-native-elements'
 import ProgressCircle from 'react-native-progress-circle'
+import formatMoney from 'accounting-js/lib/formatMoney.js'
 
 export default class Dividend extends React.Component {
   constructor(props) {
@@ -86,11 +87,11 @@ export default class Dividend extends React.Component {
                   <View style={{ flexDirection: 'row', marginTop: 10, padding: 10, backgroundColor: '#fff', borderRadius: 5 }}>
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>ปันผล จำนวนเงิน</Text>
-                      <Text style={{ fontSize: 16  }}>{ itemDividend.share }</Text>
+                      <Text style={{ fontSize: 16  }}>{ formatMoney(itemDividend.share*1, { symbol: "บาท",  format: "%v %s" })  }</Text>
                     </View>
                     <View style={{ width: '50%', alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000'  }}>เฉลี่ยคืน จำนวนเงิน</Text>
-                      <Text style={{ fontSize: 16  }}>{ itemDividend.avegr }</Text>                      
+                      <Text style={{ fontSize: 16  }}>{ formatMoney(itemDividend.avegr*1, { symbol: "บาท",  format: "%v %s" }) }</Text>                      
                     </View>                    
                   </View>
 
@@ -104,7 +105,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>ค่าของที่ระลึก</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.gif }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ formatMoney(itemDividend.gif*1, { symbol: "บาท",  format: "%v %s" }) }</Text>                    
                   </View>
                   
                   <View 
@@ -116,7 +117,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold',  fontSize: 16, color: '#000' }}>ค่าธรรมเนียมโอน</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.free }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ formatMoney(itemDividend.free*1, { symbol: "บาท",  format: "%v %s" })}</Text>                    
                   </View>
 
                   <View 
@@ -128,7 +129,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold', fontSize: 16, color: '#000' }}>หักชุมนุม</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.kt }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ formatMoney(itemDividend.kt*1, { symbol: "บาท",  format: "%v %s" })}</Text>                    
                   </View>
 
                   <View 
@@ -140,7 +141,7 @@ export default class Dividend extends React.Component {
                     }}
                   >
                     <Text style={{ fontWeight: 'bold',  fontSize: 16, color: '#000' }}>หักครูไทย</Text>
-                    <Text style={{ fontSize: 16 }}>{ itemDividend.cm }</Text>                    
+                    <Text style={{ fontSize: 16 }}>{ formatMoney(itemDividend.cm*1, { symbol: "บาท",  format: "%v %s" })}</Text>                    
                   </View>
 
                   <View 
@@ -155,7 +156,7 @@ export default class Dividend extends React.Component {
                     </View>
 
                     <View style={{ width: '50%', alignItems: 'flex-end' }}>
-                        <Text>{ itemDividend.bal }</Text>
+                        <Text>{ formatMoney(itemDividend.bal*1, { symbol: "บาท",  format: "%v %s" })}</Text>
                     </View>
                   </View>
                 </View>

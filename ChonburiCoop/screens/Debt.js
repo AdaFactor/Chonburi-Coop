@@ -91,21 +91,6 @@ export default class Debt extends React.Component {
                             <Text>{ g.member_name }</Text>
                           </View>
                         ))
-                        // itemDebts.guarantor.map((g, ind) => {
-                        //   if(g.member_name == undefined){
-                        //     return (
-                        //       <View key={ind}>
-                        //         <Text>ไม่มีผู้ค้ำประกัน</Text>
-                        //       </View>
-                        //     )
-                        //   } else {
-                        //     return(
-                        //       <View key={ind}>
-                        //         <Text>{ g.member_name }</Text>
-                        //       </View>
-                        //     ) 
-                        //   }
-                        // })
                       }
                     </View>
                   </View>

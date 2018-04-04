@@ -8,7 +8,8 @@ import {
   ScrollView,
   Alert
 } from 'react-native';
-import { Input, Button, List, ListItem, Card, Header, Icon } from 'react-native-elements';
+import { Input, Button, List, ListItem, Card, Header, Icon } from 'react-native-elements'
+import formatMoney from 'accounting-js/lib/formatMoney.js'
 
 export default class Guarantee extends React.Component {
   constructor(props) {
@@ -69,7 +70,7 @@ export default class Guarantee extends React.Component {
                     <View style={{ width: '50%', marginTop: 5, alignItems: 'flex-end' }}>
                       <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.loan_id }</Text>
                       <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.loan_date }</Text>
-                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ item.guarantee_amt }</Text>
+                      <Text style={{ color: (i%2 == 0) ? '#ffffff' : '#996633' }}>{ formatMoney(item.guarantee_amt*1, { symbol: "บาท",  format: "%v %s" }) }</Text>
                     </View>
                     
                   </View>
