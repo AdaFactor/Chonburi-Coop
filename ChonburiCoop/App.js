@@ -25,18 +25,42 @@ export default class App extends React.Component {
 
 const StackNav = StackNavigator(
   {
-      LoginScreen: { screen: LoginScreen },
-      HomeScreen: { screen: HomeScreen },
-      Bill: { screen: Bill },
-      Saving: { screen: Saving },
-      Guarantee: { screen: Guarantee },
-      Calculator: { screen: Calculator },
-      Profile: { screen: Profile }, 
-      Association: { screen: Association },
-      Dividend: { screen: Dividend },
-      chargedList: { screen: chargedList },
-      NewsScreen: { screen: NewsScreen },
-      Debt: { screen: Debt }
+      LoginScreen: { 
+        screen: LoginScreen,
+      },
+      HomeScreen: { 
+        screen: HomeScreen 
+      },
+      Bill: { 
+        screen: Bill 
+      },
+      Saving: { 
+        screen: Saving 
+      },
+      Guarantee: { 
+        screen: Guarantee 
+      },
+      Calculator: { 
+        screen: Calculator 
+      },
+      Profile: { 
+        screen: Profile 
+      }, 
+      Association: { 
+        screen: Association 
+      },
+      Dividend: { 
+        screen: Dividend 
+      },
+      chargedList: { 
+        screen: chargedList 
+      },
+      NewsScreen: { 
+        screen: NewsScreen 
+      },
+      Debt: { 
+        screen: Debt 
+      }
   },
   {
       headerMode: 'none'

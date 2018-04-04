@@ -42,11 +42,18 @@ export default class HomeScreen extends React.Component {
         return(
             <View style={styles.contrainer}>
                 <Header
-                    centerComponent={{ text: 'หน้าหลัก', style: { color: '#fff', fontSize: 16 } }}
-                    rightComponent={
+                    leftComponent={
                         <Icon 
                             name='email' 
                             onPress={() => {this.props.navigation.navigate('NewsScreen', { id_user: userId })}}
+                            color='#fff'
+                        />
+                    }
+                    centerComponent={{ text: 'หน้าหลัก', style: { color: '#fff', fontSize: 16 } }}
+                    rightComponent={
+                        <Icon 
+                            name='exit-to-app' 
+                            onPress={() => {this.props.navigation.navigate('LoginScreen')}}
                             color='#fff'
                         />
                     }
@@ -63,7 +70,7 @@ export default class HomeScreen extends React.Component {
                                     }
                                 }
                             >
-                                <Icon name='account-circle' color='#006666' size={50} />
+                                <Image source={require('../static/images/member.png')} />
                                 <Text style={{color: '#006666'}}>สมาชิก</Text>                        
                             </TouchableOpacity>
 
@@ -75,7 +82,7 @@ export default class HomeScreen extends React.Component {
                                     }
                                 }
                             >
-                                <Icon name='group' color='#b3b300' size={50} />
+                                <Image source={require('../static/images/associations.png')} />
                                 <Text style={{color: '#b3b300'}}>สมาคม</Text>                        
                             </TouchableOpacity>
                             
@@ -87,7 +94,7 @@ export default class HomeScreen extends React.Component {
                                     }
                                 }
                             >
-                                <Icon name='attach-money' color='#D00000' size={50} />
+                                <Image source={require('../static/images/debts.png')} />
                                 <Text style={{color: '#D00000'}}>หนี้สิน</Text>                        
                             </TouchableOpacity>
                         </View>

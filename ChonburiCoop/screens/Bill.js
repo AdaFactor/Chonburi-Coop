@@ -53,7 +53,7 @@ export default class Bill extends React.Component {
             {
               this.state.bill_data.map(( itemBill, i )=>(
                 <Card 
-                  containerStyle={{ borderColor: '#000066' }} 
+                  containerStyle={{ borderColor: '#000066' }}
                   key={i} 
                   title={ 'เลขที่ใบเสร็จ: ' + itemBill.RECV_PERIOD }
                 >
@@ -77,7 +77,7 @@ export default class Bill extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e6e6ff'
+    // backgroundColor: '#e6e6ff'
   },
   billCard: {
     width: '50%',

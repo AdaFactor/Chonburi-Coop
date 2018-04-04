@@ -148,7 +148,12 @@ export default class Profile extends Component {
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={styles.button}
-                            onPress={() => Alert.alert('หุ้นรายเดือน', 'จำนวน ' + this.state.rkeep + ' บาท' )}                            
+                            onPress={
+                                () => {
+                                    let rKeep = this.state.rkeep.replace(",", "")
+                                    Alert.alert('หุ้นรายเดือน', 'จำนวน ' + formatMoney(rKeep*1, { symbol: "บาท",  format: "%v %s" }))
+                                }
+                            }                            
                         >
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>หุ้นรายเดือน</Text>
                         </TouchableOpacity>

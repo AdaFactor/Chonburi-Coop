@@ -85,7 +85,7 @@ export default class Association extends React.Component {
 const styles = StyleSheet.create({
   contrainer: {
     flex: 1,
-    backgroundColor: '#ffffe6'
+    // backgroundColor: '#ffffe6'
   },
   content: {
     borderColor: '#b3b300', 

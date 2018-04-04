@@ -24,6 +24,7 @@ export default class LoginScreen extends Component {
       password: '',
       ssid: '',
       name: '',
+      isLoggingIn: false,
     }
   }
 
