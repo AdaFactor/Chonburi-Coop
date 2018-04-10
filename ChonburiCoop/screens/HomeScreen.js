@@ -8,7 +8,9 @@ import {
     Image,
     ImageBackground,
     ScrollView,
-    Keyboard
+    Keyboard,
+    AsyncStorage,
+    BackHandler,
 } from 'react-native'
 
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
@@ -32,8 +34,15 @@ export default class HomeScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            memberName: ''
+            memberName: '',
+            myKey: null
         }
+    }
+
+    componentDidMount() {
+        BackHandler.removeEventListener('hardwareBackPress', () => {
+            return false
+        })
     }
 
     render() {
@@ -52,8 +61,12 @@ export default class HomeScreen extends React.Component {
                     centerComponent={{ text: 'หน้าหลัก', style: { color: '#fff', fontSize: 16 } }}
                     rightComponent={
                         <Icon 
-                            name='exit-to-app' 
-                            onPress={() => {this.props.navigation.navigate('LoginScreen')}}
+                            name='exit-to-app'
+                            onPress={
+                                () => {
+                                    this.props.navigation.navigate('LoginScreen')
+                                }
+                            }
                             color='#fff'
                         />
                     }

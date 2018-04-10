@@ -1,21 +1,21 @@
 {
   "expo": {
     "name": "chtsc",
-    "description": "This project is really great.",
+    "description": "This project is for chtsc",
     "slug": "chtsc",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],
-    "version": "1.0.1",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ios-logo_chtsc.png",     
     "splash": {
       "image": "./assets/android-logo_chtsc.png",
       "backgroundColor": "#1CB5E0"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.adafactor.chtsc"
+      "bundleIdentifier": "com.adadesions.chtsc",
+      "buildNumber": "1.1.6",
+      "icon": "./assets/ios_chtsc_logo.png"     
     },
     "android": {
       "package": "com.adafactor.chtsc",

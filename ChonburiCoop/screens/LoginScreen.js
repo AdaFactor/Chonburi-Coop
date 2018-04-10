@@ -10,7 +10,9 @@ import {
   TouchableOpacity,
   ImageBackground,
   KeyboardAvoidingView,
-  Keyboard
+  Keyboard,
+  BackAndroid,
+  BackHandler
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -63,6 +65,12 @@ export default class LoginScreen extends Component {
     })
     .catch((err) => {
       console.log(err)
+    })
+  }
+
+  componentDidMount() {
+    BackHandler.removeEventListener('hardwareBackPress', () => {
+      return false
     })
   }
 
