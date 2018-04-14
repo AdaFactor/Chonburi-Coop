@@ -73,9 +73,9 @@ export default class HomeScreen extends React.Component {
                     backgroundColor='#248f24'
                 />
                 <SwiperScreen />
-                <View style={{justifyContent: 'center', height:'37%', backgroundColor:'#fff'}}>
-                    <ScrollView >
-                        <View style={{flexDirection: 'row'}}>
+                <View style={{justifyContent: 'center', height:'60%', backgroundColor:'#fff'}}>
+                    <View>
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                             <TouchableOpacity style={[styles.menuBtn, {backgroundColor:'#e6ffff'}]}
                                 onPress={
                                     () => { 
@@ -112,7 +112,7 @@ export default class HomeScreen extends React.Component {
                             </TouchableOpacity>
                         </View>
                         
-                        <View style={{flexDirection: 'row', alignItems: 'center',}}>
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                             <TouchableOpacity 
                                 style={[styles.menuBtn, {backgroundColor: '#e6e6ff'}]}
                                 onPress={
@@ -149,7 +149,8 @@ export default class HomeScreen extends React.Component {
                                 <Text style={{color: '#996633'}}>ค้ำประกัน</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{flexDirection: 'row'}}>
+
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                             <TouchableOpacity 
                                 style={[styles.menuBtn, {backgroundColor:'#fff0e6'}]}
                                 onPress={
@@ -186,7 +187,7 @@ export default class HomeScreen extends React.Component {
                                 <Text style={{color: '#003300'}}>เรียกเก็บ</Text>                        
                             </TouchableOpacity>
                         </View>
-                    </ScrollView>
+                    </View>
                 </View>
             </View>
         );

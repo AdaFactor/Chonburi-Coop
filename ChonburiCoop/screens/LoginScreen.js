@@ -5,8 +5,9 @@ import {
   Text,
   View,
   TextInput,
-  Button,
+  Linking,
   Alert,
+  Image,
   TouchableOpacity,
   ImageBackground,
   KeyboardAvoidingView,
@@ -15,6 +16,7 @@ import {
   BackHandler
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import { SocialIcon } from 'react-native-elements';
 
 var formBody = []
 
@@ -60,7 +62,7 @@ export default class LoginScreen extends Component {
         })
         
       } else {
-        alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
+        Alert.alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
       }
     })
     .catch((err) => {
@@ -118,6 +120,21 @@ export default class LoginScreen extends Component {
               <Text style={{ color: '#fff' }}>เข้าสู่ระบบ</Text>          
             </TouchableOpacity>
           </KeyboardAvoidingView>
+          
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('https://www.facebook.com/chtsc/') }}>
+              <Image source={require('../static/images/socials/facebook.png')} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('https://www.facebook.com/messages/t/254679241243725') }}>
+              <Image source={require('../static/images/socials/messenger.png')} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.social} onPress={()=>{ Alert.alert('line') }}>
+              <Image source={require('../static/images/socials/line.png')} /> 
+            </TouchableOpacity>
+          </View>
+          
         </View>
       </ImageBackground>
     );
@@ -146,7 +163,7 @@ const styles = StyleSheet.create({
       padding: 10,
       borderColor: '#d9d9d9',
       borderWidth: 1,
-      opacity: 0.7
+      opacity: 0.7,
     },
     buttonLogin: {
       height: 35,
@@ -154,13 +171,17 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#B21970',
-      borderRadius: 10
+      borderRadius: 10,
     },
     welcomeImage: {
       width: '100%',
       height: '100%',
-      padding: 30
+      padding: 30,
       
     },
+    social: {
+      marginLeft: 10,
+      marginRight: 10,
+    }
 });
   

@@ -48,7 +48,7 @@ export default class SwiperScreen extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-        height: '45%',
+        height: '30%',
     },
     slide1: {
         flex: 1,
