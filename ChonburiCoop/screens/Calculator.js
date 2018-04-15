@@ -35,6 +35,7 @@ export default class Calculator extends React.Component {
     .then((res) => res.json())
     .then((result) => {
         this.setState({ calculator: result })
+        console.log(result)
     })
   }
 

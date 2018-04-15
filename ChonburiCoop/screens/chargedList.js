@@ -32,6 +32,7 @@ export default class chargedList extends React.Component {
     .then(response => response.json())
     .then((responseJson) => {
       this.setState({ list_data: responseJson })
+      console.log(responseJson)
     })
     .catch((error) => { console.log(error) })
   }

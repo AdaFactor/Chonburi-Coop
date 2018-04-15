@@ -52,23 +52,31 @@ export default class HomeScreen extends React.Component {
             <View style={styles.contrainer}>
                 <Header
                     leftComponent={
-                        <Icon 
-                            name='email' 
+                        <TouchableOpacity
+                            style={{ flexDirection: 'row'}}
                             onPress={() => {this.props.navigation.navigate('NewsScreen', { id_user: userId })}}
-                            color='#fff'
-                        />
+                        >
+                            <Icon 
+                                name='newspaper-o'
+                                type='font-awesome'
+                                color='#fff'
+                            />
+                            <Text style={{ color: '#fff'}}> ข่าวสาร</Text>
+                        </TouchableOpacity>
                     }
                     centerComponent={{ text: 'หน้าหลัก', style: { color: '#fff', fontSize: 16 } }}
                     rightComponent={
-                        <Icon 
-                            name='exit-to-app'
-                            onPress={
-                                () => {
-                                    this.props.navigation.navigate('LoginScreen')
-                                }
-                            }
-                            color='#fff'
-                        />
+                        <TouchableOpacity
+                            style={{ flexDirection: 'row'}}
+                            onPress={() => {this.props.navigation.navigate('LoginScreen')}}
+                        >
+                            <Text style={{ color: '#fff' }}>ออกจากระบบ </Text>
+                            <Icon 
+                                name='exit-to-app'
+                                color='#fff'
+                            />
+                        </TouchableOpacity>
+                        
                     }
                     backgroundColor='#248f24'
                 />

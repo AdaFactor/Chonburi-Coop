@@ -24,7 +24,7 @@ export default class NewsScreen extends Component {
         fetch('http://www.chtsc.com/check_loan/mobile/news.json')
         .then(res => res.json())
         .then((result) => {
-            // console.log(result)
+            console.log(result)
             this.setState({ data_news: result })
         })
         .catch((error) => { console.log(error) })
