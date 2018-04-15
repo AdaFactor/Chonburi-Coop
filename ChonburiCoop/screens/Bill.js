@@ -32,6 +32,7 @@ export default class Bill extends React.Component {
     .then((res) => res.json())
     .then((result) => {
         this.setState({ bill_data: result })
+        console.log(result)
     })
   }
 

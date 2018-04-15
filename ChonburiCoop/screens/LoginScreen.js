@@ -15,8 +15,8 @@ import {
   BackAndroid,
   BackHandler
 } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
-import { SocialIcon } from 'react-native-elements';
+import { SocialIcon } from 'react-native-elements'
+import { Dropdown } from 'react-native-material-dropdown'
 
 var formBody = []
 
@@ -29,6 +29,7 @@ export default class LoginScreen extends Component {
       ssid: '',
       name: '',
       isLoggingIn: false,
+      contact: 'Banana'
     }
   }
 
@@ -77,6 +78,14 @@ export default class LoginScreen extends Component {
   }
 
   render() {
+    let contact = [{
+      value: 'Banana',
+    }, {
+      value: 'Mango',
+    }, {
+      value: 'Pear',
+    }];
+
     return (
       <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
         <View 
@@ -119,6 +128,12 @@ export default class LoginScreen extends Component {
             >
               <Text style={{ color: '#fff' }}>เข้าสู่ระบบ</Text>          
             </TouchableOpacity>
+
+            <Dropdown 
+              label="ติดต่อ" 
+              data={contact}
+              containerStyle={{ margin: 10, padding: 10, paddingTop: 0, width: '100%', backgroundColor: '#fff' }}
+            />
           </KeyboardAvoidingView>
           
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>

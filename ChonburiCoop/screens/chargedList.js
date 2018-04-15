@@ -16,6 +16,8 @@ export default class chargedList extends React.Component {
     super(props)
     this.state = {
       list_data: [],
+      month: new Date().getMonth(),
+      year: new Date().getFullYear()+543,
     }
   }
 
@@ -38,6 +40,7 @@ export default class chargedList extends React.Component {
   }
 
   render() {
+    let monthThai = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤษจิกายน","ธันวาคม"]
     return (
       <View style={styles.container}>
         <Header
@@ -48,7 +51,10 @@ export default class chargedList extends React.Component {
                 color='#fff'
             />
           }        
-          centerComponent={{ text: 'รายการเรียกเก็บ', style: { color: '#fff', fontSize: 16 } }}
+          centerComponent={{ 
+            text: 'รายการเรียกเก็บ เดือน ' + monthThai[this.state.month] + " " + this.state.year, 
+            style: { color: '#fff', fontSize: 16 } 
+          }}
           backgroundColor='#248f24'
       />
         <ScrollView style={{ marginBottom: 10, padding: 10 }} >

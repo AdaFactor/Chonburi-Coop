@@ -36,6 +36,7 @@ export default class Dividend extends React.Component {
     .then((res) => res.json())
     .then((result) => {
       this.setState({ dividend_data: result })
+      console.log(result)
     })
   }
 
