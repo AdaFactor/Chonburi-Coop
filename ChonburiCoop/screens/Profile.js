@@ -30,6 +30,7 @@ export default class Profile extends Component {
         .then(res => res.json())
         .then((result) => {
             let address = result[0].address
+            let rkeep = result[0].rkeep
             this.setState({ 
                 member_id: result[0].member_id,
                 member_name: result[0].member_name,
@@ -39,7 +40,7 @@ export default class Profile extends Component {
                 mobile: result[0].mobile,
                 member_date: result[0].member_date,
                 birth_date: result[0].birth_date,
-                rkeep: result[0].rkeep,
+                rkeep: rkeep.replace(',', ''),
                 apply_date: result[0].apply_date
             })                
         })
@@ -60,13 +61,6 @@ export default class Profile extends Component {
                         />
                     }
                     centerComponent={{ text: 'สมาชิก', style: { color: '#fff', fontSize: 16 } }}
-                    // rightComponent={
-                    //     <Icon 
-                    //         name='email' 
-                    //         onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user, memberName: name})}}
-                    //         color='#fff'
-                    //     />
-                    // }
                     backgroundColor='#248f24'
                 />
                 <ScrollView style={{ marginBottom: 10 }}>
@@ -139,24 +133,22 @@ export default class Profile extends Component {
                     </View>
                     
 
-                    <View style={{margin: 15, flexDirection: 'row'}}>
-                        <TouchableOpacity 
-                            style={styles.button} 
-                            onPress={() => Alert.alert('มูลค่าหุ้น', 'จำนวน ' + formatMoney(this.state.share_v*10, { symbol: "บาท",  format: "%v %s" }))}
-                        >
+                    <View style={{margin: 15, marginBottom: 0, flexDirection: 'row'}}>
+                        <View style={styles.title} >   
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>มูลค่าหุ้น</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                            style={styles.button}
-                            onPress={
-                                () => {
-                                    let rKeep = this.state.rkeep.replace(",", "")
-                                    Alert.alert('หุ้นรายเดือน', 'จำนวน ' + formatMoney(rKeep*1, { symbol: "บาท",  format: "%v %s" }))
-                                }
-                            }                            
-                        >
+                        </View>
+                        <View style={styles.content} >
+                            <Text style={{color: '#006666'}}>{ formatMoney(this.state.share_v*10, { symbol: "บาท",  format: "%v %s" }) }</Text>
+                        </View>
+                    </View>
+                    
+                    <View style={{margin: 15, marginTop: 0, flexDirection: 'row'}}>
+                        <View style={styles.title} >   
                             <Text style={{color: '#fff', fontWeight: 'bold'}}>หุ้นรายเดือน</Text>
-                        </TouchableOpacity>
+                        </View>
+                        <View style={styles.content} >
+                            <Text style={{color: '#006666'}}>{ formatMoney(this.state.rkeep*1, { symbol: "บาท",  format: "%v %s" }) }</Text>
+                        </View>
                     </View>
                 </ScrollView>
             </View>
@@ -179,12 +171,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '33.33%',
     },
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
+    title: {
         backgroundColor: '#006666',
-        width: '50%',
-        height: 40,
+        width: '40%',
+        padding: 10,
+    },
+    content: {
         alignItems: 'center',
-    }
+        backgroundColor: '#fff',
+        borderColor: '#006666',
+        borderWidth: 1,
+        width: '60%',
+        padding: 10, 
+    } 
 });
