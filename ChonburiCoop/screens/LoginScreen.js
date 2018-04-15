@@ -126,12 +126,16 @@ export default class LoginScreen extends Component {
               <Image source={require('../static/images/socials/facebook.png')} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('https://www.facebook.com/messages/t/254679241243725') }}>
+            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('https://www.facebook.com/messages/t/chtsc') }}>
               <Image source={require('../static/images/socials/messenger.png')} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.social} onPress={()=>{ Alert.alert('line') }}>
+            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('http://line.me/ti/p/~@kruchoncoop') }}>
               <Image source={require('../static/images/socials/line.png')} /> 
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('http://www.chtsc.com') }}>
+              <Image source={require('../static/images/socials/browser.png')} /> 
             </TouchableOpacity>
           </View>
           
