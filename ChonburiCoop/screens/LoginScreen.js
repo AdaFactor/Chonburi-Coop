@@ -17,6 +17,7 @@ import {
 } from 'react-native'
 import { SocialIcon } from 'react-native-elements'
 import { Dropdown } from 'react-native-material-dropdown'
+import phones from '../static/json/phones.json'
 
 var formBody = []
 
@@ -29,7 +30,7 @@ export default class LoginScreen extends Component {
       ssid: '',
       name: '',
       isLoggingIn: false,
-      contact: 'Banana'
+      contact: 'สำนักงาน'
     }
   }
 
@@ -64,6 +65,7 @@ export default class LoginScreen extends Component {
         
       } else {
         Alert.alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
+        console.log(phones)
       }
     })
     .catch((err) => {
@@ -78,12 +80,12 @@ export default class LoginScreen extends Component {
   }
 
   render() {
-    let contact = [{
-      value: 'Banana',
+    let contactData = [{
+      label: 'สำนักงาน',
+      value: '038111092',
     }, {
-      value: 'Mango',
-    }, {
-      value: 'Pear',
+      label: 'ฝ่ายการเงินและสวัสดิการ',
+      value: '0851411780',
     }];
 
     return (
@@ -129,10 +131,10 @@ export default class LoginScreen extends Component {
               <Text style={{ color: '#fff' }}>เข้าสู่ระบบ</Text>          
             </TouchableOpacity>
 
-            <Dropdown 
+            <Dropdown
               label="ติดต่อ" 
-              data={contact}
-              containerStyle={{ margin: 10, padding: 10, paddingTop: 0, width: '100%', backgroundColor: '#fff' }}
+              data={contactData}
+              containerStyle={{ margin: 10, padding: 10, paddingTop: 0, paddingBottom: 0, width: '100%', backgroundColor: '#fff' }}
             />
           </KeyboardAvoidingView>
           
@@ -150,7 +152,7 @@ export default class LoginScreen extends Component {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('http://www.chtsc.com') }}>
-              <Image source={require('../static/images/socials/browser.png')} /> 
+              <Image style={{width: 50, height: 50}} source={require('../static/images/socials/logo_chtsc.png')} /> 
             </TouchableOpacity>
           </View>
           

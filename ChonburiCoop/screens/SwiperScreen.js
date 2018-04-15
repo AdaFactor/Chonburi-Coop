@@ -21,25 +21,16 @@ export default class SwiperScreen extends Component {
         activeDotColor='#fff'
       >
         <View style={styles.welcome}>
-            <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
-
-                <Text style={{color: '#fff', fontSize: 20}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
-            </ImageBackground>                                        
+            <ImageBackground source={{uri:'http://www.chtsc.com/images/2560/10-1022.jpg'}} style={styles.welcomeImage}>
+            </ImageBackground>
         </View>
         <View style={styles.slide1}>
-            <ImageBackground source={require('../static/images/sweper-home.png')} style={styles.welcomeImage}>
-                <Text style={{color: '#fff', fontSize: 16}}>สหกรณ์ออมทรัพย์ครูชลบุรี จำกัด</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>เป็นสถาบันการเงินที่ได้มาตรฐาน จัดสวัสดิการทั่วถึง</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>สมาชิกพึงพอใจ ให้บริการด้วยเทคโนโลยี </Text>       
-                <Text style={{color: '#fff', fontSize: 16}}>เป็นศักดิ์ศรีของครูชล</Text>         
+            <ImageBackground source={{uri:'http://www.chtsc.com/images/2561/chang_61.jpg'}} style={styles.welcomeImage}>
             </ImageBackground>
         </View>
         <View style={styles.slide2}>
-            <ImageBackground source={require('../static/images/swiper-home-3.png')} style={styles.welcomeImage}>
-                <Text style={{color: '#fff', fontSize: 16}}>55/99 หมู่ที่ 3</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>ถนนสุขุมวิท ตำบลเสม็ด อำเภอเมือง</Text>
-                <Text style={{color: '#fff', fontSize: 16}}>จังหวัดชลบุรี 20000</Text>       
-            </ImageBackground>                                                   
+            <ImageBackground source={{uri:'http://www.chtsc.com/images/2561/present/18-04-2018.jpg'}} style={styles.welcomeImage}>
+            </ImageBackground>
         </View>
       </Swiper>
     );

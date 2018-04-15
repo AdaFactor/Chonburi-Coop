@@ -16,6 +16,7 @@ export default class chargedList extends React.Component {
     super(props)
     this.state = {
       list_data: [],
+      total_bal:[],
       month: new Date().getMonth(),
       year: new Date().getFullYear()+543,
     }
@@ -35,6 +36,12 @@ export default class chargedList extends React.Component {
     .then((responseJson) => {
       this.setState({ list_data: responseJson })
       console.log(responseJson)
+      let total = 0
+      for ( let i = 0; i < responseJson.length; i++){
+        total += responseJson[i].printciple_bal*1
+      }
+      this.setState({total_bal: total})
+      console.log(total)
     })
     .catch((error) => { console.log(error) })
   }
@@ -57,6 +64,9 @@ export default class chargedList extends React.Component {
           }}
           backgroundColor='#248f24'
       />
+        <View style={{ padding: 10, backgroundColor: '#003300', alignItems: 'center'}}>
+          <Text style={{color: '#fff', fontSize: 18}}>รวม { formatMoney(this.state.total_bal, {symbol: "บาท",  format: "%v %s" }) }</Text>
+        </View>
         <ScrollView style={{ marginBottom: 10, padding: 10 }} >
             {
               this.state.list_data.map(( itemCharged, i ) => (
@@ -90,6 +100,7 @@ export default class chargedList extends React.Component {
                     </View>
                   </View>
                 </View>
+
               ))
             }
         </ScrollView>
