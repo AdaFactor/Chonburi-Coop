@@ -13,7 +13,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   BackAndroid,
-  BackHandler
+  BackHandler,
 } from 'react-native'
 import { SocialIcon } from 'react-native-elements'
 import { Dropdown } from 'react-native-material-dropdown'
@@ -30,8 +30,44 @@ export default class LoginScreen extends Component {
       ssid: '',
       name: '',
       isLoggingIn: false,
-      contact: 'สำนักงาน'
+      phone_number: ''
     }
+  }
+
+  getInitialState() {
+    return this.state
+  }
+
+  onButtonPress = () => {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+  }
+  
+  handleBackButton = () => {
+    // Alert.alert(
+    //   'ออกจากแอปพลิเคชัน',
+    //   'คุณต้องการออกจากแอปพลิเคชันหรือไม่?', [{
+    //     text: 'Cancel',
+    //     onPress: () => console.log('Cancel Pressed'),
+    //     style: 'cancel'
+    //   }, {
+    //     text: 'OK',
+    //     onPress: () => {
+    //       BackHandler.exitApp()
+    //       return this.state
+    //     }
+    //   }, ], {
+    //     cancelable: false
+    //   }
+    // )
+    return true;
+  } 
+  
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+  }
+  
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
   }
 
   _login = (id, mpassword) => {
@@ -73,20 +109,14 @@ export default class LoginScreen extends Component {
     })
   }
 
-  componentDidMount() {
-    BackHandler.removeEventListener('hardwareBackPress', () => {
-      return false
-    })
-  }
-
   render() {
-    let contactData = [{
-      label: 'สำนักงาน',
-      value: '038111092',
-    }, {
-      label: 'ฝ่ายการเงินและสวัสดิการ',
-      value: '0851411780',
-    }];
+    // let contactData = [{
+    //   label: 'สำนักงาน',
+    //   value: '038111092',
+    // }, {
+    //   label: 'ฝ่ายการเงินและสวัสดิการ',
+    //   value: '0851411780',
+    // }];
 
     return (
       <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
@@ -131,11 +161,11 @@ export default class LoginScreen extends Component {
               <Text style={{ color: '#fff' }}>เข้าสู่ระบบ</Text>          
             </TouchableOpacity>
 
-            <Dropdown
+            {/* <Dropdown
               label="ติดต่อ" 
               data={contactData}
               containerStyle={{ margin: 10, padding: 10, paddingTop: 0, paddingBottom: 0, width: '100%', backgroundColor: '#fff' }}
-            />
+            /> */}
           </KeyboardAvoidingView>
           
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
