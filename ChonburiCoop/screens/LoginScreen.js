@@ -31,35 +31,28 @@ export default class LoginScreen extends Component {
       ssid: '',
       name: '',
       isLoggingIn: false,
-      phones_num: phones
     }
   }
 
-  getInitialState() {
-    return this.state
-  }
 
   onButtonPress = () => {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
   }
   
   handleBackButton = () => {
-    // Alert.alert(
-    //   'ออกจากแอปพลิเคชัน',
-    //   'คุณต้องการออกจากแอปพลิเคชันหรือไม่?', [{
-    //     text: 'Cancel',
-    //     onPress: () => console.log('Cancel Pressed'),
-    //     style: 'cancel'
-    //   }, {
-    //     text: 'OK',
-    //     onPress: () => {
-    //       BackHandler.exitApp()
-    //       return this.state
-    //     }
-    //   }, ], {
-    //     cancelable: false
-    //   }
-    // )
+    Alert.alert(
+      'ออกจากแอปพลิเคชัน',
+      'คุณต้องการออกจากแอปพลิเคชันหรือไม่?', [{
+        text: 'ยกเลิก',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel'
+      }, {
+        text: 'ตกลง',
+        onPress: () => BackHandler.exitApp()
+      }, ], {
+        cancelable: false
+      }
+    )
     return true;
   } 
   
@@ -102,7 +95,6 @@ export default class LoginScreen extends Component {
         
       } else {
         Alert.alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')
-        console.log(phones)
       }
     })
     .catch((err) => {
@@ -164,17 +156,16 @@ export default class LoginScreen extends Component {
               }}
               renderRow={(data, id, i) => {
                 return (
-                  <TouchableOpacity>
+                  <TouchableOpacity 
+                    onPress={() => {
+                      Linking.openURL('tel:0888154751')  
+                    }}
+                  >
                     <Text>{ `${data.department}: ${data.phone_num}` }</Text>
                   </TouchableOpacity>
                 )
               }}
             />
-            {/* <Dropdown
-              label="ติดต่อ" 
-              data={contactData}
-              containerStyle={{ margin: 10, padding: 10, paddingTop: 0, paddingBottom: 0, width: '100%', backgroundColor: '#fff' }}
-            /> */}
           </KeyboardAvoidingView>
           
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
@@ -194,7 +185,6 @@ export default class LoginScreen extends Component {
               <Image style={{width: 50, height: 50}} source={require('../static/images/socials/logo_chtsc.png')} /> 
             </TouchableOpacity>
           </View>
-          
         </View>
       </ImageBackground>
     );

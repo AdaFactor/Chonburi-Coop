@@ -5,7 +5,8 @@ import {
   Text, 
   View, 
   TouchableOpacity,
-  ScrollView 
+  ScrollView,
+  WebView
 } from 'react-native'
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
@@ -32,7 +33,7 @@ export default class Bill extends React.Component {
     .then((res) => res.json())
     .then((result) => {
         this.setState({ bill_data: result })
-        console.log(result)
+        console.log(this.props.navigation.state.params.username)
     })
   }
 
@@ -63,12 +64,15 @@ export default class Bill extends React.Component {
                   title={ 'เลขที่ใบเสร็จ: ' + itemBill.RECV_PERIOD }
                 >
                   <View style={{ flexDirection: 'row' }}>
-                    <View style={styles.billCard}>
+                    <View style={styles.dateBill}>
                       <Text>{ itemBill.RECV_DATE }</Text>                     
                     </View>
                     <View style={styles.billCard}>
                       <Text>จำนวน { itemBill.GSUM } บาท</Text>                      
                     </View>
+                    <TouchableOpacity style={styles.viewBill} onPress={() => {this.props.navigation.navigate('ViewBill')} }>
+                      <Text>ดูใบเสร็จ</Text>
+                    </TouchableOpacity>
                   </View>
                 </Card>
               ))
@@ -79,14 +83,34 @@ export default class Bill extends React.Component {
   }
 }
 
+const ViewBill = () => {
+  return (
+    <WebView 
+      source={{ uri: 'http://www.chtsc.com/check_loan/viewdetailrcp.php' }}
+    />
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: '#e6e6ff'
   },
+  dateBill: {
+    width: '30%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   billCard: {
     width: '50%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  viewBill: {
+    padding: 3,
+    width: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#aaaaaa'
   }
 });

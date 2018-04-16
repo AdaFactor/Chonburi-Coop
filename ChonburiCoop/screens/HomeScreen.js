@@ -39,15 +39,10 @@ export default class HomeScreen extends React.Component {
         }
     }
 
-    componentDidMount() {
-        BackHandler.removeEventListener('hardwareBackPress', () => {
-            return false
-        })
-    }
-
     render() {
         let userId = this.props.navigation.state.params.id_user
         let name = this.props.navigation.state.params.memberName
+        let username = this.props.navigation.state.params.username
         return(
             <View style={styles.contrainer}>
                 <Header
@@ -64,7 +59,6 @@ export default class HomeScreen extends React.Component {
                             <Text style={{ color: '#fff'}}> ข่าวสาร</Text>
                         </TouchableOpacity>
                     }
-                    centerComponent={{ text: 'หน้าหลัก', style: { color: '#fff', fontSize: 16 } }}
                     rightComponent={
                         <TouchableOpacity
                             style={{ flexDirection: 'row'}}
@@ -125,7 +119,7 @@ export default class HomeScreen extends React.Component {
                                 style={[styles.menuBtn, {backgroundColor: '#e6e6ff'}]}
                                 onPress={
                                     () => { 
-                                        this.props.navigation.navigate('Bill', { id_user: userId })
+                                        this.props.navigation.navigate('Bill', { id_user: userId , username: username})
                                     }
                                 }
                             >

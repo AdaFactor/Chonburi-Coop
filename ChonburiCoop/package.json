@@ -2,6 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
+    "@remobile/react-native-call": "^1.0.1",
     "accounting-js": "^1.1.1",
     "expo": "^25.0.0",
     "moment": "^2.22.1",
