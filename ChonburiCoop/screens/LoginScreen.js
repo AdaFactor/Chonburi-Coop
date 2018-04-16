@@ -17,6 +17,7 @@ import {
 } from 'react-native'
 import { SocialIcon } from 'react-native-elements'
 import { Dropdown } from 'react-native-material-dropdown'
+import ModalDropdown from 'react-native-modal-dropdown'
 import phones from '../static/json/phones.json'
 
 var formBody = []
@@ -30,7 +31,7 @@ export default class LoginScreen extends Component {
       ssid: '',
       name: '',
       isLoggingIn: false,
-      phone_number: ''
+      phones_num: phones
     }
   }
 
@@ -110,14 +111,6 @@ export default class LoginScreen extends Component {
   }
 
   render() {
-    // let contactData = [{
-    //   label: 'สำนักงาน',
-    //   value: '038111092',
-    // }, {
-    //   label: 'ฝ่ายการเงินและสวัสดิการ',
-    //   value: '0851411780',
-    // }];
-
     return (
       <ImageBackground source={require('../static/images/welcome.png')} style={styles.welcomeImage}>
         <View 
@@ -160,7 +153,23 @@ export default class LoginScreen extends Component {
             >
               <Text style={{ color: '#fff' }}>เข้าสู่ระบบ</Text>          
             </TouchableOpacity>
-
+            
+            <ModalDropdown
+              style={{ margin: 10, padding: 6, width: '100%', backgroundColor: '#fff' }}
+              dropdownStyle={{ padding: 5, width: '70%' }}
+              defaultValue="เบอร์โทร บริการสมาชิก..."
+              options={phones}
+              renderButtonText={(data) => {
+                return `${data.department}: ${data.phone_num}`
+              }}
+              renderRow={(data, id, i) => {
+                return (
+                  <TouchableOpacity>
+                    <Text>{ `${data.department}: ${data.phone_num}` }</Text>
+                  </TouchableOpacity>
+                )
+              }}
+            />
             {/* <Dropdown
               label="ติดต่อ" 
               data={contactData}

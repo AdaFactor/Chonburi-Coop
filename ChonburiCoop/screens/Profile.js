@@ -54,11 +54,15 @@ export default class Profile extends Component {
             <View style={styles.container}>
                 <Header
                     leftComponent={
-                        <Icon 
-                            name='home' 
+                        <TouchableOpacity
+                            style={{ flexDirection: 'row' }}
                             onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
-                            color='#fff'
-                        />
+                        >
+                            <Icon 
+                                name='home' 
+                                color='#fff'
+                            />
+                        </TouchableOpacity>
                     }
                     centerComponent={{ text: 'สมาชิก', style: { color: '#fff', fontSize: 16 } }}
                     backgroundColor='#248f24'

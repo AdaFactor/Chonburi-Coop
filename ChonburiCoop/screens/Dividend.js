@@ -45,11 +45,15 @@ export default class Dividend extends React.Component {
       <View style={styles.container}>
         <Header
           leftComponent={
-            <Icon 
+            <TouchableOpacity
+              style={{ flexDirection: 'row' }}
+              onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
+            >
+              <Icon 
                 name='home' 
-                onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
                 color='#fff'
-            />
+              />
+            </TouchableOpacity>
           }
           centerComponent={{ text: 'เงินปันผล', style: { color: '#fff', fontSize: 16 } }}
           backgroundColor='#248f24'

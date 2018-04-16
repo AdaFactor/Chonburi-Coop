@@ -56,14 +56,17 @@ export default class NewsScreen extends Component {
             <View style={styles.container}>
                 <Header
                     leftComponent={
-                        <Icon 
-                            name='home' 
+                        <TouchableOpacity
+                            style={{ flexDirection: 'row' }}
                             onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
-                            color='#fff'
-                        />
+                        >
+                            <Icon 
+                                name='home' 
+                                color='#fff'
+                            />
+                        </TouchableOpacity>
                     }
                     centerComponent={{ text: 'ข่าวประชาสัมพันธ์', style: { fontSize: 16, color:'#fff' } }}
-                    // statusBarProps={{ translucent: true }}
                     backgroundColor='#248f24'                    
                 />
                 <ScrollView>

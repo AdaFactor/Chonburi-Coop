@@ -40,11 +40,15 @@ export default class Association extends React.Component {
             <View style={ styles.contrainer }>
                 <Header
                     leftComponent={
-                        <Icon 
-                            name='home' 
+                        <TouchableOpacity
+                            style={{ flexDirection: 'row' }}
                             onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
-                            color='#fff'
-                        />
+                        >
+                            <Icon 
+                                name='home' 
+                                color='#fff'
+                            />
+                        </TouchableOpacity>
                     }
                     centerComponent={{ text: 'สมาคม', style: { color: '#fff', fontSize: 16 } }}
                     // rightComponent={

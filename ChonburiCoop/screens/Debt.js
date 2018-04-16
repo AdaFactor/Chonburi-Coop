@@ -44,20 +44,17 @@ export default class Debt extends React.Component {
       <View style={styles.container}>
         <Header
           leftComponent={
-            <Icon 
+            <TouchableOpacity
+              style={{ flexDirection: 'row' }}
+              onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
+            >
+              <Icon 
                 name='home' 
-                onPress={() => {this.props.navigation.navigate('HomeScreen',  {id_user: this.props.navigation.state.params.id_user })}}
                 color='#fff'
-            />
+              />
+            </TouchableOpacity>
           }
           centerComponent={{ text: 'หนี้สิน', style: { color: '#fff', fontSize: 16 } }}
-          // rightComponent={
-          //   <Icon 
-          //       name='email' 
-          //       onPress={() => {this.props.navigation.navigate('NewsScreen', {id_user: this.props.navigation.state.params.id_user, memberName: name })}}
-          //       color='#fff'
-          //   />
-          // }
           backgroundColor='#248f24'
       />
         <ScrollView style={{ marginBottom: 10, padding: 10 }} >
