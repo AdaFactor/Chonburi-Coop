@@ -16,9 +16,9 @@ import {
   BackHandler,
 } from 'react-native'
 import { SocialIcon } from 'react-native-elements'
-import { Dropdown } from 'react-native-material-dropdown'
 import ModalDropdown from 'react-native-modal-dropdown'
 import phones from '../static/json/phones.json'
+import Communications from 'react-native-communications'
 
 var formBody = []
 
@@ -31,6 +31,7 @@ export default class LoginScreen extends Component {
       ssid: '',
       name: '',
       isLoggingIn: false,
+      call: ''
     }
   }
 
@@ -156,16 +157,16 @@ export default class LoginScreen extends Component {
               }}
               renderRow={(data, id, i) => {
                 return (
-                  <TouchableOpacity 
-                    onPress={() => {
-                      Linking.openURL('tel:0888154751')  
-                    }}
-                  >
+                  <TouchableOpacity>
                     <Text>{ `${data.department}: ${data.phone_num}` }</Text>
                   </TouchableOpacity>
                 )
               }}
+              onSelect={(idx, value) => this.setState({call: value.phone_num})}
             />
+            <TouchableOpacity style={styles.call} onPress={() => Communications.phonecall(this.state.call, true)}>
+              <Text style={{color: '#fff'}}>Call</Text>
+            </TouchableOpacity>
           </KeyboardAvoidingView>
           
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
@@ -173,7 +174,7 @@ export default class LoginScreen extends Component {
               <Image source={require('../static/images/socials/facebook.png')} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('https://www.facebook.com/messages/t/chtsc') }}>
+            <TouchableOpacity style={styles.social} onPress={()=>{ Linking.openURL('https://www.facebook.com/messages/t/254679241243725') }}>
               <Image source={require('../static/images/socials/messenger.png')} />
             </TouchableOpacity>
 
@@ -232,6 +233,13 @@ const styles = StyleSheet.create({
     social: {
       marginLeft: 10,
       marginRight: 10,
+    },
+    call: {
+      padding: 5,
+      alignItems: 'center',
+      width: '20%',
+      backgroundColor: 'green',
+      borderRadius: 5
     }
 });
   

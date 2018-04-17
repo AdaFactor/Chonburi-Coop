@@ -6,10 +6,12 @@ import {
   View, 
   TouchableOpacity,
   ScrollView,
-  WebView
+  WebView,
+  Linking
 } from 'react-native'
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
+import Communications from 'react-native-communications'
 
 export default class Bill extends React.Component {
   constructor(props) {
@@ -70,7 +72,7 @@ export default class Bill extends React.Component {
                     <View style={styles.billCard}>
                       <Text>จำนวน { itemBill.GSUM } บาท</Text>                      
                     </View>
-                    <TouchableOpacity style={styles.viewBill} onPress={() => {this.props.navigation.navigate('ViewBill')} }>
+                    <TouchableOpacity style={styles.viewBill} onPress={() => Communications.phonecall('0123456789', true) }>
                       <Text>ดูใบเสร็จ</Text>
                     </TouchableOpacity>
                   </View>
