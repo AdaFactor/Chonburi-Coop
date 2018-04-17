@@ -20,7 +20,6 @@ export default class NewsScreen extends Component {
         }
     }
     componentDidMount = () => {
-        // fetch( 'http://www.chtsc.com/index.php/component/content/article/14-infor/109-info-13', { method: 'GET' })
         fetch('http://www.chtsc.com/check_loan/mobile/news.json')
         .then(res => res.json())
         .then((result) => {
