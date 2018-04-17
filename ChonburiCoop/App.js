@@ -14,6 +14,7 @@ import Dividend from './screens/Dividend'
 import chargedList from './screens/chargedList'
 import NewsScreen from './screens/NewsScreen'
 import Debt from './screens/Debt'
+import ViewBill from './screens/ViewBill';
 
 export default class App extends React.Component {
   render() {
@@ -60,6 +61,9 @@ const StackNav = StackNavigator(
       },
       Debt: { 
         screen: Debt 
+      },
+      ViewBill: {
+        screen: ViewBill
       }
   },
   {
