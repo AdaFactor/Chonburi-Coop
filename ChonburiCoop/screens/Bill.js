@@ -6,7 +6,8 @@ import {
   View, 
   TouchableOpacity,
   ScrollView,
-  WebView
+  WebView,
+  Linking
 } from 'react-native'
 import { Input, Button, Card, Header, Icon } from 'react-native-elements'
 import { DrawerNavigator, SafeAreaView, DrawerItems } from 'react-navigation'
@@ -33,7 +34,6 @@ export default class Bill extends React.Component {
     .then((res) => res.json())
     .then((result) => {
         this.setState({ bill_data: result })
-        console.log(this.props.navigation.state.params.username)
     })
   }
 
@@ -70,7 +70,16 @@ export default class Bill extends React.Component {
                     <View style={styles.billCard}>
                       <Text>จำนวน { itemBill.GSUM } บาท</Text>                      
                     </View>
-                    <TouchableOpacity style={styles.viewBill} onPress={() => {this.props.navigation.navigate('ViewBill')} }>
+                    <TouchableOpacity 
+                      style={styles.viewBill} 
+                      onPress={() => {
+                        this.props.navigation.navigate('ViewBill',  {
+                          id_user: this.props.navigation.state.params.id_user,
+                          username: this.props.navigation.state.params.username,
+                          recv_period: itemBill.RECV_PERIOD
+                        })
+                      }}
+                    >
                       <Text>ดูใบเสร็จ</Text>
                     </TouchableOpacity>
                   </View>
@@ -83,13 +92,6 @@ export default class Bill extends React.Component {
   }
 }
 
-const ViewBill = () => {
-  return (
-    <WebView 
-      source={{ uri: 'http://www.chtsc.com/check_loan/viewdetailrcp.php' }}
-    />
-  )
-}
 
 const styles = StyleSheet.create({
   container: {

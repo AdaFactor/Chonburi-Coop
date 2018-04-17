@@ -22,7 +22,6 @@ export default class Profile extends Component {
     }
 
     componentDidMount = () => {
-        //this.props.navigation.state.params.id_user
         fetch( 'http://www.chtsc.com/check_loan/get_data/php2json.php?ssid=' + this.props.navigation.state.params.id_user + '&tab=3', { 
             method: 'GET',
             

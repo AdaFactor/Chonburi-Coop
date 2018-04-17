@@ -41,7 +41,6 @@ export default class chargedList extends React.Component {
         total += responseJson[i].printciple_bal*1
       }
       this.setState({total_bal: total})
-      console.log(total)
     })
     .catch((error) => { console.log(error) })
   }

@@ -51,13 +51,6 @@ export default class Association extends React.Component {
                         </TouchableOpacity>
                     }
                     centerComponent={{ text: 'สมาคม', style: { color: '#fff', fontSize: 16 } }}
-                    // rightComponent={
-                    //     <Icon 
-                    //         name='email' 
-                    //         onPress={() => {this.props.navigation.navigate('NewsScreen',  {id_user: this.props.navigation.state.params.id_user })}}
-                    //         color='#fff'
-                    //     />
-                    // }
                     backgroundColor='#248f24'
                 />
                 <ScrollView style={{ marginBottom: 15 }}>
